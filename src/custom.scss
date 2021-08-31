@@ -1,0 +1,268 @@
+/* Provide sufficient contrast against white background */
+
+/*$colorBody: #f5f5f5;
+$colorBackHeader: #243760;
+$colorBackCards: #ffffff;
+$colorBorderCards: #e5e5e5;
+$colorBackButton1: #3db54b; //conestoga #3db54b
+$colorBackButton2: #f5f5f5;
+$colorWater: #4dbee2;
+$colorBack1: #243760;
+$colorFont1: #fffee7;
+$colorFont2: #0e0e0e;
+$colorBack2: #3db54b;
+*/
+
+//Last App
+$colorBody: #d7d7d7;
+$colorBackHeader: #595959;
+$colorBackCards: #f2f2f2;
+$colorBorderCards: #959595;
+$colorWater: #6d80a8;
+$colorNoWater: #424E6633;
+
+$colorBack1: #595959;
+$colorFont1: #ffffe7;
+
+$colorBackButton1: #e1e1e1;
+$colorBackSelectedButton1: #9e9e9e;
+
+$colorFontButton1: black;
+$colorborderButton1: #adadad;
+
+$colorFont2: #0e0e0e;
+$colorBack2: #3db54b;
+
+$colorPipe: #fcfcfc;
+
+$colorBorderPipe: #cccccc;
+$colorBorderWaterTank: #7f7f7f;
+
+$colorInactive: #959595;
+$colorActive: #239645;
+$colorInfo: #032870;
+
+
+
+$widthPipe:15px;
+$heightPipe:270px;
+
+
+a.navbar-brand {
+    white-space: normal;
+    text-align: center;
+    word-break: break-all;
+  }
+  
+  html {
+    font-size: 14px;
+  }
+  @media (min-width: 768px) {
+    html {
+      font-size: 16px;
+    }
+  }
+  
+  .box-shadow {
+    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  }
+  
+
+//#fcfcfc
+a {
+    color: #0366d6;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: $colorBody;
+}
+
+code {
+  color: #E01A76;
+}
+
+
+.card {
+    background-color: $colorBackCards !important;
+    border-color: $colorBorderCards;
+}
+
+
+.bg-primary {
+    background-color: $colorBack1 !important;
+}
+.text-primary {
+    color: $colorFont1 !important;
+}
+
+.text-info{
+    color: $colorInfo !important;
+}
+.bg-secundary {
+    background-color: $colorBack2 !important;
+}
+.text-secundary {
+    color: $colorFont2 !important;
+}
+
+.pump-Yellow {
+    -webkit-filter: hue-rotate(56deg);
+}
+.pump-Green {
+    -webkit-filter: hue-rotate(109deg);
+}
+
+.pump-Grey {
+    -webkit-filter: grayscale(100%);
+}
+
+
+
+
+
+.btn-principal {
+    background-color: $colorBackButton1 !important;
+    color: $colorFontButton1 !important;
+    border: $colorborderButton1 !important;
+}
+.btn-principal:active{
+    background:$colorBackSelectedButton1 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn-principal:focus{
+    background:$colorBackSelectedButton1 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn-principal:hover{
+    background:$colorBackSelectedButton1 !important;
+    outline: none !important;
+    box-shadow: none;
+}
+
+.btn:focus,.btn:active {
+    outline: none !important;
+    box-shadow: none;
+ }
+
+.card-Pump {
+/*    height: 600px;
+*/    min-width: 230px !important;
+    max-width: 240px !important;
+    /*width:200px !important;*/
+}
+.card-Pump-Image{
+    height:150px !important;
+    background-color:dimgrey;
+}
+
+.water-Tank-Box {
+    height: 350px !important;
+    width: 250px !important;
+    border-style: hidden solid solid solid;
+    border-width: 10px;
+    border-color: $colorBorderWaterTank;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    overflow: hidden;
+    background-color: $colorNoWater;
+    min-width: 200px !important;
+    margin-top: 5rem !important;
+}
+
+.span-Primary{
+    background-color: $colorFont1 !important;
+    color: black;
+    border:solid 1px $colorborderButton1;
+}
+
+.bg-inactive{
+    background-color: $colorInactive !important;
+}
+
+.bg-active{
+    background-color: $colorActive !important;
+}
+
+.water-Tank {
+    background-color: $colorWater;
+}
+
+.pump_Image {
+    //background-color: darkred;
+    height: 100px !important;
+}
+.pumps-Images {
+    min-width: 250px;
+}
+
+.pump-vertical-Pipe {
+    width: $widthPipe;
+    height: $heightPipe;
+    margin: auto;
+    margin-bottom: -15px;
+    background-image: linear-gradient(to right, $colorBorderPipe, $colorPipe, $colorBorderPipe);
+}
+.pump-horizontal-div {
+    width: 192px;
+    height:  $widthPipe;
+    margin: auto;
+    margin-left:-10px;
+    
+}
+.pump-horizontal-Pipe {
+    width: 100%;
+    height: 100%;
+    background-image: linear-gradient($colorBorderPipe, $colorPipe, $colorBorderPipe);
+    //border-color:$colorBorderPipe;
+}
+.pressure-Image {
+    //background-color: coral;
+    width: 40px;
+    height: 60px;
+    z-index: 100;
+    margin-left: 0px;
+}
+.ld-div {
+    height: 320px !important;
+}
+.ld-Circle {
+    height: 25px;
+    width: 25px;
+    border-style: solid solid solid solid;
+    border-width: 2px;
+    border-color: black;
+}
+
+.ld-hr {
+    display: block;
+    margin-top: 9px;
+    margin-bottom: 0;
+    width: 40px;
+    background-color: unset !important;
+    opacity: 1 !important;
+
+    border-color: black;
+    border-top: 4px dashed black;
+}
+.pondfill-pipe {
+    background-color: $colorBorderWaterTank;
+    width: 35px;
+    height: 30px;
+}
+
+.pond-cube {
+    height: 35px;
+    width: 35px;
+    border-style: solid solid solid solid;
+    border-width: 2px;
+    border-color: black;
+    background-color: $colorBorderWaterTank;
+}
+
+
