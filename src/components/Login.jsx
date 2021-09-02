@@ -14,7 +14,7 @@ export default function Login(){
     const handleSubmit = event =>{
         event.preventDefault()
         if(login.user.trim()&&login.pw.trim()){
-            var serverURL = 'http://localhost:3000'
+            var serverURL = 'http://20.206.129.202:3000'
 
             axios.post(`${serverURL}/node/api/auth/login`,
                 JSON.stringify({user: login.user, password: login.pw }),

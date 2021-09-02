@@ -1,5 +1,5 @@
 import axios from 'axios'
-const serverURL = 'http://localhost:3000'
+const serverURL = 'http://20.206.129.202:3000'
 
 export default async function isAuthenticated(){
     var result;
