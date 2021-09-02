@@ -11,5 +11,3 @@ export default function PumpImage(props){
             <img className={active+" position-absolute"} width={props.width} src={tankHeader} style={{marginLeft:"-2px"}}  />
         </div>
     );}
-    /*            <img className="position-absolute w-100 pump-Active" src={tankHeader} style={{marginLeft:"-2px"}}  />
-*/

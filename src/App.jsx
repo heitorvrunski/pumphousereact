@@ -1,28 +1,29 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect } from 'react';
+
+
 import { Route } from 'react-router';
-import { Layout } from './components/Layout';
+import  Layout  from './components/Layout';
 import { Provider } from 'react-redux';
+
 import store from './store'
 //import './custom.css'
 import './custom.scss';
+import Routes from './components/routes';
+
+//socket.on('connect',() =>console.log('Connected on Web Socket'));
+    
+
+export default function App()  {
 
 
-
-
-export default class App extends Component {
-  static displayName = App.name;
-
-  render () {
     return (
       <Provider store={store}>
-        <Layout>
-          
-        </Layout>
+        <Routes/>
       </Provider>
       
     );
   }
-}
+
 /*<Route exact path='/' component={Home} />
           <Route path='/counter' component={Counter} />
           <Route path='/fetch-data' component={FetchData} />*/

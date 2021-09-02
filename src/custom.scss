@@ -48,6 +48,8 @@ $widthPipe:15px;
 $heightPipe:270px;
 
 
+
+
 a.navbar-brand {
     white-space: normal;
     text-align: center;
@@ -107,18 +109,35 @@ code {
 }
 
 .pump-Yellow {
-    -webkit-filter: hue-rotate(56deg);
+    filter: hue-rotate(56deg);
 }
 .pump-Green {
-    -webkit-filter: hue-rotate(109deg);
+    filter: hue-rotate(109deg);
 }
 
 .pump-Grey {
-    -webkit-filter: grayscale(100%);
+    filter: grayscale(100%);
+}
+
+.ld-Circle-Active {
+    background-color: $colorActive;
+}
+.ld-Circle-Inactive {
+    background-color: $colorInactive;
+}
+
+.pump-Grey {
+    filter: grayscale(100%);
 }
 
 
 
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: 0 auto;
+}
 
 
 .btn-principal {
@@ -132,11 +151,6 @@ code {
     box-shadow: none;
 }
 
-.btn-principal:focus{
-    background:$colorBackSelectedButton1 !important;
-    outline: none !important;
-    box-shadow: none;
-}
 
 .btn-principal:hover{
     background:$colorBackSelectedButton1 !important;
@@ -173,6 +187,10 @@ code {
     background-color: $colorNoWater;
     min-width: 200px !important;
     margin-top: 5rem !important;
+}
+
+.menuToogle{
+    fill:$colorFont1;
 }
 
 .span-Primary{

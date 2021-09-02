@@ -1,18 +1,37 @@
-import React, { Component } from 'react';
-import { NavMenu } from './NavMenu';
+import React, { Component,useEffect } from 'react';
+import NavMenu  from './NavMenu';
 import Home from './Home';
+import { useDispatch } from 'react-redux';
+import  {UpdateData}  from '../store/actions/index.js';
+import io from "socket.io-client";
+const socket = io.connect("http://localhost:3000",
+{   withCredentials: true
 
-export class Layout extends Component {
-  static displayName = Layout.name;
+});
+export default function Layout(){
+  const dispatch = useDispatch();
 
-  render () {
+
+    
+    useEffect(()=>{
+      socket.on('loadData',(data) =>{
+        dispatch(UpdateData(data))
+      });
+
+      socket.on('writeError',(data) =>{
+
+      });
+    },[]);
+
+    socket.emit("joined");
+
     return (
       <div>
-            <NavMenu />
+            <NavMenu socket = {socket}/>
             <div className="container-fluid" style={{marginTop:"60px"}}>
-              <Home/>
+              <Home socket = {socket}/>
             </div>
       </div>
     );
-  }
+  
 }
