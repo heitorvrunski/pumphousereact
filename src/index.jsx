@@ -7,11 +7,13 @@ import App from './App.jsx';
 import Login from './components/Login.jsx';
 import Routes from './components/routes.jsx';
 import reportWebVitals from './reportWebVitals';
-
+const rootElement = document.getElementById('root');
 
 ReactDOM.render(
-    <App/>,
-  document.getElementById('root')
+  <BrowserRouter >
+    <App/>
+  </BrowserRouter>,
+  rootElement
 );
 
 reportWebVitals();

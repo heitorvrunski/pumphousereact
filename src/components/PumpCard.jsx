@@ -1,17 +1,38 @@
-﻿import React from 'react';
+﻿import React, { useState }  from 'react';
 import PumpImage from './PumpImage';
-import { useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
+import { StartManualPump,StopManualPump,SetManualFreqPump } from '../store/actions/index.js';
 
-function activePumpAction(cPump){
-    return { type: 'ChangeStatePump',cPump}
-}
+//cPump[0].Status = 1 or PressurePID.enable=1
 
-//ChangeStatePump
+
+
 export default function PumpCard(props){
-    const dispatch = useDispatch();
+    const pidEnableNode = ['PressurePID','enable']
+    const pidEnable = useSelector(state=>state.Tags.getIn(pidEnableNode));
+    const [NewFreq,SetNewFreq] = useState(props.cPump.setFrequency);
     
-    function activePump(){
-        dispatch(activePumpAction(props.cPump))
+
+
+
+    const handleChange = event => {
+        const newFrenqHandle = (event.target.validity.valid) ? event.target.value : NewFreq;
+        SetNewFreq(newFrenqHandle);
+      }
+    function setManualFreqPump(){
+        if(NewFreq>60||NewFreq<5){
+            SetNewFreq(0);
+
+        }else{
+            SetManualFreqPump(props.index,NewFreq,props)
+        }
+    } 
+    
+    function startManualPump(){
+        StartManualPump(props.cPump,props.index,props)
+    }
+    function stopManualPump(){
+        StopManualPump(props.index,props)
     }
     return (
         <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump">
@@ -39,13 +60,16 @@ export default function PumpCard(props){
                     <h5 className="mx-0 my-1 w-100">Set Frequency (Hz):</h5>
                 </li>
                 <li>
-                    <input type="text" className="form-control mx-0 my-1 w-100 text-end"/>
+                    <input type="text" className="form-control mx-0 my-1 w-100 text-end" disabled={pidEnable===1 }  pattern="[0-9^.,]*" onInput={handleChange} value={NewFreq}/>
                 </li>
                 <li>
-                    <button type="button" className="btn btn-principal mx-0 my-1 w-100 " disabled={props.cPump.Status===1} onClick={activePump}> Start</button>
+                    <button type="button" className="btn btn-principal mx-0 my-1 w-100 " disabled={props.cPump.Status!==1 ||pidEnable===1 } onClick={setManualFreqPump}>Set Frequency</button>
                 </li>
                 <li>
-                    <button type="button" className="btn btn-principal mx-0 my-1 w-100 mb-2" disabled={props.cPump.Status!==1} onClick={activePump}> STOP</button>
+                    <button type="button" className="btn btn-principal mx-0 my-1 w-100 " disabled={props.cPump.Status===1 ||pidEnable===1 } onClick={startManualPump}> Start</button>
+                </li>
+                <li>
+                    <button type="button" className="btn btn-principal mx-0 my-1 w-100 mb-2" disabled={props.cPump.Status!==1||pidEnable===1 } onClick={stopManualPump}> STOP</button>
                 </li>
             </ul>
 

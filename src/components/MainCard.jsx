@@ -1,21 +1,34 @@
-import React, { Component, useState  } from 'react';
+import React from 'react';
 import pressureImage from '../Resource/Pressure_Transmitter.png';
 import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
+import { EnablePressurePID,DisablePressurePID, EnableDesablePondPID,DisableAllPump } from '../store/actions/index.js';
 
-
+//PressurePID.enable
 export default function MainCard(){
     const Tags = useSelector(state=>state.Tags.toJS());
+    function autoPressurePIDAction(){
+        if(Tags.PressurePID.enable!==1){
+            EnablePressurePID(Tags.cPump);
+        }else{
+            DisablePressurePID();
+        }
+    }
 
+    function autoPondFillPIDAction(){
+        EnableDesablePondPID(Tags.EnablePondFill);
+    }
+    function disableAllPumpAction(){
+        DisableAllPump();
+    }
 return(
-            <div className="card col-xl-5 my-2 card-Principal" style={{maxWidth:"490px"} } >
+            <div className="card col-xl-5 my-2 card-Principal" style={{maxWidth:"500px"} } >
 
                 <div className="container">
     
                     <div className="row d-flex my-2 mx-2">
-                        <button type="button" className="col btn btn-principal mx-1 w-20 ">Enable Auto PID</button>
-                        <button type="button" className="col btn btn-principal mx-1 w-20 ">Enable Pond Control</button>
-
+                        <button type="button" className="col btn btn-principal mx-1 w-20 " onClick={autoPressurePIDAction}>{Tags.PressurePID.enable===1? 'Disable Auto PID':'Enable Auto PID'}</button>
+                        <button type="button" className="col btn btn-principal mx-1 w-20 " onClick={autoPondFillPIDAction}>{Tags.EnablePondFill===1? 'Disable Pond Control':'Enable Pond Control'}</button>
                     </div>
                     
                     <div className="row">
@@ -87,13 +100,7 @@ return(
                                         <div className=" align-items-center">
                                             <PumpImage cPump={Tags.cPump[3]} width="62px"/>
                                         </div>
-                                        <div className=" align-items-center my-1 align-self-center">
-                                            <div >
-                                                <svg xmlns="http://www.w3.org/2000/svg" height="40px" viewBox="0 0 24 24" width="40px" fill="#000000"><path d="M0 0h24v24H0V0z" fill="none" /><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z" /></svg>
-                                            </div>
-                                        </div>
                                         <div className="mb-5">
-
                                             <div className="d-flex align-items-center">
                                                 <div className="pond-cube"></div>
                                                 <div className={"pondfill-pipe" }></div>
@@ -113,7 +120,9 @@ return(
                         <div className="col col-xl-1 px-0 col-md-1 mx-0 mb-2">
                             <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Configuration</button>
                             <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Pond Fill<br /> Configuration</button>
-                            <button type="button" className="btn btn-principal m-0" style={{ "height": "60px" }}>Pump 1<br />Configuration</button>
+                            <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Pump 1<br />Configuration</button>
+                            <button type="button" className="btn btn-principal m-0 text-nowrap mx-0" style={{ "height": "60px"}} onClick={disableAllPumpAction}>Disable <br />All Pumps</button>
+
                         </div>
                     </div>
                 </div>

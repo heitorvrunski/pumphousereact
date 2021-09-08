@@ -48,7 +48,43 @@ $widthPipe:15px;
 $heightPipe:270px;
 
 
+.form-check-input{
+    height: 20px;
+    width: 20px;
+}
 
+@media (max-width: 768px){
+    .h-sm{
+        display: flex !important;
+        height: 170px !important;
+        flex-wrap: wrap !important;
+    }
+    
+}
+.pointer-Selected{
+    cursor:pointer;
+}
+
+
+
+.safetyDiv{
+    width: 200px;
+    height: 40px;
+    color:white;
+    background-color: red;
+    border: solid 1px grey;
+    align-items: center;
+}
+
+.selectedDuration{
+    background-color: $colorBackSelectedButton1;
+
+}
+
+
+.collapsed{
+    display:none !important;
+}
 
 a.navbar-brand {
     white-space: normal;
@@ -71,9 +107,7 @@ a.navbar-brand {
   
 
 //#fcfcfc
-a {
-    color: #0366d6;
-}
+
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -157,6 +191,7 @@ code {
     outline: none !important;
     box-shadow: none;
 }
+
 
 .btn:focus,.btn:active {
     outline: none !important;
@@ -247,7 +282,7 @@ code {
     margin-left: 0px;
 }
 .ld-div {
-    height: 320px !important;
+    height: 340px !important;
 }
 .ld-Circle {
     height: 25px;
@@ -284,3 +319,49 @@ code {
 }
 
 
+.toastFadeIn {
+    animation: fadein 2s;
+    -moz-animation: fadein 2s; /* Firefox */
+    -webkit-animation: fadein 2s; /* Safari and Chrome */
+    -o-animation: fadein 2s; /* Opera */
+}
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+
+        opacity:1;
+    }
+}
+@-moz-keyframes fadein { /* Firefox */
+    from {
+
+        opacity:0;
+    }
+    to {
+
+        opacity:1;
+    }
+}
+@-webkit-keyframes fadein { /* Safari and Chrome */
+    from {
+
+        opacity:0;
+    }
+    to {
+        right: 0px !important;
+
+        opacity:1;
+    }
+}
+@-o-keyframes fadein { /* Opera */
+    from {
+
+        opacity:0;
+    }
+    to {
+
+        opacity: 1;
+    }
+}

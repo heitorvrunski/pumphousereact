@@ -1,21 +1,21 @@
 import React from "react";
-import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
 import Login from "./Login";
-import App from "../App";
 import Layout from "./Layout";
+import Home from "./Home";
+import Trend from "./Trend";
 import ProtectedRoute from "./ProtectedRoute";
 
 
 
 const Routes = () => (
   
-  <BrowserRouter>
     <Switch>
-      <Route  path="/login" component={Login}/>
-      <ProtectedRoute exact path="/" component={Layout} redirectto="/login" />
+      <Route exact path="/login" component={Login}/>
+      <ProtectedRoute exact path="/" component={Home} redirectto="/login" />
+      <ProtectedRoute path="/trend" component={Trend} redirectto="/login" />
       <Route path="*" component={() => <h1>Page not found</h1>} />
     </Switch>
-  </BrowserRouter>
 );
 
 export default Routes;

@@ -1,14 +1,14 @@
-import React, { Component,useEffect } from 'react';
+import React, { useEffect } from 'react';
 import NavMenu  from './NavMenu';
 import Home from './Home';
 import { useDispatch } from 'react-redux';
 import  {UpdateData}  from '../store/actions/index.js';
 import io from "socket.io-client";
-const socket = io.connect("http://20.206.129.202:3000",
+const socket = io.connect("http://localhost:3000",
 {   withCredentials: true
 
 });
-export default function Layout(){
+export default function Layout(props){
   const dispatch = useDispatch();
 
 
@@ -27,11 +27,13 @@ export default function Layout(){
 
     return (
       <div>
-            <NavMenu socket = {socket}/>
-            <div className="container-fluid" style={{marginTop:"60px"}}>
-              <Home socket = {socket}/>
+            <NavMenu />
+            <div className="container-fluid" style={{marginTop:"60px",height:"90vh"}}>
+              {props.children}
+
             </div>
       </div>
     );
   
 }
+/*<Home socket = {socket}/>  */

@@ -10,7 +10,6 @@ import store from './store'
 import './custom.scss';
 import Routes from './components/routes';
 
-//socket.on('connect',() =>console.log('Connected on Web Socket'));
     
 
 export default function App()  {
@@ -18,7 +17,10 @@ export default function App()  {
 
     return (
       <Provider store={store}>
-        <Routes/>
+        <Layout>
+          <Routes/>
+        </Layout>
+
       </Provider>
       
     );

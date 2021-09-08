@@ -1,19 +1,15 @@
-import React, { Component,useState } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink, NavbarText,Nav } from 'reactstrap';
+import React, { useState } from 'react';
+import { Collapse, Container, Navbar, NavbarBrand, NavItem, NavLink,Nav } from 'reactstrap';
 import { Link } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
 
-import { SendMessage } from '../store/actions/index.js';
 
-export default function NavMenu({ socket }){
+
+export default function NavMenu(){
   const [collapsed,SetCollapsed] = useState(true);
-  const itemP = ['PressurePID','Current'];
-  const itemL = ['cLevel','Percentage'];
+  const safetyNode = ['PressurePID','Safety'];
 
-
-  const pressure = useSelector(state=>state.Tags.getIn(itemP));
-  const level = useSelector(state=>state.Tags.getIn(itemL));
+  const safety = useSelector(state=>state.Tags.getIn(safetyNode));
 
 
   function toggleNavbar () {
@@ -21,29 +17,6 @@ export default function NavMenu({ socket }){
     SetCollapsed(!collapsed);
   }
 
-  function IncresePressure () {
-    var pressureNew = pressure +5;
-    SendMessage(itemP,pressureNew,socket)
-
-  }
-
-  function DecresePressure () {
-    var pressureNew = pressure -5;
-    SendMessage(itemP,pressureNew,socket)
-
-  }
-
-  function IncreseLevel () {
-    var levelNew = level +5;
-    SendMessage(itemL,levelNew,socket)
-
-  }
-
-  function DecreseLevel () {
-    var levelNew = level -5;
-    SendMessage(itemL,levelNew,socket)
-
-  }
   return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white text-primary fixed-top shadow-lg mb-3 bg-primary">
@@ -59,17 +32,15 @@ export default function NavMenu({ socket }){
                   </button>                    
                   <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
                       <Nav className="mr-auto" navbar>
-                      <button className="btn btn-principal mx-1" type="button" onClick={IncreseLevel}> Increase Level</button>
-                          <button className="btn btn-principal mx-1 me-4" type="button" onClick={DecreseLevel}> Decrease Level</button>
-                          <button className="btn btn-principal mx-1" type="button" onClick={IncresePressure}> Increase Pressure</button>
-                          <button className="btn btn-principal mx-1" type="button" onClick={DecresePressure}> Decrease Pressure</button>
+                      <div className={safety===1?"safetyDiv text-center":"collapsed"}> <h5>Safety Mode ON</h5></div>
+                      <NavItem className="me-auto mx-1">
+                        <NavLink tag={Link} className="text-primary mt-1 " to="/">Home</NavLink>
 
-                          <NavItem>
-                              <NavLink tag={Link} className="text-primary" to="/counter">Charts</NavLink>
-                          </NavItem>
-                          <NavItem>
-                              <NavLink tag={Link} className="text-primary" to="/fetch-data">Fetch data</NavLink>
-                          </NavItem>
+                      </NavItem>
+                      <NavItem className="me-auto">
+                        <NavLink tag={Link} className="text-primary mt-1 " to="/Trend">Trend</NavLink>
+                      </NavItem>
+                      
                       </Nav>
                   </Collapse>
               </Container>
@@ -79,5 +50,10 @@ export default function NavMenu({ socket }){
   
 }
 /*
+
+                          <button className="btn btn-principal mx-1 mt-1" type="button" onClick={IncreseLevel}> Increase Level</button>
+                          <button className="btn btn-principal mx-1 mt-1 text-nowrap me-4 " type="button" onClick={DecreseLevel}> Decrease Level</button>
+                          <button className="btn btn-principal mx-1 mt-1 text-nowrap " type="button" onClick={IncresePressure}> Increase Pressure</button>
+                          <button className="btn btn-principal mx-1 mt-1 text-nowrap " type="button" onClick={DecresePressure}> Decrease Pressure</button>
 
 */ 
