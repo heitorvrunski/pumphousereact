@@ -31,7 +31,7 @@ export default function Login ()  {
             pw: state.password
         }
         if (login.user.trim() && login.pw.trim()) {
-            var serverURL = 'http://localhost:3000'
+            var serverURL = `http://${window.location.hostname}:3000`
 
             axios.post(`${serverURL}/node/api/auth/login`,
                 JSON.stringify({ user: login.user, password: login.pw }),

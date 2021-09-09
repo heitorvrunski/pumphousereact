@@ -1,19 +1,12 @@
 ﻿import React, { useState }  from 'react';
 import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
-import { StartManualPump,StopManualPump,SetManualFreqPump } from '../store/actions/index.js';
-
-//cPump[0].Status = 1 or PressurePID.enable=1
-
-
+import { StartManualPump, StopManualPump ,SetManualFreqPump } from '../store/actions/index.js';
 
 export default function PumpCard(props){
     const pidEnableNode = ['PressurePID','enable']
     const pidEnable = useSelector(state=>state.Tags.getIn(pidEnableNode));
     const [NewFreq,SetNewFreq] = useState(props.cPump.setFrequency);
-    
-
-
 
     const handleChange = event => {
         const newFrenqHandle = (event.target.validity.valid) ? event.target.value : NewFreq;
