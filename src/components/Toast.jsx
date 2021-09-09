@@ -12,9 +12,8 @@ export default function Toast(props){
             setErrorShow(true)
 
             const timer = setTimeout(() => {
-                setMessage(null)
-
-                setErrorShow(false)
+                setErrorShow(false);
+                props.onChangeErrorMessage();
             }, 3000);
               return () => {
                   clearTimeout(timer);

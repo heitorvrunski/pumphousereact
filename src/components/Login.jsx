@@ -52,35 +52,21 @@ export default function Login ()  {
                     setError({
                         errorMsg: error.message,
                     })
-                    setTimeout(() => {
-                        setError({
-                            errorMsg: '',
-                        })
-                    }, 3500);
+                    
                 });
         }else{
             setError({
                 errorMsg: 'Please, Enter Login and Password',
             })
-            setTimeout(() => {
-                setError({
-                    errorMsg: '',
-                })
-            }, 3500);
+            
         }
     }
-    /*useEffect(()=>{
-        if(error.errorMsg)
-            setErrorShow(true)
+    const onChangeErrorMessage = () =>{
+        setError({
+            errorMsg: '',
+        })
+    }
 
-            const timer = setTimeout(() => {
-                setErrorShow(false)
-            }, 3000);
-              return () => clearTimeout(timer);
-        
-
-
-    },[error]);*/
     
 
         return (
@@ -96,7 +82,7 @@ export default function Login ()  {
                     
                 </form>
                 
-                <Toast messageError={error.errorMsg} className="bg-danger text-white" />
+                <Toast messageError={error.errorMsg} className="bg-danger text-white" onChangeErrorMessage={onChangeErrorMessage} />
             </div>
 
         );
