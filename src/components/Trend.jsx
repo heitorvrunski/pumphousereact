@@ -93,7 +93,7 @@ export default function Trend(){
       <p>loading</p>
       :
       <div className="row h-100">
-          <div className="col-12 col-md-12 col-xl-10 m-0 p-0 h-100 mb-1" style={{minHeight:"500px"}}>
+          <div className="col-12 col-md-12 col-xl-10 m-0 p-0 h-100 mb-1 remove-h-100-sm">
             <div className="d-flex flex-column h-100">
             <div className="card d-flex mb-1 mx-0 flex-row row mt-1" >
               <div className="p-2 col-12 col-sm-12 col-md-2 " style={{minWidth:"200px"}} >
@@ -116,15 +116,15 @@ export default function Trend(){
 
                     
                   </div>
-                  <div className="ms-1 d-flex col-12 col-md-7 me-auto">
-                    <div className={"ms-1 d-flex flex-wrap " + (mode===0?'':' collapsed' )} style={{minWidth:"200px"}}>
+                  <div className="d-flex col-12 col-md-7 me-auto p-0">
+                    <div className={"d-flex flex-wrap " + (mode===0?'':' collapsed' )} style={{minWidth:"200px"}}>
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={1} label={"Last 24 Hour"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={7} label={"Last 7 days"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={30} label={"Last month"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={90} label={"Last 6 months"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={365} label={"Last year"} />
                     </div>
-                    <div className={"ms-1  d-flex" + (mode===1?'':' collapsed' )} style={{minWidth:"300px"}}>
+                    <div className={"ms-2  d-flex" + (mode===1?'':' collapsed' )} style={{minWidth:"300px"}}>
 
                       <div className="justify-content-start">
                         <InputDate className="mb-2"  input={dateStart} name="startPeriod" label="Start: " ></InputDate>
@@ -144,7 +144,7 @@ export default function Trend(){
 
               
             </div>
-            <div className="card m-0 p-0 flex-grow-1" style={{minHeight:"500px"}}>
+            <div className="card m-0 p-0 flex-grow-1 remove-Flex-grow-sm h-chart-sm">
               <HighchartsReact
                 highcharts={Highcharts}
                 options={options}
