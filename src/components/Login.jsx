@@ -50,7 +50,7 @@ export default function Login ()  {
                     }
                 }).catch(function (error) {
                     setError({
-                        errorMsg: error.message,
+                        errorMsg: 'Invalid user/password !',
                     })
                     
                 });

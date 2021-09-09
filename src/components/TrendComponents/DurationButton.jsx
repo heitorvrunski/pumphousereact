@@ -20,7 +20,7 @@ export default function DurationButton(props){
     }
     return(
     <div className="d-inline-block align-middle m-1"  onClick={handleChange}>
-        <div className={"btn text-center align-middle p-0 flex-nowrap" +(selected===true?' selectedDuration':'')} style={{height:"30px",width:"102px"}}>
+        <div className={"btn text-center align-middle p-0 flex-nowrap" +(selected===true?' selectedDuration':'')} style={{height:"30px",width:"105px"}}>
             <p className="m-0" >{label}</p>
             <hr className={(selected===true?'':'collapsed ') + " m-0 "}></hr>
         </div>
