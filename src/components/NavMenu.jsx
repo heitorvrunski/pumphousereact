@@ -36,7 +36,7 @@ export default function NavMenu(){
                   </button>                    
                   <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
                       <Nav className="mr-auto" navbar>
-                      <div className={safety===1?"safetyDiv text-center":"collapsed"}> <h5>Safety Mode ON</h5></div>
+                      <div className={safety===1?"safetyDiv align-content-center flex-wrap text-center":"collapsed"}> <h5>Safety Mode ON</h5></div>
                       <NavItem className="me-auto me-1">
                         <NavLink tag={Link} className="text-primary mt-1 " to="/" onClick={closeExpander}>Home</NavLink>
 

@@ -4,8 +4,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
-import Login from './components/Login.jsx';
-import Routes from './components/routes.jsx';
 import reportWebVitals from './reportWebVitals';
 const rootElement = document.getElementById('root');
 

@@ -1,7 +1,6 @@
 import React from "react";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Login from "./Login";
-import Layout from "./Layout";
 import Home from "./Home";
 import Trend from "./Trend";
 import ProtectedRoute from "./ProtectedRoute";

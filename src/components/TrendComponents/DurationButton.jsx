@@ -1,10 +1,7 @@
 import React, { useState,useEffect } from "react"
-import { useDispatch } from "react-redux"
-import { ChangeStateTrend } from "../../store/actions/index.js";
 
 
 export default function DurationButton(props){
-    const dispatch = useDispatch();
     const duration = props.duration;
     const buttonDuration = props.buttonDuration;
     const label = props.label;
@@ -12,10 +9,9 @@ export default function DurationButton(props){
 
     useEffect(()=>{
         setSelected(duration===buttonDuration?true:false)
-    },[props.duration])
+    },[props.duration,duration,buttonDuration])
 
     const handleChange = event =>{
-        console.log(selected)
 
         if(selected===false){
             props.eventChange(buttonDuration);
@@ -24,7 +20,7 @@ export default function DurationButton(props){
     }
     return(
     <div className="d-inline-block align-middle m-1"  onClick={handleChange}>
-        <div className={"btn text-center align-middle p-0" +(selected===true?' selectedDuration':'')} style={{height:"30px",width:"100px"}}>
+        <div className={"btn text-center align-middle p-0 flex-nowrap" +(selected===true?' selectedDuration':'')} style={{height:"30px",width:"102px"}}>
             <p className="m-0" >{label}</p>
             <hr className={(selected===true?'':'collapsed ') + " m-0 "}></hr>
         </div>

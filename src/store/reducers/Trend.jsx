@@ -52,7 +52,6 @@ const INITIAL_STATE =  null;
             default:
                 return state;
         }
-        return state;
     }
     
 

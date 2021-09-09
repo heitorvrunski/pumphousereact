@@ -1,4 +1,3 @@
-import { createStore } from "redux";
 import Immutable  from "immutable";
 
 const INITIAL_STATE =  Immutable.fromJS(
@@ -35,7 +34,6 @@ export default function Tags(state= INITIAL_STATE, action){
         default:
             return state;
     }
-    return state;
 }
 
 

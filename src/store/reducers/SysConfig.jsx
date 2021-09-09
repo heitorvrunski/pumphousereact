@@ -1,6 +1,3 @@
-import { createStore } from "redux";
-import { GetSettingsAPI } from "redux";
-import Immutable, { Map }  from "immutable";
 
 const INITIAL_STATE =  
     {
@@ -16,6 +13,5 @@ const INITIAL_STATE =
             default:
                 return state;
         }
-        return state;
     }
     

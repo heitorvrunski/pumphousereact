@@ -1,4 +1,4 @@
-﻿import React, { useState }  from 'react';
+import React,{useState}  from 'react';
 import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
 import { StartManualPump, StopManualPump ,SetManualFreqPump } from '../store/actions/index.js';

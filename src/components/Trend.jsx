@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState  } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { ConfigTrends,ChangeMode,ChangeDuration,ClearAllTrends } from '../store/actions/index.js';
 import { ApiNode } from '../middleware/thunk.js';
@@ -13,7 +13,7 @@ import InputDate from './TrendComponents/InputDate.jsx';
 export default function Trend(){
   const dispatch = useDispatch();
   const configs = useSelector(state=>state.SysConfig);
-  const trends = useSelector(state=>state.Trend)??[];
+  const trends =  useSelector(state=>state.Trend);
   const mode = useSelector(state=>state.Trend?.options?.mode)??[];
   const duration = useSelector(state=>state.Trend?.options?.duration)??[];
   const startPeriod = useSelector(state=>state.Trend?.options?.startPeriod)??0;
@@ -32,19 +32,21 @@ export default function Trend(){
 	});
 
 
-  if(configs.length!=1){
-    dispatch(ApiNode.GetSysConfig());
-  }else if (!trends.TagList){
-    var trendsAux = []
-    configs[0].value.forEach(element => {
-      trendsAux.push({tag:element,checked:false})
-    });
 
-    dispatch(ConfigTrends(trendsAux));
-  }
 
   useEffect(() => {
-    if(trends.TagList){
+    if(configs.length!==1){
+      dispatch(ApiNode.GetSysConfig());
+
+    }else if (!trends?.TagList){
+      var trendsAux = []
+
+      configs[0].value.forEach(element => {
+        trendsAux.push({tag:element,checked:false})
+      });
+      dispatch(ConfigTrends(trendsAux));
+    }
+    if(trends?.TagList){
       var checkeds = [];
       trends.TagList.forEach(element => {
         if(element.checked===true){
@@ -62,9 +64,9 @@ export default function Trend(){
 
       }
   
-    }    
+    }  
   }
-  ,[trends,reload]);
+  ,[trends,reload,configs,dispatch]);
   
   const changeMode = (modeComponent) =>{
     
@@ -89,7 +91,7 @@ export default function Trend(){
   return (
 
     <div className="container-fluid h-100">
-      {!trends.TagList?
+      {!trends?.TagList?
       <p>loading</p>
       :
       <div className="row h-100">
@@ -107,7 +109,7 @@ export default function Trend(){
               </div>
               <div className="d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12" style={{maxWidth:"720px"}} >
                 <div className="row my-1" >
-                  <div className="d-flex mx-0 col-2 justify-content-start px-2" style={{minWidth:"220px"}}>
+                  <div className="d-flex mx-0 col-2 justify-content-start px-2" style={{minWidth:"230px"}}>
                     <h5>Period</h5>
 
                     <CheckBox label="Duration" componentState={0} state={mode} eventChange={changeMode}/>

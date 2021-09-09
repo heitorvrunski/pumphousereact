@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { ChangeStateTrend } from "../../store/actions/index.js";
 
 
 export default function CheckBox(props){
     const state = props.state
-    const [componentState,setComponentState] = useState(props.componentState)
+    const componentState = props.componentState
 
     const   [check,setcheck] = useState(state===componentState?true:false)
 
     useEffect(()=>{
         setcheck(state===componentState?true:false)
-    },[props.state])
+    },[props.state,state,componentState])
 
     const handleChange = event =>{
         if(event.target.checked===true&& state!==componentState){

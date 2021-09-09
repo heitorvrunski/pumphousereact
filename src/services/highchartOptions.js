@@ -1,22 +1,24 @@
 import axios from "axios";
-import Highcharts from 'highcharts';
 
 export const CreateOptionsHighCharts = async (tags,optionsChart)=>{
     const serverURL = `http://${window.location.hostname}:3000`
     var seriesOptions =[];
     if(optionsChart.mode===0){
-        for (var index = 0; index< tags.length;index++) {
-            const element = tags[index];
+        for (var idx = 0; idx< tags.length;idx++) {
+            const element = tags[idx];
+            const id = idx;
             await axios.get(`${serverURL}/node/api/trend/singleTag/${element.value}/${optionsChart.duration}`,{withCredentials:true})
             .then(resp=>{
                 if(resp.status===200){
-                    seriesOptions.push(success(resp.data,element.label,index))
+                    seriesOptions.push(success(resp.data,element.label,id))
                 }
             })
           }
     }else{
-        for (var index = 0; index< tags.length;index++) {
-            const element = tags[index];
+        for (var idx2 = 0; idx2< tags.length;idx2++) {
+            const element = tags[idx2];
+            const id = idx2;
+
             await axios.post(`${serverURL}/node/api/trend/singleTag/range`,{"startDate": new Date(optionsChart.startPeriod).toJSON(), "endDate": new Date(optionsChart.endPeriod).toJSON(),"tag":element.value},{ 
                 withCredentials: true,
                 headers: {
@@ -26,7 +28,7 @@ export const CreateOptionsHighCharts = async (tags,optionsChart)=>{
                 })
             .then(resp=>{
                 if(resp.status===200){
-                    seriesOptions.push(success(resp.data,element.label,index))
+                    seriesOptions.push(success(resp.data,element.label,id))
                 }
             })
           }

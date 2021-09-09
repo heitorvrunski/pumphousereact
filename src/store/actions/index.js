@@ -1,4 +1,3 @@
-import axios from "axios";
 import io from "socket.io-client";
 const socket = io.connect(`http://${window.location.hostname}:3000`,
 {   withCredentials: true
@@ -8,7 +7,7 @@ const socket = io.connect(`http://${window.location.hostname}:3000`,
 export const EnablePressurePID = (cPumps) =>{
 
   var i , sendMessages = []
-  for(i==0;i<cPumps.length;i++){
+  for(i===0;i<cPumps.length;i++){
     if(cPumps[i].Command <=1){
       sendMessages.push([['cPumps',i,'Frequency'],0])
     }

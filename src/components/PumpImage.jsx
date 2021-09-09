@@ -8,6 +8,6 @@ export default function PumpImage(props){
     return(
         <div className="pump_Image d-flex" style={{ "width": props.width,height: props.height }}>
             <img className="position-absolute  " width={props.width} src={tankImage} alt="Pump" />
-            <img className={active+" position-absolute"} width={props.width} src={tankHeader} style={{marginLeft:"-2px"}}  />
+            <img className={active+" position-absolute"} width={props.width} src={tankHeader} style={{marginLeft:"-2px"}} alt="" />
         </div>
     );}

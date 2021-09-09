@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React,{useEffect} from 'react';
 import NavMenu  from './NavMenu';
-import { useDispatch } from 'react-redux';
+import {useDispatch } from 'react-redux';
 import  {UpdateData}  from '../store/actions/index.js';
 import io from "socket.io-client";
 const socket = io.connect(`http://${window.location.hostname}:3000`,
@@ -20,7 +20,7 @@ export default function Layout(props){
       socket.on('writeError',(data) =>{
 
       });
-    },[]);
+    });
 
     socket.emit("joined");
 

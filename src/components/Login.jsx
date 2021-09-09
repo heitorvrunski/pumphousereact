@@ -1,5 +1,6 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios'
+import Toast from './Toast';
 
 export default function Login ()  {
     const [state,setState] = useState({
@@ -12,7 +13,7 @@ export default function Login ()  {
         errorMsg: '',
     });
 
-    const [errorShow,setErrorShow] = useState(false);  
+    //const [errorShow,setErrorShow] = useState(false);  
 
     
     const handleInputChange = event => {
@@ -48,18 +49,27 @@ export default function Login ()  {
 
                     }
                 }).catch(function (error) {
-
                     setError({
                         errorMsg: error.message,
                     })
+                    setTimeout(() => {
+                        setError({
+                            errorMsg: '',
+                        })
+                    }, 3500);
                 });
         }else{
             setError({
                 errorMsg: 'Please, Enter Login and Password',
             })
+            setTimeout(() => {
+                setError({
+                    errorMsg: '',
+                })
+            }, 3500);
         }
     }
-    useEffect(()=>{
+    /*useEffect(()=>{
         if(error.errorMsg)
             setErrorShow(true)
 
@@ -70,7 +80,7 @@ export default function Login ()  {
         
 
 
-    },[error]);
+    },[error]);*/
     
 
         return (
@@ -85,17 +95,20 @@ export default function Login ()  {
                     <p className="mt-5 mb-3 text-muted">© 2021</p>
                     
                 </form>
-                <div className="position-fixed bottom-0 end-0 p-3" style={{zIndex:"11"}}>
+                
+                <Toast messageError={error.errorMsg} className="bg-danger text-white" />
+            </div>
+
+        );
+    
+}
+/*
+<div className="position-fixed bottom-0 end-0 p-3" style={{zIndex:"11"}}>
                     <div className={"toast align-items-center bg-danger toastFadeIn " + (errorShow===true?"show":"")} role="alert" aria-live="assertive" aria-atomic="true">
                     <div className="d-flex p-2 text-white">
                             <h6 className="me-2"> ERROR:</h6> {error.errorMsg}
                     </div>
                     </div>
                 </div>
-                
-            </div>
-
-        );
-    
-}
+*/
 

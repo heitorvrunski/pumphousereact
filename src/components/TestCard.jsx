@@ -1,6 +1,4 @@
 import React from 'react';
-import pressureImage from '../Resource/Pressure_Transmitter.png';
-import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
 import { SendMessage } from '../store/actions/index.js';
 
