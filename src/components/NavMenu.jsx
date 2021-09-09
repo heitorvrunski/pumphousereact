@@ -16,7 +16,11 @@ export default function NavMenu(){
     //state.collapsed = !state.collapsed
     SetCollapsed(!collapsed);
   }
-
+  
+  function closeExpander () {
+    //state.collapsed = !state.collapsed
+    SetCollapsed(true);
+  }
   return (
       <header>
         <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white text-primary fixed-top shadow-lg mb-3 bg-primary">
@@ -33,12 +37,12 @@ export default function NavMenu(){
                   <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
                       <Nav className="mr-auto" navbar>
                       <div className={safety===1?"safetyDiv text-center":"collapsed"}> <h5>Safety Mode ON</h5></div>
-                      <NavItem className="me-auto mx-1">
-                        <NavLink tag={Link} className="text-primary mt-1 " to="/">Home</NavLink>
+                      <NavItem className="me-auto me-1">
+                        <NavLink tag={Link} className="text-primary mt-1 " to="/" onClick={closeExpander}>Home</NavLink>
 
                       </NavItem>
                       <NavItem className="me-auto">
-                        <NavLink tag={Link} className="text-primary mt-1 " to="/Trend">Trend</NavLink>
+                        <NavLink tag={Link} className="text-primary mt-1 " to="/Trend" onClick={closeExpander}>Trend</NavLink>
                       </NavItem>
                       
                       </Nav>

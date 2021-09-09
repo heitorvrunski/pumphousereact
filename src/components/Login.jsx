@@ -53,6 +53,10 @@ export default function Login ()  {
                         errorMsg: error.message,
                     })
                 });
+        }else{
+            setError({
+                errorMsg: 'Please, Enter Login and Password',
+            })
         }
     }
     useEffect(()=>{

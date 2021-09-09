@@ -48,19 +48,31 @@ $widthPipe:15px;
 $heightPipe:270px;
 
 
+
 .form-check-input{
     height: 20px;
     width: 20px;
 }
 
-@media (max-width: 768px){
+@media (max-width:955px){
+    .col-between-md-xl-12{
+        flex: 0 0 auto !important;
+        width: 100% !important;
+        margin-left: 0 !important;
+    }
+}   
+
+
+@media (max-width: 1200px){
     .h-sm{
         display: flex !important;
         height: 170px !important;
         flex-wrap: wrap !important;
     }
+
     
 }
+
 .pointer-Selected{
     cursor:pointer;
 }

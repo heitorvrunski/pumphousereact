@@ -93,7 +93,7 @@ export default function Trend(){
       <p>loading</p>
       :
       <div className="row h-100">
-          <div className="col-12 col-md-10 col-xl-10 m-0 p-0 h-100 mb-1" style={{minHeight:"500px"}}>
+          <div className="col-12 col-md-12 col-xl-10 m-0 p-0 h-100 mb-1" style={{minHeight:"500px"}}>
             <div className="d-flex flex-column h-100">
             <div className="card d-flex mb-1 mx-0 flex-row row mt-1" >
               <div className="p-2 col-12 col-sm-12 col-md-2 " style={{minWidth:"200px"}} >
@@ -105,7 +105,7 @@ export default function Trend(){
                 </div>
 
               </div>
-              <div className="d-flex col-12 col-sm-12 col-md-10 ms-auto" style={{maxWidth:"720px"}} >
+              <div className="d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12" style={{maxWidth:"720px"}} >
                 <div className="row my-1" >
                   <div className="d-flex mx-0 col-2 justify-content-start px-2" style={{minWidth:"220px"}}>
                     <h5>Period</h5>
@@ -144,7 +144,7 @@ export default function Trend(){
 
               
             </div>
-            <div className="card m-0 p-0 flex-grow-1">
+            <div className="card m-0 p-0 flex-grow-1" style={{minHeight:"500px"}}>
               <HighchartsReact
                 highcharts={Highcharts}
                 options={options}
@@ -156,7 +156,7 @@ export default function Trend(){
             </div>
 
           </div>
-          <div className="col-12 col-md-2 card my-1 col-xl-2">
+          <div className="col-12 col-md-12 card my-1 col-xl-2">
             <h5>List</h5>
             <hr className="my-0"></hr>
             <div className="h-sm overflow-auto">
