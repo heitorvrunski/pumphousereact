@@ -2,7 +2,7 @@ import axios from "axios";
 import Highcharts from 'highcharts';
 
 export const CreateOptionsHighCharts = async (tags,optionsChart)=>{
-    const serverURL = 'http://localhost:3000'
+    const serverURL = `http://${window.location.hostname}:3000`
     var seriesOptions =[];
     if(optionsChart.mode===0){
         for (var index = 0; index< tags.length;index++) {

@@ -1,10 +1,9 @@
 import React, { useEffect } from 'react';
 import NavMenu  from './NavMenu';
-import Home from './Home';
 import { useDispatch } from 'react-redux';
 import  {UpdateData}  from '../store/actions/index.js';
 import io from "socket.io-client";
-const socket = io.connect("http://localhost:3000",
+const socket = io.connect(`http://${window.location.hostname}:3000`,
 {   withCredentials: true
 
 });
