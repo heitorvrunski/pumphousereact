@@ -54,7 +54,7 @@ export const StartManualPump = (cPump,index) =>{
     var sendMessages = [];
     sendMessages.push([['cPump',index,'MaxRamp'],maxRamp])
     sendMessages.push([['cPump',index,'Command'],10])
-    sendMessages.push([['cPump',index,'status'],1])
+    //sendMessages.push([['cPump',index,'status'],1])
     SendMessages(sendMessages);
 
 }

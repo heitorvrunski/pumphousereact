@@ -1,8 +1,15 @@
 import React, { useState } from 'react';
 import axios from 'axios'
+import { useHistory } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { SetExpiresToken } from '../store/actions';
+
 import Toast from './Toast';
 
 export default function Login ()  {
+    const dispatch = useDispatch();
+    const history = useHistory()
+
     const [state,setState] = useState({
         login: '',
         password: '',
@@ -45,7 +52,10 @@ export default function Login ()  {
                 }).then(res => {
                     if (res.status === 200) {
                         console.log('logged!');
-                        window.location.href = '/'
+
+                        dispatch(SetExpiresToken(res.data))
+
+                        history.push("/");
 
                     }
                 }).catch(function (error) {

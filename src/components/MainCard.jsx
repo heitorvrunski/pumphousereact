@@ -109,11 +109,12 @@ return(
                                     </div>
                                 </div>
                             </div>
-                            <div className="d-flex mx-auto justify-content-between mb-2" >
-                                <div style={{width:"70px"}}></div>
-                                <div><span className="span-Primary d-inline-flex px-2 "><h6>Level</h6></span>
+                            <div className="d-flex  justify-content-between mb-2" style={{marginLeft:"-22px"}} >
+                            <div><span className="span-Primary d-inline-flex px-2 "><h6>Flow Trans.</h6></span>
+                                    <span className="bg-white d-inline-flex border px-2 text-info "><h6><b>0</b> </h6></span>
+                                </div>                                <div><span className="span-Primary d-inline-flex px-2 "><h6>Level</h6></span>
                                     <span className="bg-white d-inline-flex border px-2 text-info "><h6><b>{Tags.cLevel.Percentage} %</b></h6></span>
-                                    </div>
+                                </div>
                                     <span className="bg-white d-inline-flex border px-2 text-info me-2"><h5><b>Step {Tags.PressurePID.Step}</b></h5></span>
                             </div>
                         </div>

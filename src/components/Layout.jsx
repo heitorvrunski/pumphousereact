@@ -1,10 +1,12 @@
 import React,{useEffect, useState} from 'react';
 import NavMenu  from './NavMenu';
-import {useDispatch } from 'react-redux';
+import {useDispatch,useSelector } from 'react-redux';
 import { UpdateData } from '../middleware/socketio';
 import io from "socket.io-client";
 import Toast from './Toast.jsx';
 import { ApiNode } from '../middleware/thunk';
+import { ChangeFisrtTime } from '../store/actions';
+
 const socket = io.connect(`http://${window.location.hostname}:3000`,
 {   withCredentials: true
 
@@ -12,9 +14,13 @@ const socket = io.connect(`http://${window.location.hostname}:3000`,
 export default function Layout(props){
   const dispatch = useDispatch();
   const [errorMessage,setErrorMessage] = useState('')
+  const expiresJWT = useSelector(state => state.ExpiresJWT)
+  if(expiresJWT.firstTime===true){
+    dispatch(ChangeFisrtTime(false))
+    socket.emit("joined");
 
-  
-    
+  }
+
   useEffect(()=>{
 
     socket.on('writeError',(data) =>{
@@ -29,7 +35,24 @@ export default function Layout(props){
     
   });
 
-  socket.emit("joined");
+  useEffect(()=>{
+    if(expiresJWT.isAuth===true){
+      const dateNow =  new Date();
+      const dateExpires =  new Date(expiresJWT.expires);
+
+      const timeout = (dateExpires.getTime()-dateNow.getTime())-60*1000;
+
+      console.log(timeout)
+      setTimeout(() => {
+        dispatch(ApiNode.RefreshToken());
+      }, timeout);
+    }
+
+    
+  });
+
+
+
   dispatch(ApiNode.GetSysConfig());
 
   const onChangeErrorMessage = () =>{

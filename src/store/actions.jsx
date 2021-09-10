@@ -35,3 +35,19 @@ export const GetSysConfig = (value) =>{
     return {type: 'Clear_All_Trends'}
   
   }
+
+  export const SetExpiresToken = (date) =>{
+
+    const dateExpires = date.expires;
+    return {type: 'Set_Expires',dateExpires}
+  
+  }
+  export const ChangeFisrtTime = (value) =>{
+
+    return {type: 'Change_Fisrt_Time',value}
+  
+  }
+
+  //Change_Fisrt_Time
+
+  //SetExpiresToken
