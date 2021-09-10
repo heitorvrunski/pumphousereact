@@ -81,7 +81,7 @@ return(
                                                 <div className={"rounded-circle ld-Circle "+(Tags.cLevel.LSH===1?"ld-Circle-Active":"ld-Circle-Inactive")}></div>
                                                 <hr className="ld-hr" />
                                             </div>
-                                            <span className="span-Primary d-inline-flex px-1"> <h5>LSH</h5></span>
+                                            <span className="span-Primary d-inline-flex px-1"> <h5 className="m-0">LSH</h5></span>
 
                                         </div>
 
@@ -91,7 +91,7 @@ return(
                                                 <div className={"rounded-circle ld-Circle "+(Tags.cLevel.LSL===1?"ld-Circle-Active":"ld-Circle-Inactive")}></div>
                                                 <hr className="ld-hr" />
                                             </div>
-                                            <span className="span-Primary d-inline-flex px-1"> <h5>LSL</h5></span>
+                                            <span className="span-Primary d-inline-flex px-1"> <h5 className="m-0">LSL</h5></span>
                                         </div>
                                     </div>
                                 </div>
