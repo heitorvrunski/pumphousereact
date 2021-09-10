@@ -20,7 +20,7 @@ export default function Toast(props){
                 };
         
 
-    },[props.messageError]);
+    },[props.messageError,props]);
 
     return(
         <div className="position-fixed bottom-0 end-0 p-3" style={{zIndex:"11"}}>

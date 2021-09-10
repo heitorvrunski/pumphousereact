@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Collapse, Container, Navbar, NavbarBrand, NavItem, NavLink,Nav } from 'reactstrap';
-import { Link } from 'react-router-dom';
+import { Collapse, Container, Navbar, NavbarBrand, NavItem,Nav } from 'reactstrap';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 
 
@@ -36,15 +36,20 @@ export default function NavMenu(){
                   </button>                    
                   <Collapse className="d-sm-inline-flex flex-sm-row-reverse" isOpen={!collapsed} navbar>
                       <Nav className="mr-auto" navbar>
-                      <div className={safety===1?"safetyDiv align-content-center flex-wrap text-center":"collapsed"}> <h5>Safety Mode ON</h5></div>
+                        <NavItem>
+                        <div className={safety===1?"safetyDiv align-content-center flex-wrap text-center mx-2 ":"collapsed"}> <h5>Safety Mode ON</h5></div>
+
+                        </NavItem>
                       <NavItem className="me-auto me-1">
-                        <NavLink tag={Link} className="text-primary mt-1 " to="/" onClick={closeExpander}>Home</NavLink>
+                        <NavLink exact={true} className="text-primary text-Link me-2 is-not-active " activeClassName='active' to="/" onClick={closeExpander}>Home</NavLink>
 
                       </NavItem>
                       <NavItem className="me-auto">
-                        <NavLink tag={Link} className="text-primary mt-1 " to="/Trend" onClick={closeExpander}>Trend</NavLink>
+                        <NavLink className="text-primary text-Link me-2 is-not-active " activeClassName='active' to="/Trend" onClick={closeExpander}>Trend</NavLink>
                       </NavItem>
-                      
+                      <NavItem className="me-auto">
+                        <NavLink className="text-primary text-Link is-not-active " activeClassName='active' to="/Settings" onClick={closeExpander}>Settings</NavLink>
+                      </NavItem>
                       </Nav>
                   </Collapse>
               </Container>

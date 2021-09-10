@@ -80,9 +80,29 @@ $heightPipe:270px;
 
 
 
+.navbar-toggler{
+    border: unset;
+}
+
+.is-not-active:not(.active){
+    filter: brightness(0.8)
+
+}
+
+.tableInput{
+    width: 80px !important;
+}
+
+.tableLabel{
+    width: 300px !important;
+}
+
+
+
+
 .safetyDiv{
     width: 200px;
-    height: 40px;
+    height: 30px;
     color:white;
     background-color: red;
     border: solid 1px grey;
@@ -95,29 +115,23 @@ $heightPipe:270px;
 }
 
 
+
+
+
 .collapsed{
     display:none !important;
 }
 
-a.navbar-brand {
-    white-space: normal;
-    text-align: center;
-    word-break: break-all;
-  }
-  
-  html {
-    font-size: 14px;
-  }
-  @media (min-width: 768px) {
-    html {
-      font-size: 16px;
-    }
-  }
-  
-  .box-shadow {
-    box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
-  }
-  
+.text-Link{
+    font-size: 18px;
+    text-decoration: none
+}
+
+
+.box-shadow {
+box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+}
+
 
 //#fcfcfc
 
@@ -200,7 +214,7 @@ code {
 
 
 .btn-principal:hover{
-    background:$colorBackSelectedButton1 !important;
+    //background:$colorBackSelectedButton1 !important;
     outline: none !important;
     box-shadow: none;
 }

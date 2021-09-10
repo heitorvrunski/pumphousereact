@@ -1,14 +1,14 @@
 import React, { useEffect, useState  } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
-import { ConfigTrends,ChangeMode,ChangeDuration,ClearAllTrends } from '../store/actions/index.js';
-import { ApiNode } from '../middleware/thunk.js';
-import { CreateOptionsHighCharts,ClearOptions } from '../services/highchartOptions.js';
+import { ConfigTrends,ChangeMode,ChangeDuration,ClearAllTrends } from '../store/actions.jsx';
+import { CreateOptionsHighCharts,ClearOptions } from '../highCharts/index.js';
 import CheckBox from './TrendComponents/CheckBox.jsx';
 import CheckboxList from './TrendComponents/CheckBoxList.jsx';
 import HighchartsReact from 'highcharts-react-official';
 import Highcharts from "highcharts/highstock";
 import DurationButton from './TrendComponents/DurationButton.jsx';
 import InputDate from './TrendComponents/InputDate.jsx';
+import { FindConfig } from '../utils/SettingsUtils.js';
 
 export default function Trend(){
   const dispatch = useDispatch();
@@ -35,13 +35,10 @@ export default function Trend(){
 
 
   useEffect(() => {
-    if(configs.length!==1){
-      dispatch(ApiNode.GetSysConfig());
-
-    }else if (!trends?.TagList){
+    if (!trends?.TagList){
       var trendsAux = []
-
-      configs[0].value.forEach(element => {
+      const config = FindConfig(configs,'TrendTagList')
+      config.value.forEach(element => {
         trendsAux.push({tag:element,checked:false})
       });
       dispatch(ConfigTrends(trendsAux));
@@ -66,7 +63,7 @@ export default function Trend(){
   
     }  
   }
-  ,[trends,reload,configs,dispatch]);
+  ,[trends,reload,dispatch,configs]);
   
   const changeMode = (modeComponent) =>{
     

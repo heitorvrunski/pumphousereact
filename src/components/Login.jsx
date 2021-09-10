@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios'
 import Toast from './Toast';
 
@@ -56,7 +56,7 @@ export default function Login ()  {
                 });
         }else{
             setError({
-                errorMsg: 'Please, Enter Login and Password',
+                errorMsg: 'Enter Login and Password',
             })
             
         }

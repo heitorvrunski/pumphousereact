@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { SendMessage } from '../store/actions/index.js';
+import { SendMessage } from '../middleware/socketio.js';
 
 const TestCard = () =>{
     const itemP = ['PressurePID','Current'];

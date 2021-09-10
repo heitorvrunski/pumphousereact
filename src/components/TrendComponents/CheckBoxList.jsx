@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { ChangeStateTrend } from "../../store/actions/index.js";
+import { ChangeStateTrend } from "../../store/actions.jsx";
 
 
 export default function CheckBoxList(props){

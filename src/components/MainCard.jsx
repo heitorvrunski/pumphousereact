@@ -2,7 +2,7 @@ import React from 'react';
 import pressureImage from '../Resource/Pressure_Transmitter.png';
 import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
-import { EnablePressurePID,DisablePressurePID, EnableDesablePondPID,DisableAllPump } from '../store/actions/index.js';
+import { EnablePressurePID,DisablePressurePID, EnableDesablePondPID,DisableAllPump } from '../commands/index.js';
 
 //PressurePID.enable
 export default function MainCard(){
@@ -27,7 +27,7 @@ return(
                 <div className="container">
     
                     <div className="row d-flex my-2 mx-2">
-                        <button type="button" className="col btn btn-principal mx-1 w-20 " onClick={autoPressurePIDAction}>{Tags.PressurePID.enable===1? 'Disable Auto PID':'Enable Auto PID'}</button>
+                        <button type="button" className="col btn btn-principal mx-1 w-20 "  onClick={autoPressurePIDAction}>{Tags.PressurePID.enable===1? 'Disable Auto PID':'Enable Auto PID'}</button>
                         <button type="button" className="col btn btn-principal mx-1 w-20 " onClick={autoPondFillPIDAction}>{Tags.EnablePondFill===1? 'Disable Pond Control':'Enable Pond Control'}</button>
                     </div>
                     
@@ -118,9 +118,6 @@ return(
                             </div>
                         </div>
                         <div className="col col-xl-1 px-0 col-md-1 mx-0 mb-2">
-                            <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Configuration</button>
-                            <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Pond Fill<br /> Configuration</button>
-                            <button type="button" className="btn btn-principal m-0 me-1 mb-1" style={{ "height": "60px" }}>Pump 1<br />Configuration</button>
                             <button type="button" className="btn btn-principal m-0 text-nowrap mx-0" style={{ "height": "60px"}} onClick={disableAllPumpAction}>Disable <br />All Pumps</button>
 
                         </div>

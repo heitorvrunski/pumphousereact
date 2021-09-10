@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { SetDateRangeAction } from "../../store/actions/index.js";
+import { SetDateRangeAction } from "../../store/actions.jsx";
 
 
 export default function InputDate(props){

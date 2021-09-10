@@ -1,7 +1,7 @@
 import React,{useState}  from 'react';
 import PumpImage from './PumpImage';
 import { useSelector } from 'react-redux';
-import { StartManualPump, StopManualPump ,SetManualFreqPump } from '../store/actions/index.js';
+import { StartManualPump, StopManualPump ,SetManualFreqPump } from '../commands/index.js';
 
 export default function PumpCard(props){
     const pidEnableNode = ['PressurePID','enable']

@@ -1,0 +1,108 @@
+[
+	{
+      "label": "Pump 1 - Ramp Time (ms)",
+      "browseName": ["cPump",0,"RampTime"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 2 - Ramp Time (ms)",
+      "browseName": ["cPump",1,"RampTime"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 3 - Ramp Time (ms)",
+      "browseName": ["cPump",2,"RampTime"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 1 - Ramp Step (ms)",
+      "browseName": ["cPump",0,"IncRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 2 - Ramp Step (ms)",
+      "browseName": ["cPump",1,"IncRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 3 - Ramp Step (ms)",
+      "browseName": ["cPump",2,"IncRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 1 - Start Ramp (hz)",
+      "browseName": ["cPump",0,"StartRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 2 - Start Ramp (hz)",
+      "browseName": ["cPump",1,"StartRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 3 - Start Ramp (hz)",
+      "browseName": ["cPump",2,"StartRamp"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pressure Set Point",
+      "browseName": ["PressurePID","SetPoint"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pressure Offset",
+      "browseName": ["PressurePID","OffSet"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 1 - PID Time (ms)",
+      "browseName": ["PressurePID","Pump0Time"],
+	  "type": "Numeric"
+    },
+	
+	{
+      "label": "Pump 2 - PID Time (ms)",
+      "browseName": ["PressurePID","Pump1Time"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 3 - PID Time (ms)",
+      "browseName": ["PressurePID","Pump2Time"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump - PID Adjust (hz)",
+      "browseName": ["PressurePID","PumpOffSet"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump Max Freq (hz)",
+      "browseName": ["PressurePID","PumpMaxFreq"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump Min Freq (hz)",
+      "browseName": ["PressurePID","PumpMinFreq"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Min. Percentage Level",
+      "browseName": ["PondFill","MinPercent"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Max Percentage Level",
+      "browseName": ["PondFill","MaxPercent"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 1 - Timeout Freq (hz)",
+      "browseName": ["PressurePID","Pump1TimeOutFreq"],
+	  "type": "Numeric"
+    },
+	{
+      "label": "Pump 1 - Timeout (ms)",
+      "browseName": ["PressurePID","Pump1TimeOut"],
+	  "type": "Numeric"
+    }
+]
