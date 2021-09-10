@@ -6,7 +6,7 @@ const socket = io.connect(`http://${window.location.hostname}:3000`,
 
 
 export const  UpdateData =(data) =>{
-    console.log('Receave Data <-')
+    console.log('Received Data <-',data)
   
   
     var tag = data.browseName;
@@ -19,14 +19,14 @@ export const  UpdateData =(data) =>{
   }
   
 export const  SendMessage =(item,value) =>{
-console.log('Send Data ->')
+
 
 const data = {
     browseName:item,
     value:value,
     dataType:DataType(value)
 }
-
+console.log('Sent Data ->',data)
 socket.emit("write",data);
 
 }
