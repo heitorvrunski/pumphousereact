@@ -7,7 +7,7 @@ export const CreateOptionsHighCharts = async (tags,optionsChart)=>{
         for (var idx = 0; idx< tags.length;idx++) {
             const element = tags[idx];
             const id = idx;
-            await axios.get(`${serverURL}/node/api/trend/singleTag/${element.value}/${optionsChart.duration}`,{withCredentials:true})
+            await axios.get(`${serverURL}/node/api/trend/singleTag/${element.browseName}/${optionsChart.duration}`,{withCredentials:true})
             .then(resp=>{
                 if(resp.status===200){
                     seriesOptions.push(success(resp.data,element.label,id))
@@ -19,7 +19,7 @@ export const CreateOptionsHighCharts = async (tags,optionsChart)=>{
             const element = tags[idx2];
             const id = idx2;
 
-            await axios.post(`${serverURL}/node/api/trend/singleTag/range`,{"startDate": new Date(optionsChart.startPeriod).toJSON(), "endDate": new Date(optionsChart.endPeriod).toJSON(),"tag":element.value},{ 
+            await axios.post(`${serverURL}/node/api/trend/singleTag/range`,{"startDate": new Date(optionsChart.startPeriod).toJSON(), "endDate": new Date(optionsChart.endPeriod).toJSON(),"tag":element.browseName},{ 
                 withCredentials: true,
                 headers: {
                     Accept: 'application/json',
