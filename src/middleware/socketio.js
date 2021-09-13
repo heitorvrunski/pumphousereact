@@ -5,8 +5,13 @@ const socket = io.connect(`http://${window.location.hostname}:3000`,
 });
 
 
+
+export const SendJoined = () =>{
+    socket.emit("joined");
+}
+
 export const  UpdateData =(data) =>{
-    console.log('Received Data <-',data)
+    console.log('Received Data <-')
   
   
     var tag = data.browseName;

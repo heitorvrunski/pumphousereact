@@ -1,14 +1,9 @@
 import React, { useState } from 'react';
 import axios from 'axios'
-import { useHistory } from "react-router-dom";
-import { useDispatch } from 'react-redux';
-import { SetExpiresToken } from '../store/actions';
 
 import Toast from './Toast';
 
 export default function Login ()  {
-    const dispatch = useDispatch();
-    const history = useHistory()
 
     const [state,setState] = useState({
         login: '',
@@ -20,7 +15,6 @@ export default function Login ()  {
         errorMsg: '',
     });
 
-    //const [errorShow,setErrorShow] = useState(false);  
 
     
     const handleInputChange = event => {
@@ -53,9 +47,9 @@ export default function Login ()  {
                     if (res.status === 200) {
                         console.log('logged!');
 
-                        dispatch(SetExpiresToken(res.data))
-
-                        history.push("/");
+                        //dispatch(SetExpiresToken(res.data))
+                        window.location.href = '/'
+                        //history.push("/");
 
                     }
                 }).catch(function (error) {
