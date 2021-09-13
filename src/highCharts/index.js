@@ -100,9 +100,9 @@ function createOptions(seriesOptions) {
   const sLastDate = getFormattedDate(new Date(lastDate));
   var subtitle = "";
   if (sFirstDate === sLastDate) {
-    subtitle += " - " + sFirstDate;
+    subtitle += sFirstDate;
   } else {
-    subtitle += " - " + sFirstDate + " to " + sLastDate;
+    subtitle += sFirstDate + " to " + sLastDate;
   }
 
   return {
@@ -157,9 +157,8 @@ function createOptions(seriesOptions) {
     title: {
       text: "Historical Data",
     },
-    subtitle:{
+    subtitle: {
       text: subtitle,
-
     },
     xAxis: {
       gridLineWidth: 1,
