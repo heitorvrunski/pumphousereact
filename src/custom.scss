@@ -17,7 +17,7 @@ $colorBackHeader: #595959;
 $colorBackCards: #f2f2f2;
 $colorBorderCards: #959595;
 $colorWater: #6d80a8;
-$colorNoWater: #424E6633;
+$colorNoWater: #424e6633;
 $colorBack1: #595959;
 $colorFont1: #ffffe7;
 $colorBackButton1: #e1e1e1;
@@ -32,363 +32,342 @@ $colorBorderWaterTank: #7f7f7f;
 $colorInactive: #959595;
 $colorActive: #239645;
 $colorInfo: #032870;
-$widthPipe:15px;
-$heightPipe:270px;
+$widthPipe: 15px;
+$heightPipe: 270px;
 
-
-
-.form-check-input{
-    height: 20px;
-    width: 20px;
+.form-check-input {
+  height: 20px;
+  width: 20px;
 }
 
-@media (max-width:955px){
-    .col-between-md-xl-12{
-        flex: 0 0 auto !important;
-        width: 100% !important;
-        margin-left: 0 !important;
-    }
-}   
-
-
-@media (max-width: 1200px){
-    .h-sm{
-        display: flex !important;
-        height: 150px !important;
-        flex-wrap: wrap !important;
-        align-content: flex-start !important;
-    }
-    .h-chart-sm{
-        height: 400px !important;
-    }
-
-
-    .remove-Flex-grow-sm{
-        flex-grow: unset !important;
-    }
-
-    .remove-h-100-sm{
-        height: unset !important;
-    }
-
-    
+@media (max-width: 955px) {
+  .col-between-md-xl-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
 }
 
-.pointer-Selected{
-    cursor:pointer;
+@media (max-width: 1200px) {
+  .h-sm {
+    display: flex !important;
+    height: 150px !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+  }
+  .h-chart-sm {
+    height: 400px !important;
+  }
+
+  .remove-Flex-grow-sm {
+    flex-grow: unset !important;
+  }
+
+  .remove-h-100-sm {
+    height: unset !important;
+  }
 }
 
-
-
-.navbar-toggler{
-    border: unset;
+.pointer-Selected {
+  cursor: pointer;
 }
 
-.is-not-active:not(.active){
-    filter: brightness(0.8)
-
+.navbar-toggler {
+  border: unset;
 }
 
-.tableInput{
-    width: 80px !important;
+.is-not-active:not(.active) {
+  filter: brightness(0.8);
 }
 
-.tableLabel{
-    width: 300px !important;
+.tableInput {
+  width: 80px !important;
 }
 
-
-
-
-.safetyDiv{
-    width: 200px;
-    height: 30px;
-    color:white;
-    background-color: red;
-    border: solid 1px grey;
-    align-items: center;
+.tableLabel {
+  width: 300px !important;
 }
 
-.selectedDuration{
-    background-color: $colorBackSelectedButton1;
-
+.safetyDiv {
+  width: 200px;
+  height: 30px;
+  color: white;
+  background-color: red;
+  border: solid 1px grey;
+  align-items: center;
 }
 
-
-
-
-
-.collapsed{
-    display:none !important;
+.selectedDuration {
+  background-color: $colorBackSelectedButton1;
 }
 
-.text-Link{
-    font-size: 18px;
-    text-decoration: none
+.collapsed {
+  display: none !important;
 }
 
+.text-Link {
+  font-size: 18px;
+  text-decoration: none;
+}
 
 .box-shadow {
-box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
 }
-
 
 //#fcfcfc
 
-
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: $colorBody;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  background-color: $colorBody;
 }
 
 code {
-  color: #E01A76;
+  color: #e01a76;
 }
-
 
 .card {
-    background-color: $colorBackCards !important;
-    border-color: $colorBorderCards;
+  background-color: $colorBackCards !important;
+  border-color: $colorBorderCards;
 }
-
 
 .bg-primary {
-    background-color: $colorBack1 !important;
+  background-color: $colorBack1 !important;
 }
 .text-primary {
-    color: $colorFont1 !important;
+  color: $colorFont1 !important;
 }
 
-.text-info{
-    color: $colorInfo !important;
+.text-info {
+  color: $colorInfo !important;
 }
 .bg-secundary {
-    background-color: $colorBack2 !important;
+  background-color: $colorBack2 !important;
 }
 .text-secundary {
-    color: $colorFont2 !important;
+  color: $colorFont2 !important;
 }
 
 .pump-Yellow {
-    filter: hue-rotate(56deg);
+  filter: hue-rotate(56deg);
 }
 .pump-Green {
-    filter: hue-rotate(109deg);
+  filter: hue-rotate(109deg);
 }
 
 .pump-Grey {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
 }
 
 .ld-Circle-Active {
-    background-color: $colorActive;
+  background-color: $colorActive;
 }
 .ld-Circle-Inactive {
-    background-color: $colorInactive;
+  background-color: $colorInactive;
 }
 
 .pump-Grey {
-    filter: grayscale(100%);
+  filter: grayscale(100%);
 }
-
-
 
 .form-signin {
-    width: 100%;
-    max-width: 330px;
-    padding: 15px;
-    margin: 0 auto;
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
 }
-
 
 .btn-principal {
-    background-color: $colorBackButton1 !important;
-    color: $colorFontButton1 !important;
-    border: $colorborderButton1 !important;
+  background-color: $colorBackButton1 !important;
+  color: $colorFontButton1 !important;
+  border: $colorborderButton1 !important;
 }
-.btn-principal:active{
-    background:$colorBackSelectedButton1 !important;
-    outline: none !important;
-    box-shadow: none;
-}
-
-
-.btn-principal:hover{
-    //background:$colorBackSelectedButton1 !important;
-    outline: none !important;
-    box-shadow: none;
+.btn-principal:active {
+  background: $colorBackSelectedButton1 !important;
+  outline: none !important;
+  box-shadow: none;
 }
 
+.btn-principal:hover {
+  //background:$colorBackSelectedButton1 !important;
+  outline: none !important;
+  box-shadow: none;
+}
 
-.btn:focus,.btn:active {
-    outline: none !important;
-    box-shadow: none;
- }
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
 
 .card-Pump {
-/*    height: 600px;
-*/    min-width: 230px !important;
-    max-width: 240px !important;
-    /*width:200px !important;*/
+  /*    height: 600px;
+*/
+  min-width: 230px !important;
+  max-width: 240px !important;
+  /*width:200px !important;*/
 }
-.card-Pump-Image{
-    height:150px !important;
-    background-color:dimgrey;
+.card-Pump-Image {
+  height: 150px !important;
+  background-color: dimgrey;
 }
 
 .water-Tank-Box {
-    height: 350px !important;
-    width: 250px !important;
-    border-style: hidden solid solid solid;
-    border-width: 10px;
-    border-color: $colorBorderWaterTank;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-end;
-    overflow: hidden;
-    background-color: $colorNoWater;
-    min-width: 200px !important;
-    margin-top: 5rem !important;
+  height: 350px !important;
+  width: 250px !important;
+  border-style: hidden solid solid solid;
+  border-width: 10px;
+  border-color: $colorBorderWaterTank;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  overflow: hidden;
+  background-color: $colorNoWater;
+  min-width: 200px !important;
+  margin-top: 5rem !important;
 }
 
-.menuToogle{
-    fill:$colorFont1;
+.menuToogle {
+  fill: $colorFont1;
 }
 
-.span-Primary{
-    background-color: $colorFont1 !important;
-    color: black;
-    border:solid 1px $colorborderButton1;
+.span-Primary {
+  background-color: $colorFont1 !important;
+  color: black;
+  border: solid 1px $colorborderButton1;
 }
 
-.bg-inactive{
-    background-color: $colorInactive !important;
+.bg-inactive {
+  background-color: $colorInactive !important;
 }
 
-.bg-active{
-    background-color: $colorActive !important;
+.bg-active {
+  background-color: $colorActive !important;
 }
 
 .water-Tank {
-    background-color: $colorWater;
+  background-color: $colorWater;
 }
 
 .pump_Image {
-    //background-color: darkred;
-    height: 100px !important;
+  //background-color: darkred;
+  height: 100px !important;
 }
 .pumps-Images {
-    min-width: 250px;
+  min-width: 250px;
 }
 
 .pump-vertical-Pipe {
-    width: $widthPipe;
-    height: $heightPipe;
-    margin: auto;
-    margin-bottom: -15px;
-    background-image: linear-gradient(to right, $colorBorderPipe, $colorPipe, $colorBorderPipe);
+  width: $widthPipe;
+  height: $heightPipe;
+  margin: auto;
+  margin-bottom: -15px;
+  background-image: linear-gradient(
+    to right,
+    $colorBorderPipe,
+    $colorPipe,
+    $colorBorderPipe
+  );
 }
 .pump-horizontal-div {
-    width: 192px;
-    height:  $widthPipe;
-    margin: auto;
-    margin-left:-10px;
-    
+  width: 192px;
+  height: $widthPipe;
+  margin: auto;
+  margin-left: -10px;
 }
 .pump-horizontal-Pipe {
-    width: 100%;
-    height: 100%;
-    background-image: linear-gradient($colorBorderPipe, $colorPipe, $colorBorderPipe);
-    //border-color:$colorBorderPipe;
+  width: 100%;
+  height: 100%;
+  background-image: linear-gradient(
+    $colorBorderPipe,
+    $colorPipe,
+    $colorBorderPipe
+  );
+  //border-color:$colorBorderPipe;
 }
 .pressure-Image {
-    //background-color: coral;
-    width: 40px;
-    height: 60px;
-    z-index: 100;
-    margin-left: 0px;
+  //background-color: coral;
+  width: 40px;
+  height: 60px;
+  z-index: 100;
+  margin-left: 0px;
 }
 .ld-div {
-    height: 335px !important;
+  height: 335px !important;
 }
 .ld-Circle {
-    height: 25px;
-    width: 25px;
-    border-style: solid solid solid solid;
-    border-width: 2px;
-    border-color: black;
+  height: 25px;
+  width: 25px;
+  border-style: solid solid solid solid;
+  border-width: 2px;
+  border-color: black;
 }
 
 .ld-hr {
-    display: block;
-    margin-top: 9px;
-    margin-bottom: 0;
-    width: 40px;
-    background-color: unset !important;
-    opacity: 1 !important;
+  display: block;
+  margin-top: 9px;
+  margin-bottom: 0;
+  width: 40px;
+  background-color: unset !important;
+  opacity: 1 !important;
 
-    border-color: black;
-    border-top: 4px dashed black;
+  border-color: black;
+  border-top: 4px dashed black;
 }
 .pondfill-pipe {
-    background-color: $colorBorderWaterTank;
-    width: 35px;
-    height: 30px;
+  background-color: $colorBorderWaterTank;
+  width: 35px;
+  height: 30px;
 }
 
 .pond-cube {
-    height: 35px;
-    width: 35px;
-    border-style: solid solid solid solid;
-    border-width: 2px;
-    border-color: black;
-    background-color: $colorBorderWaterTank;
+  height: 35px;
+  width: 35px;
+  border-style: solid solid solid solid;
+  border-width: 2px;
+  border-color: black;
+  background-color: $colorBorderWaterTank;
 }
-
 
 .toastFadeIn {
-    animation: fadein 2s;
-    -moz-animation: fadein 2s; /* Firefox */
-    -webkit-animation: fadein 2s; /* Safari and Chrome */
-    -o-animation: fadein 2s; /* Opera */
+  animation: fadein 2s;
+  -moz-animation: fadein 2s; /* Firefox */
+  -webkit-animation: fadein 2s; /* Safari and Chrome */
+  -o-animation: fadein 2s; /* Opera */
 }
 @keyframes fadein {
-    from {
-        opacity:0;
-    }
-    to {
-
-        opacity:1;
-    }
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-@-moz-keyframes fadein { /* Firefox */
-    from {
-
-        opacity:0;
-    }
-    to {
-
-        opacity:1;
-    }
+@-moz-keyframes fadein {
+  /* Firefox */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
-@-webkit-keyframes fadein { /* Safari and Chrome */
-    from {
+@-webkit-keyframes fadein {
+  /* Safari and Chrome */
+  from {
+    opacity: 0;
+  }
+  to {
+    right: 0px !important;
 
-        opacity:0;
-    }
-    to {
-        right: 0px !important;
-
-        opacity:1;
-    }
+    opacity: 1;
+  }
 }
-@-o-keyframes fadein { /* Opera */
-    from {
-
-        opacity:0;
-    }
-    to {
-
-        opacity: 1;
-    }
+@-o-keyframes fadein {
+  /* Opera */
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }

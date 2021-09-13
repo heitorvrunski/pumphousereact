@@ -1,23 +1,17 @@
-import React from 'react';
-import  Layout  from './components/Layout';
-import { Provider } from 'react-redux';
+import React from "react";
+import Layout from "./components/Layout";
+import { Provider } from "react-redux";
 
-import store from './store'
-import './custom.scss';
-import Routes from './components/routes';
+import store from "./store";
+import "./custom.scss";
+import Routes from "./components/routes";
 
-    
-
-export default function App()  {
-
-
-    return (
-      <Provider store={store}>
-        <Layout>
-          <Routes/>
-        </Layout>
-
-      </Provider>
-      
-    );
-  }
+export default function App() {
+  return (
+    <Provider store={store}>
+      <Layout>
+        <Routes />
+      </Layout>
+    </Provider>
+  );
+}
