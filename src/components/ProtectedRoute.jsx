@@ -3,6 +3,7 @@ import { useSelector,useDispatch } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import isAuthenticated from "../services/auth.js";
 import { ApiNode } from "../middleware/thunk.js";
+import ReactLoading from 'react-loading';
 
 const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   const dispatch = useDispatch()
@@ -13,9 +14,6 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
         (async function() {
             try {
               var isUserLogged = await isAuthenticated();
-              /*if(expiresJWT.isAuth===false&&isUserLogged===true){
-                dispatch(ApiNode.RefreshToken());
-              }*/
               setState(isUserLogged===true ? 'loggedin' : 'redirect');
             }
             catch {
@@ -39,8 +37,14 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   
 
   if(state === 'loading') {
-    return <div>Loading..</div>
-  }
+    return (
+    <div className="position-absolute top-50 start-50">
+        <div className="d-flex flex-column align-items-center">
+          <ReactLoading type="spokes" color="#ffffff" height={'40px'} width={'40px'}></ReactLoading>
+          <h6 className="my-2">Loading...</h6>
+        </div>   
+    </div>
+    )}
 
   return (
     <Route

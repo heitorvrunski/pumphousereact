@@ -40,7 +40,7 @@ export default function Layout(props){
       const dateNow =  new Date();
       const dateExpires =  new Date(expiresJWT.expires);
 
-      const timeout = (dateExpires.getTime()-dateNow.getTime())-16*60*1000;
+      const timeout = (dateExpires.getTime()-dateNow.getTime())-60*1000;
 
       setTimeout(() => {
         dispatch(ApiNode.RefreshToken());

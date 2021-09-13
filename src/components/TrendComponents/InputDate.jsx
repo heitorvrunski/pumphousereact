@@ -18,10 +18,13 @@ export default function InputDate(props){
 
 
     return(
-        <div className={(props.className?props.className:'') +" d-flex justify-content-end"}>
-            <h6>{props.label}</h6>
+        <div className={(props.className?props.className:'') +" d-block"}>
+<div className={" d-flex"}>
+            <h6 style={{width:"50px"}}>{props.label}</h6>
             <input type="date" value={defaltInput} onChange={changeDateRange} style={{width:"135px"}}></input>
         </div>
+        </div>
+        
 
     )
 }

@@ -1,4 +1,4 @@
-import React, { useEffect, useState  } from 'react';
+import React, { useEffect, useState, createRef  } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 import { ConfigTrends,ChangeMode,ChangeDuration,ClearAllTrends } from '../store/actions.jsx';
 import { CreateOptionsHighCharts,ClearOptions } from '../highCharts/index.js';
@@ -9,8 +9,16 @@ import Highcharts from "highcharts/highstock";
 import DurationButton from './TrendComponents/DurationButton.jsx';
 import InputDate from './TrendComponents/InputDate.jsx';
 import { FindConfig } from '../utils/SettingsUtils.js';
+import HighchartsExporting from 'highcharts/modules/exporting'
+
+
+
+
 
 export default function Trend(){
+  HighchartsExporting(Highcharts)
+
+  const chart = createRef()
   const dispatch = useDispatch();
   const configs = useSelector(state=>state.SysConfig);
   const trends =  useSelector(state=>state.Trend);
@@ -21,7 +29,6 @@ export default function Trend(){
   const dateStart =startPeriod!==0?  (new Date(startPeriod)).toISOString().substr(0,10):'';
   const dateEnd = endPeriod!==0? (new Date(endPeriod)).toISOString().substr(0,10):'';
   const [reload,setReload] = useState(false)
-  //const [options,SetOptions] = useState({chart:{height:"100%"}});
   const [options,SetOptions] = useState({});
 
   const timezone = new Date().getTimezoneOffset()
@@ -45,24 +52,39 @@ export default function Trend(){
     }
     if(trends?.TagList){
       var checkeds = [];
+      const chartRef = chart.current.chart;
       trends.TagList.forEach(element => {
         if(element.checked===true){
           checkeds.push(element.tag)
         }
       });
       if(checkeds.length>0){
+        chartRef.showLoading()
         CreateOptionsHighCharts(checkeds,trends.options)
         .then(res=>{ 
+          try{
+            chartRef.hideLoading()
+          }catch{
+            setTimeout(() => {
+              setReload(!reload);
+            }, 1000);
+          }          
           SetOptions(res);
         })
       }else{
-        
+        try{
+          chartRef.hideLoading()
+        }catch{
+          setTimeout(() => {
+            setReload(!reload);
+          }, 1000);
+        }        
         SetOptions(ClearOptions());
 
       }
   
     }  
-  }
+  }// eslint-disable-next-line
   ,[trends,reload,dispatch,configs]);
   
   const changeMode = (modeComponent) =>{
@@ -105,8 +127,8 @@ export default function Trend(){
 
               </div>
               <div className="d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12" style={{maxWidth:"720px"}} >
-                <div className="row my-1" >
-                  <div className="d-flex mx-0 col-2 justify-content-start px-2" style={{minWidth:"230px"}}>
+                <div className="row my-1 d-flex flex-row" >
+                  <div className="d-flex mx-0 col-2 col-md-2 justify-content-start px-2" style={{minWidth:"240px"}}>
                     <h5>Period</h5>
 
                     <CheckBox label="Duration" componentState={0} state={mode} eventChange={changeMode}/>
@@ -115,7 +137,7 @@ export default function Trend(){
 
                     
                   </div>
-                  <div className="d-flex col-12 col-md-7 me-auto p-0">
+                  <div className="d-flex col-12 col-md-7 p-0">
                     <div className={"d-flex flex-wrap " + (mode===0?'':' collapsed' )} style={{minWidth:"200px"}}>
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={1} label={"Last 24 Hour"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={7} label={"Last 7 days"} />
@@ -123,12 +145,9 @@ export default function Trend(){
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={90} label={"Last 6 months"} />
                       <DurationButton eventChange={changeDuration} duration={duration} buttonDuration={365} label={"Last year"} />
                     </div>
-                    <div className={"ms-2  d-flex" + (mode===1?'':' collapsed' )} style={{minWidth:"300px"}}>
-
-                      <div className="justify-content-start">
-                        <InputDate className="mb-2"  input={dateStart} name="startPeriod" label="Start: " ></InputDate>
-                        <InputDate   input={dateEnd} name="endPeriod" label="End: " ></InputDate>
-                      </div>
+                    <div className={"ms-2 d-flex row  justify-content-start " + (mode===1?'':' collapsed' )}>
+                        <InputDate className="col-md-auto mb-1" input={dateStart} name="startPeriod" label="Start: " ></InputDate>
+                        <InputDate className="col-md-auto" input={dateEnd} name="endPeriod" label="End: " ></InputDate>
 
 
 
@@ -149,6 +168,8 @@ export default function Trend(){
                 options={options}
                 containerProps={{ style: { height: "100%" } }}
                 constructorType={"stockChart"}
+                ref={chart}
+
               />
             </div>
           
