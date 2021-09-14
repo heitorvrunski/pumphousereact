@@ -6,12 +6,28 @@ import Trend from "./Trend";
 import ProtectedRoute from "./ProtectedRoute";
 import Settings from "./Settings";
 
-const Routes = () => (
+const Routes = ({ socket }) => (
   <Switch>
     <Route exact path="/login" component={Login} />
-    <ProtectedRoute exact path="/" component={Home} redirectto="/login" />
-    <ProtectedRoute path="/trend" component={Trend} redirectto="/login" />
-    <ProtectedRoute path="/Settings" component={Settings} redirectto="/login" />
+    <ProtectedRoute
+      exact
+      path="/"
+      socket={socket}
+      component={Home}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+      path="/trend"
+      socket={socket}
+      component={Trend}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+      path="/Settings"
+      socket={socket}
+      component={Settings}
+      redirectto="/login"
+    />
 
     <Route path="*" component={() => <h1>Page not found</h1>} />
   </Switch>

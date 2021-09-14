@@ -35,7 +35,3 @@ export const SetExpiresToken = (date) => {
 export const ChangeFisrtTime = (value) => {
   return { type: "Change_Fisrt_Time", value };
 };
-
-//Change_Fisrt_Time
-
-//SetExpiresToken

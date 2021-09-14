@@ -6,6 +6,8 @@ import { useSelector } from "react-redux";
 import { UpdateSettings } from "../commands";
 
 export default function Config() {
+  const socket = useSelector((state) => state.SocketIO.socket);
+
   const [settings, setSettings] = useState([]);
   const settingsNode = useSelector((state) => state.SysConfig);
   const tags = useSelector((state) => state.Tags);
@@ -45,7 +47,7 @@ export default function Config() {
     for (const element of settings) {
       const prevValue = tags.getIn(element.browseName);
       if (prevValue !== element.value) {
-        UpdateSettings(element.browseName, element.value);
+        UpdateSettings(element.browseName, element.value, socket);
       }
     }
   };

@@ -1,8 +1,3 @@
-import io from "socket.io-client";
-const socket = io.connect(`http://${window.location.hostname}:3000`, {
-  withCredentials: true,
-});
-
 export const UpdateData = (data) => {
   console.log("Received Data <-", data);
 
@@ -15,7 +10,7 @@ export const UpdateData = (data) => {
   return { type: "UpdateData", dataUpdate };
 };
 
-export const SendMessage = (item, value) => {
+export const SendMessage = (item, value, socket) => {
   const data = {
     browseName: item,
     value: value,
@@ -37,3 +32,7 @@ function DataType(value) {
     return 1;
   }
 }
+
+export const ActionSocketConnect = () => {
+  return { type: "Connect_Socket" };
+};

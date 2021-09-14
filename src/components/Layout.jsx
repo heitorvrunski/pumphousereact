@@ -2,18 +2,11 @@ import React, { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateData } from "../middleware/socketio";
-import io from "socket.io-client";
 import Toast from "./Toast.jsx";
 import { ApiNode } from "../middleware/thunk";
 
-const FirstRender = () => {
-  socket.emit("joined");
-};
-
-const socket = io.connect(`http://${window.location.hostname}:3000`, {
-  withCredentials: true,
-});
 export default function Layout(props) {
+  const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
   const expiresJWT = useSelector((state) => state.ExpiresJWT);
@@ -30,10 +23,13 @@ export default function Layout(props) {
           : `${browseName[0]}.${browseName[1]}`);
       setErrorMessage(tagName);
     });
+  }, [socket]);
+
+  useEffect(() => {
     socket.on("loadData", (data) => {
       dispatch(UpdateData(data));
     });
-  });
+  }, [dispatch, socket]);
 
   useEffect(() => {
     if (expiresJWT.isAuth === true) {
@@ -47,12 +43,6 @@ export default function Layout(props) {
       }, timeout);
     }
   });
-
-  useEffect(() => {
-    FirstRender();
-  }, []);
-
-  dispatch(ApiNode.GetSysConfig());
 
   const onChangeErrorMessage = () => {
     setErrorMessage("");

@@ -12,19 +12,21 @@ import {
 //PressurePID.enable
 export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
+  const socket = useSelector((state) => state.SocketIO.socket);
+
   function autoPressurePIDAction() {
     if (Tags.PressurePID.enable !== 1) {
-      EnablePressurePID(Tags.cPump);
+      EnablePressurePID(Tags.cPump, socket);
     } else {
-      DisablePressurePID();
+      DisablePressurePID(socket);
     }
   }
 
   function autoPondFillPIDAction() {
-    EnableDesablePondPID(Tags.EnablePondFill);
+    EnableDesablePondPID(Tags.EnablePondFill, socket);
   }
   function disableAllPumpAction() {
-    DisableAllPump();
+    DisableAllPump(socket);
   }
   return (
     <div

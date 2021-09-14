@@ -6,7 +6,10 @@ import {
   ChangeDuration,
   ClearAllTrends,
 } from "../store/actions.jsx";
-import { CreateOptionsHighCharts, ClearOptions } from "../highCharts/index.js";
+import {
+  CreateOptionsHighCharts,
+  ClearOptions,
+} from "../services/highCharts/index.js";
 import CheckBox from "./TrendComponents/CheckBox.jsx";
 import CheckboxList from "./TrendComponents/CheckBoxList.jsx";
 import HighchartsReact from "highcharts-react-official";
@@ -15,6 +18,7 @@ import DurationButton from "./TrendComponents/DurationButton.jsx";
 import InputDate from "./TrendComponents/InputDate.jsx";
 import { FindConfig } from "../utils/SettingsUtils.js";
 import HighchartsExporting from "highcharts/modules/exporting";
+import Loading from "./Loading.jsx";
 
 export default function Trend() {
   HighchartsExporting(Highcharts);
@@ -107,7 +111,7 @@ export default function Trend() {
   return (
     <div className="container-fluid h-100">
       {!trends?.TagList ? (
-        <p>loading</p>
+        <Loading />
       ) : (
         <div className="row h-100">
           <div className="col-12 col-md-12 col-xl-10 m-0 p-0 h-100 mb-1 remove-h-100-sm">

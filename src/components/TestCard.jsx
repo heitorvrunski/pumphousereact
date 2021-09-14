@@ -5,28 +5,29 @@ import { SendMessage } from "../middleware/socketio.js";
 const TestCard = () => {
   const itemP = ["PressurePID", "Current"];
   const itemL = ["cLevel", "Percentage"];
+  const socket = useSelector((state) => state.SocketIO.socket);
 
   const pressure = useSelector((state) => state.Tags.getIn(itemP));
   const level = useSelector((state) => state.Tags.getIn(itemL));
 
   function IncresePressure() {
     var pressureNew = pressure + 5;
-    SendMessage(itemP, pressureNew);
+    SendMessage(itemP, pressureNew, socket);
   }
 
   function DecresePressure() {
     var pressureNew = pressure - 5;
-    SendMessage(itemP, pressureNew);
+    SendMessage(itemP, pressureNew, socket);
   }
 
   function IncreseLevel() {
     var levelNew = level + 5;
-    SendMessage(itemL, levelNew);
+    SendMessage(itemL, levelNew, socket);
   }
 
   function DecreseLevel() {
     var levelNew = level - 5;
-    SendMessage(itemL, levelNew);
+    SendMessage(itemL, levelNew, socket);
   }
   return (
     <div className="card col m-2" style={{ maxWidth: "450px" }}>

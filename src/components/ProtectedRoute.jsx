@@ -3,12 +3,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
 import isAuthenticated from "../services/auth.js";
 import { ApiNode } from "../middleware/thunk.js";
-import ReactLoading from "react-loading";
+import Loading from "./Loading.jsx";
+import { ActionSocketConnect } from "../middleware/socketio.js";
 
-const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
+const ProtectedRoute = ({
+  component: Comp,
+  path,
+
+  redirectto,
+  ...rest
+}) => {
   const dispatch = useDispatch();
   const [state, setState] = useState("loading");
+  const [isJoined, setIsJoined] = useState(false);
+
+  const [canOpen, setCanOpen] = useState("loading");
+
   const expiresJWT = useSelector((state) => state.ExpiresJWT);
+  const loadingRender = useSelector((state) => state.Tags.loading);
+  const socket = useSelector((state) => state.SocketIO.socket);
 
   useEffect(() => {
     (async function () {
@@ -18,8 +31,11 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
       } catch {
         setState("redirect");
       }
+      if (state === "redirect") {
+        setCanOpen("redirect");
+      }
     })();
-  }, []);
+  }, [state]);
 
   useEffect(() => {
     if (state === "loggedin" && expiresJWT.isAuth === false) {
@@ -27,20 +43,19 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
     }
   });
 
-  if (state === "loading") {
-    return (
-      <div className="position-absolute top-50 start-50">
-        <div className="d-flex flex-column align-items-center">
-          <ReactLoading
-            type="spokes"
-            color="#ffffff"
-            height={"40px"}
-            width={"40px"}
-          ></ReactLoading>
-          <h6 className="my-2">Loading...</h6>
-        </div>
-      </div>
-    );
+  useEffect(() => {
+    if (state === "loggedin" && loadingRender === true && isJoined === false) {
+      dispatch(ActionSocketConnect());
+      dispatch(ApiNode.GetSysConfig());
+
+      setIsJoined(true);
+    } else if (state === "loggedin" && !loadingRender) {
+      setCanOpen("ok");
+    }
+  }, [state, loadingRender, socket, isJoined, dispatch]);
+
+  if (canOpen === "loading") {
+    return <Loading />;
   }
 
   return (
@@ -48,11 +63,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
       path={path}
       {...rest}
       render={(props) =>
-        state === "loggedin" ? (
-          <Comp {...props} />
-        ) : (
-          <Redirect to={redirectto} />
-        )
+        canOpen === "ok" ? <Comp {...props} /> : <Redirect to={redirectto} />
       }
     />
   );

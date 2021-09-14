@@ -11,6 +11,7 @@ export default function PumpCard(props) {
   const pidEnableNode = ["PressurePID", "enable"];
   const pidEnable = useSelector((state) => state.Tags.getIn(pidEnableNode));
   const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
+  const socket = useSelector((state) => state.SocketIO.socket);
 
   const handleChange = (event) => {
     const newFrenqHandle = event.target.validity.valid
@@ -22,15 +23,15 @@ export default function PumpCard(props) {
     if (NewFreq > 60 || NewFreq < 5) {
       SetNewFreq(0);
     } else {
-      SetManualFreqPump(props.index, NewFreq, props);
+      SetManualFreqPump(props.index, NewFreq, socket);
     }
   }
 
   function startManualPump() {
-    StartManualPump(props.cPump, props.index, props);
+    StartManualPump(props.cPump, props.index, socket);
   }
   function stopManualPump() {
-    StopManualPump(props.index, props);
+    StopManualPump(props.index, socket);
   }
   return (
     <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump">
