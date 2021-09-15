@@ -20,12 +20,10 @@ export default function NavMenu() {
   );
 
   function toggleNavbar() {
-    //state.collapsed = !state.collapsed
     SetCollapsed(!collapsed);
   }
 
   function closeExpander() {
-    //state.collapsed = !state.collapsed
     SetCollapsed(true);
   }
   return (

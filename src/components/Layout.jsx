@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateData } from "../middleware/socketio";
+import { UpdateData, FirstReadDone } from "../middleware/socketio";
 import Toast from "./Toast.jsx";
 import { ApiNode } from "../middleware/thunk";
 
@@ -28,6 +28,9 @@ export default function Layout(props) {
   useEffect(() => {
     socket.on("loadData", (data) => {
       dispatch(UpdateData(data));
+    });
+    socket.on("firstReadDone", () => {
+      dispatch(FirstReadDone());
     });
   }, [dispatch, socket]);
 

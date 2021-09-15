@@ -6,18 +6,15 @@ import { ApiNode } from "../middleware/thunk.js";
 import Loading from "./Loading.jsx";
 import { ActionSocketConnect } from "../middleware/socketio.js";
 
-const ProtectedRoute = ({
-  component: Comp,
-  path,
-
-  redirectto,
-  ...rest
-}) => {
+const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   const dispatch = useDispatch();
   const [state, setState] = useState("loading");
   const [isJoined, setIsJoined] = useState(false);
 
   const [canOpen, setCanOpen] = useState("loading");
+  const [labelLoading, setLabelLoading] = useState("Loading...");
+
+  const [checkIsLoadTags, setCheckIsLoadTags] = useState(false);
 
   const expiresJWT = useSelector((state) => state.ExpiresJWT);
   const loadingRender = useSelector((state) => state.Tags.loading);
@@ -44,9 +41,27 @@ const ProtectedRoute = ({
   });
 
   useEffect(() => {
+    if (checkIsLoadTags === true) {
+      setCheckIsLoadTags(false);
+      if (state === "loggedin" && loadingRender === true) {
+        console.log("Error to read Tags from Node");
+        setLabelLoading(
+          "Error reading Tags. You will be redirected to the main page"
+        );
+        setTimeout(() => {
+          window.location.href = "/";
+        }, 4000);
+      }
+    }
+  }, [checkIsLoadTags, loadingRender, state]);
+
+  useEffect(() => {
     if (state === "loggedin" && loadingRender === true && isJoined === false) {
       dispatch(ActionSocketConnect());
       dispatch(ApiNode.GetSysConfig());
+      setTimeout(() => {
+        setCheckIsLoadTags(true);
+      }, 3000);
 
       setIsJoined(true);
     } else if (state === "loggedin" && !loadingRender) {
@@ -55,7 +70,7 @@ const ProtectedRoute = ({
   }, [state, loadingRender, socket, isJoined, dispatch]);
 
   if (canOpen === "loading") {
-    return <Loading />;
+    return <Loading label={labelLoading} />;
   }
 
   return (

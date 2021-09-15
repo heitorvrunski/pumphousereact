@@ -6,24 +6,18 @@ export default function Tags(state = INITIAL_STATE, action) {
   switch (action.type) {
     case "UpdateData":
       if (state.loading === true) {
-        if (action.dataUpdate.tag !== "End") {
-          const jsonTag = parseBrowseName2Object(
-            action.dataUpdate.tag,
-            action.dataUpdate.value,
-            state
-          );
-
-          return jsonTag;
-        } else {
-          state.loading = false;
-          return Immutable.fromJS(state);
-        }
+        const jsonTag = parseBrowseName2Object(
+          action.dataUpdate.tag,
+          action.dataUpdate.value,
+          state
+        );
+        return jsonTag;
       } else {
-        if (action.dataUpdate.tag !== "End") {
-          return state.setIn(action.dataUpdate.tag, action.dataUpdate.value);
-        }
-        return state;
+        return state.setIn(action.dataUpdate.tag, action.dataUpdate.value);
       }
+    case "FirstReadDone":
+      state.loading = false;
+      return Immutable.fromJS(state);
     default:
       return state;
   }

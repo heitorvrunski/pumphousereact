@@ -10,6 +10,11 @@ export const UpdateData = (data) => {
   return { type: "UpdateData", dataUpdate };
 };
 
+export const FirstReadDone = () => {
+  console.log("First Read Done!");
+  return { type: "FirstReadDone" };
+};
+
 export const SendMessage = (item, value, socket) => {
   const data = {
     browseName: item,
