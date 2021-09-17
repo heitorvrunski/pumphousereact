@@ -76,12 +76,7 @@ export default function NavMenu() {
             )}
           </button>
           <Collapse isOpen={!collapsed} navbar>
-            <Nav
-              className={
-                "navbar-nav me-auto mb-2 mb-lg-0 " + checkIfHasnoGroup()
-              }
-              navbar
-            >
+            <Nav className={"navbar-nav me-auto mb-2 mb-lg-0 "} navbar>
               <NavItem>
                 <div
                   className={
@@ -97,7 +92,10 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   exact={true}
-                  className="text-primary text-Link me-2 is-not-active "
+                  className={
+                    "text-primary text-Link me-2 is-not-active " +
+                    checkIfHasnoGroup()
+                  }
                   activeClassName="active"
                   to="/"
                   onClick={closeExpander}
@@ -107,7 +105,10 @@ export default function NavMenu() {
               </NavItem>
               <NavItem>
                 <NavLink
-                  className="text-primary text-Link me-2 is-not-active "
+                  className={
+                    "text-primary text-Link me-2 is-not-active " +
+                    checkIfHasnoGroup()
+                  }
                   activeClassName="active"
                   to="/Trend"
                   onClick={closeExpander}
