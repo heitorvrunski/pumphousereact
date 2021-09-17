@@ -16,7 +16,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
 
   const [checkIsLoadTags, setCheckIsLoadTags] = useState(false);
 
-  const expiresJWT = useSelector((state) => state.ExpiresJWT);
+  const Auth = useSelector((state) => state.Auth);
   const loadingRender = useSelector((state) => state.Tags.loading);
   const socket = useSelector((state) => state.SocketIO.socket);
 
@@ -35,7 +35,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   }, [state]);
 
   useEffect(() => {
-    if (state === "loggedin" && expiresJWT.isAuth === false) {
+    if (state === "loggedin" && Auth.isAuth === false) {
       dispatch(ApiNode.RefreshToken());
     }
   });

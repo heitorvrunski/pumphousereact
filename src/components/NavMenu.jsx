@@ -1,19 +1,13 @@
 import React, { useState } from "react";
-import {
-  Collapse,
-  Container,
-  Navbar,
-  NavbarBrand,
-  NavItem,
-  Nav,
-} from "reactstrap";
+import { Collapse, Navbar, NavbarBrand, NavItem, Nav } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import LoginPartial from "./LoginPartial";
 
 export default function NavMenu() {
   const [collapsed, SetCollapsed] = useState(true);
   const safetyNode = ["PressurePID", "Safety"];
-
+  const groupUser = useSelector((state) => state.Auth.group);
   const safety = useSelector(
     (state) =>
       (state.Tags.loading === true ? 0 : state.Tags.getIn(safetyNode)) ?? 0
@@ -23,21 +17,32 @@ export default function NavMenu() {
     SetCollapsed(!collapsed);
   }
 
+  function checkGroupCollapse(group) {
+    if (groupUser !== group) {
+      return "collapsed";
+    }
+    return "";
+  }
+
   function closeExpander() {
     SetCollapsed(true);
   }
   return (
     <header>
-      <Navbar className="navbar-expand-sm navbar-toggleable-sm ng-white text-primary fixed-top shadow-lg mb-3 bg-primary">
-        <Container>
-          <NavbarBrand tag={Link} className="text-primary" to="/">
+      <Navbar className="navbar navbar-expand-lg navbar-toggleable-sm ng-white text-primary fixed-top shadow-lg mb-3 bg-primary">
+        <div className="container-fluid">
+          <NavbarBrand
+            tag={Link}
+            className="navbar-brand text-primary pt-0"
+            to="/"
+          >
             Pump House Application
           </NavbarBrand>
           <button
             onClick={toggleNavbar}
             aria-label="Toggle navigation"
             type="button"
-            className="mr-2 btn navbar-toggler"
+            className=" btn navbar-toggler"
           >
             {collapsed ? (
               <svg
@@ -63,12 +68,8 @@ export default function NavMenu() {
               </svg>
             )}
           </button>
-          <Collapse
-            className="d-sm-inline-flex flex-sm-row-reverse"
-            isOpen={!collapsed}
-            navbar
-          >
-            <Nav className="mr-auto" navbar>
+          <Collapse className="" isOpen={!collapsed} navbar>
+            <Nav className="navbar-nav me-auto mb-2 mb-lg-0" navbar>
               <NavItem>
                 <div
                   className={
@@ -81,7 +82,7 @@ export default function NavMenu() {
                   <h5>Safety Mode ON</h5>
                 </div>
               </NavItem>
-              <NavItem className="me-auto me-1">
+              <NavItem>
                 <NavLink
                   exact={true}
                   className="text-primary text-Link me-2 is-not-active "
@@ -92,7 +93,7 @@ export default function NavMenu() {
                   Home
                 </NavLink>
               </NavItem>
-              <NavItem className="me-auto">
+              <NavItem>
                 <NavLink
                   className="text-primary text-Link me-2 is-not-active "
                   activeClassName="active"
@@ -102,9 +103,12 @@ export default function NavMenu() {
                   Trend
                 </NavLink>
               </NavItem>
-              <NavItem className="me-auto">
+              <NavItem>
                 <NavLink
-                  className="text-primary text-Link is-not-active "
+                  className={
+                    "text-primary text-Link me-2  is-not-active " +
+                    checkGroupCollapse("admin")
+                  }
                   activeClassName="active"
                   to="/Settings"
                   onClick={closeExpander}
@@ -112,9 +116,24 @@ export default function NavMenu() {
                   Settings
                 </NavLink>
               </NavItem>
+
+              <NavItem>
+                <NavLink
+                  className={
+                    "text-primary text-Link me-2 is-not-active " +
+                    checkGroupCollapse("admin")
+                  }
+                  activeClassName="active"
+                  to="/UsersConfig"
+                  onClick={closeExpander}
+                >
+                  System
+                </NavLink>
+              </NavItem>
             </Nav>
+            <LoginPartial onClick={closeExpander} />
           </Collapse>
-        </Container>
+        </div>
       </Navbar>
     </header>
   );

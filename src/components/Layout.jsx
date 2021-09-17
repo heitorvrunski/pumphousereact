@@ -9,7 +9,9 @@ export default function Layout(props) {
   const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
-  const expiresJWT = useSelector((state) => state.ExpiresJWT);
+  const [errorStyle, setErrorStyle] = useState("");
+
+  const Auth = useSelector((state) => state.Auth);
 
   useEffect(() => {
     socket.on("writeError", (data) => {
@@ -21,7 +23,19 @@ export default function Layout(props) {
           : browseName.length === 1
           ? `${browseName[0]}`
           : `${browseName[0]}.${browseName[1]}`);
+      //bg-warning
+      setErrorStyle("bg-danger");
+
       setErrorMessage(tagName);
+    });
+  }, [socket]);
+
+  useEffect(() => {
+    socket.on("invalidAccess", (data) => {
+      const messageError = "No has Access to Write Tags";
+
+      setErrorStyle("bg-warning");
+      setErrorMessage(messageError);
     });
   }, [socket]);
 
@@ -35,9 +49,9 @@ export default function Layout(props) {
   }, [dispatch, socket]);
 
   useEffect(() => {
-    if (expiresJWT.isAuth === true) {
+    if (Auth.isAuth === true) {
       const dateNow = new Date();
-      const dateExpires = new Date(expiresJWT.expires);
+      const dateExpires = new Date(Auth.expires);
 
       const timeout = dateExpires.getTime() - dateNow.getTime() - 60 * 1000;
 
@@ -62,7 +76,7 @@ export default function Layout(props) {
       </div>
       <Toast
         messageError={errorMessage}
-        className="bg-warning text-white"
+        className={errorStyle + " text-white"}
         onChangeErrorMessage={onChangeErrorMessage}
       />
     </div>

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { SetDateRangeAction } from "../../store/actions.jsx";
+import Actions from "../../store/actions.jsx";
 
 export default function InputDate(props) {
   const dispatch = useDispatch();
@@ -8,7 +8,7 @@ export default function InputDate(props) {
   const name = props.name;
   const changeDateRange = (event) => {
     if (event.target.value) {
-      dispatch(SetDateRangeAction(event.target.value, name));
+      dispatch(Actions.SetDateRangeAction(event.target.value, name));
     }
   };
   useEffect(() => {

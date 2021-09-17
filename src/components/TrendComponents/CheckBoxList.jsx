@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
-import { ChangeStateTrend } from "../../store/actions.jsx";
+import Actions from "../../store/actions.jsx";
 
 export default function CheckBoxList(props) {
   const dispatch = useDispatch();
@@ -9,7 +9,7 @@ export default function CheckBoxList(props) {
     setDefaltCheck(props.checked);
   }, [props.checked]);
   const changeState = (event) => {
-    dispatch(ChangeStateTrend(props.index));
+    dispatch(Actions.ChangeStateTrend(props.index));
   };
   return (
     <div className="d-flex my-2 pointer-Selected" style={{ width: "180px" }}>

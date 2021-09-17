@@ -1,11 +1,6 @@
 import React, { useEffect, useState, createRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  ConfigTrends,
-  ChangeMode,
-  ChangeDuration,
-  ClearAllTrends,
-} from "../store/actions.jsx";
+import Actions from "../store/actions.jsx";
 import {
   CreateOptionsHighCharts,
   ClearOptions,
@@ -55,7 +50,7 @@ export default function Trend() {
         config.value.forEach((element) => {
           trendsAux.push({ tag: element, checked: false });
         });
-        dispatch(ConfigTrends(trendsAux));
+        dispatch(Actions.ConfigTrends(trendsAux));
       }
       if (trends?.TagList) {
         var checkeds = [];
@@ -93,15 +88,15 @@ export default function Trend() {
   );
 
   const changeMode = (modeComponent) => {
-    dispatch(ChangeMode(modeComponent));
+    dispatch(Actions.ChangeMode(modeComponent));
   };
 
   const changeDuration = (newDuration) => {
-    dispatch(ChangeDuration(newDuration));
+    dispatch(Actions.ChangeDuration(newDuration));
   };
 
   const clearAction = () => {
-    dispatch(ClearAllTrends());
+    dispatch(Actions.ClearAllTrends());
   };
 
   const changeReloadAction = () => {

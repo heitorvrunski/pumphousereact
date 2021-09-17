@@ -5,6 +5,7 @@ import Home from "./Home";
 import Trend from "./Trend";
 import ProtectedRoute from "./ProtectedRoute";
 import Settings from "./Settings";
+import UsersConfig from "./UsersConfig";
 
 const Routes = ({ socket }) => (
   <Switch>
@@ -26,6 +27,13 @@ const Routes = ({ socket }) => (
       path="/Settings"
       socket={socket}
       component={Settings}
+      redirectto="/login"
+    />
+
+    <ProtectedRoute
+      path="/UsersConfig"
+      socket={socket}
+      component={UsersConfig}
       redirectto="/login"
     />
 
