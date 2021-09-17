@@ -24,6 +24,13 @@ export default function NavMenu() {
     return "";
   }
 
+  function checkIfHasnoGroup() {
+    if (groupUser === "") {
+      return "collapsed";
+    }
+    return "";
+  }
+
   function closeExpander() {
     SetCollapsed(true);
   }
@@ -68,8 +75,13 @@ export default function NavMenu() {
               </svg>
             )}
           </button>
-          <Collapse className="" isOpen={!collapsed} navbar>
-            <Nav className="navbar-nav me-auto mb-2 mb-lg-0" navbar>
+          <Collapse isOpen={!collapsed} navbar>
+            <Nav
+              className={
+                "navbar-nav me-auto mb-2 mb-lg-0 " + checkIfHasnoGroup()
+              }
+              navbar
+            >
               <NavItem>
                 <div
                   className={
