@@ -36,7 +36,7 @@ export default function NavMenu() {
   }
   return (
     <header>
-      <Navbar className="navbar navbar-expand-lg navbar-toggleable-sm ng-white text-primary fixed-top shadow-md mb-3 bg-primary">
+      <Navbar className="navbar navbar-expand-lg navbar-toggleable-sm ng-white text-primary fixed-top shadow-sm mb-3 bg-primary">
         <div className="container-fluid">
           <NavbarBrand
             tag={Link}
