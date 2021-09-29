@@ -444,7 +444,7 @@ code {
 .wave {
   width: 6400px;
   height: 20px;
-  animation: wave 10s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite,
+  animation: wave 11s cubic-bezier(0.36, 0.45, 0.63, 0.53) infinite,
     swell 8s ease -1.25s infinite;
   transform: translate3d(0, 0, 0);
 }
