@@ -213,9 +213,9 @@ export default function MainCard() {
                 </span>
               </div>
               <span className="bg-white d-inline-flex border px-2 text-info me-2">
-                <h5>
+                <h6>
                   <b>Step {Tags.PressurePID.Step}</b>
-                </h5>
+                </h6>
               </span>
             </div>
           </div>
