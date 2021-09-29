@@ -1,6 +1,8 @@
 import React from "react";
 import pressureImage from "../Resource/Pressure_Transmitter.png";
 import PumpImage from "./PumpImage";
+import wave from "../Resource/wave.svg";
+
 import { useSelector } from "react-redux";
 import {
   EnablePressurePID,
@@ -65,8 +67,11 @@ export default function MainCard() {
               style={{ width: "305px", height: "430px" }}
             >
               <div className="position-absolute water-Tank-Box  ms-5 ">
+                <div className="wave" style={{background: `url(${wave}) repeat-x`}}>
+
+                </div>
                 <div
-                  className="w-100 water-Tank mt-1"
+                  className="w-100 water-Tank"
                   style={{ height: Tags.cLevel.Percentage + "%" }}
                 ></div>
               </div>
