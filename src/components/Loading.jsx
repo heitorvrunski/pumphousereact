@@ -2,7 +2,7 @@ import ReactLoading from "react-loading";
 
 export default function Loading({ label }) {
   return (
-    <div className="position-absolute top-50 start-50">
+    <div className="center-screen">
       <div className="d-flex flex-column align-items-center">
         <ReactLoading
           type="spokes"

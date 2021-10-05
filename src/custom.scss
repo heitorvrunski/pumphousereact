@@ -145,6 +145,14 @@ $heightPipe: 270px;
   border: unset;
 }
 
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+}
+
 .is-not-active:not(.active) {
   filter: brightness(0.8);
 }
