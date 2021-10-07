@@ -3,6 +3,8 @@ import Layout from "./components/Layout";
 import { Provider } from "react-redux";
 
 import store from "./store";
+import './index.css';
+
 import "./custom.scss";
 import Routes from "./components/routes";
 

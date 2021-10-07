@@ -3,6 +3,8 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
 import Trend from "./Trend";
+import Logger from "./Logger";
+
 import ProtectedRoute from "./ProtectedRoute";
 import Settings from "./Settings";
 import UsersConfig from "./UsersConfig";
@@ -34,6 +36,12 @@ const Routes = ({ socket }) => (
       path="/UsersConfig"
       socket={socket}
       component={UsersConfig}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+      path="/Logger"
+      socket={socket}
+      component={Logger}
       redirectto="/login"
     />
 

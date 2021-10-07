@@ -11,3 +11,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+@font-face {
+  font-family: "monaco";
+  src: local("monaco"), url("./Resource/fonts/Monaco.ttf") format("truetype");
+}

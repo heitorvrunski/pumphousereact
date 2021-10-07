@@ -1,17 +1,5 @@
-/* Provide sufficient contrast against white background */
-/*$colorBody: #f5f5f5;
-$colorBackHeader: #243760;
-$colorBackCards: #ffffff;
-$colorBorderCards: #e5e5e5;
-$colorBackButton1: #3db54b; //conestoga #3db54b
-$colorBackButton2: #f5f5f5;
-$colorWater: #4dbee2;
-$colorBack1: #243760;
-$colorFont1: #fffee7;
-$colorFont2: #0e0e0e;
-$colorBack2: #3db54b;
-*/
-//Last App
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@300&display=swap");
+
 $colorBody: #d7d7d7;
 $colorBackHeader: #595959;
 $colorBackCards: #f2f2f2;
@@ -143,6 +131,9 @@ $heightPipe: 270px;
 
 .navbar-toggler {
   border: unset;
+}
+.font-code {
+  font-family: "monaco";
 }
 
 .center-screen {

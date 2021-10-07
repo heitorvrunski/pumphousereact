@@ -17,7 +17,7 @@ const ApiNode = {
       .then((resp) => resp.data)
       .then((tasks) => dispatch(Actions.ActionLogin(tasks)));
   },
-  Logoff: () => (dispatch) => {
+ Logoff: () => (dispatch) => {
     axios
       .get(`http://${window.location.hostname}:3000/node/api/auth/logoff`, {
         withCredentials: true,
@@ -32,6 +32,38 @@ const ApiNode = {
       })
       .then((resp) => resp.data)
       .then((tasks) => dispatch(Actions.GetUsers(tasks)));
+  },
+ GetLogs:  async function  (tail,module){
+    var result;
+
+    await axios
+      .get(`http://${window.location.hostname}:3000/node/api/logDocker/${tail}/${module}`, {
+        withCredentials: true,
+      })
+      .then((resp) => {result = resp.data});
+    return result
+  },
+  GetLogsRange:  async function  (type,module,date){
+      var result;
+  
+      await axios
+        .post(
+          `http://${window.location.hostname}:3000/node/api/logDocker/range`,
+          {
+            type: type,
+            module: module,
+            date: date,
+          },
+          {
+            withCredentials: true,
+            headers: {
+              Accept: "application/json",
+              "Content-Type": "application/json",
+            },
+          }
+        )
+        .then((resp) => {result = resp.data});
+      return result
   },
 
   CreateUser: (newUser) => (dispatch) => {
