@@ -3,7 +3,7 @@ import { Route, Switch } from "react-router-dom";
 import Login from "./Login";
 import Home from "./Home";
 import Trend from "./Trend";
-import Logger from "./Logger";
+import Logs from "./Logs";
 
 import ProtectedRoute from "./ProtectedRoute";
 import Settings from "./Settings";
@@ -39,9 +39,9 @@ const Routes = ({ socket }) => (
       redirectto="/login"
     />
     <ProtectedRoute
-      path="/Logger"
+      path="/TG9nc1N5c3RlbQ=="
       socket={socket}
-      component={Logger}
+      component={Logs}
       redirectto="/login"
     />
 

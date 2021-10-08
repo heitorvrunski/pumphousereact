@@ -18,26 +18,43 @@ export default function Logger() {
     const [tailNew,setTailNew] = useState(tail)
     const [typeRange,settypeRange] = useState(0)
     const [reload,setReload] = useState(false)
-
+    const [insideDocker,setInsideDocker] = useState(false)
+    
 
 
     useEffect( ()=>{
         fetchData();
         async function fetchData() {
-            if(typeRange===0){
-                const logs = await ApiNode.GetLogs(tail,tabIndex+1);
-                if(typeof logs.logs !== "undefined"){
-                    setTextConsole(fillTextConsole(logs.logs));
+            if(tabIndex!==0){
+                if(typeRange===0){
+                    const logs = await ApiNode.GetLogs(tail,tabIndex);
+                    if(typeof logs.logs !== "undefined"){
+                        setTextConsole(fillTextConsole(logs.logs));
+                    }
+                }else if(typeRange){
+                    const logs = await ApiNode.GetLogsRange(typePeriod,tabIndex,dateLog);
+        
+                    if(typeof logs.logs !== "undefined"){
+                        setTextConsole(fillTextConsole(logs.logs));
+                    }
                 }
-            }else if(typeRange){
-                const logs = await ApiNode.GetLogsRange(typePeriod,tabIndex+1,dateLog);
-    
+            }else{
+                const logs = await ApiNode.GetLogsFile(tail);
                 if(typeof logs.logs !== "undefined"){
                     setTextConsole(fillTextConsole(logs.logs));
                 }
             }
+            
         }
+        // eslint-disable-next-line
     }, [tabIndex,tail,typeRange,dateLog,typePeriod,reload]);
+
+    useEffect( ()=>{
+        checkIsDocker();
+        async function checkIsDocker() {
+            setInsideDocker(await ApiNode.CheckDocker());
+        }
+    }, []);
 
 
     const changeMode = (modeComponent) => {
@@ -62,16 +79,14 @@ export default function Logger() {
             }
             logDoc +=lineaux+"\n"
         }
-        // const data = new Blob([logDoc], { type: 'text/plain' })
-        // const downloadLink = window.URL.createObjectURL(data)
-        // window.location.href = downloadLink;
+
         console.log(logDoc)
         const element = document.createElement("a");
         const file = new Blob([logDoc], {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
-        var fileName = "Log-"+(tabIndex===0?"Front_End":(tabIndex===1?"Back_End":"Services"))+moment().format("YYYY[-]MM[-]SS[T_]HH[-]mm[-]ss")+".txt"
+        var fileName = "Logs_"+(tabIndex===0?"LogFile":(tabIndex===1?"Front-End":(tabIndex===2?"Back-End":"Services")))+moment().format("YYYY[-]MM[-]SS[T_]HH[-]mm[-]ss")+".txt"
         element.download = fileName;
-        document.body.appendChild(element); // Required for this to work in FireFox
+        document.body.appendChild(element);
         element.click();
 
     };
@@ -85,11 +100,14 @@ export default function Logger() {
                 // eslint-disable-next-line
                 var rxError = new RegExp("([\[(])31m[\\d\\D]*([\[(])39m", "g");
                 var line = [];
-                line.push({
-                    text:element.substring(0,19)+" ",
-                    color:"#828489"
-                });
-                element = element.substring(31);
+                if(tabIndex!==0){
+                    line.push({
+                        text:element.substring(0,19)+" ",
+                        color:"#828489"
+                    });
+                    element = element.substring(31);
+                }
+                
                 if((element.split("\x1b[32m")).length !==1){
 
                     line.push({
@@ -138,6 +156,9 @@ export default function Logger() {
     }
     const handleTabOnChange = (index)=> (event) => {
         setTabIndex(index)
+        if(index ===0){
+            settypeRange(0);
+        }
     };
 
     const handleSubmitChanges = (event) => {
@@ -162,7 +183,14 @@ export default function Logger() {
   return (
     <div className="row justify-content-center mx-1 h-100">
       <div className="card d-flex h-100 overflow-hidden">
-        <h5 className="m-2">Logger</h5>
+      <div className={"row align-items-center "}>
+            <div className="col-auto">
+                <h5>Logger</h5>
+            </div>
+            <div className="col-auto" >
+                <p className="ms-2" style={{display:"inline"}}>Back-End {insideDocker===true?"":<span style={{color:"red",fontWeight:"bold"}} >NOT</span>} running on container</p>
+            </div>
+        </div>
         <div className="row g-3 align-items-center">
             <div className="col-auto">
             <CheckBox
@@ -172,7 +200,7 @@ export default function Logger() {
                     eventChange={changeMode}
                     />
             </div>
-            <div className="col-auto">
+            <div className={"col-auto " + (tabIndex===0?"collapsed":"")}>
                 <CheckBox
                     label="By Date"
                     componentState={1}
@@ -203,7 +231,7 @@ export default function Logger() {
         </div>
         <div className={"row g-3 align-items-center " + (typeRange!==1?"collapsed":"")}>
             <div className="col-auto">
-                <label htmlFor="inputTail" className="col-form-label">Date|Time </label>
+                <label htmlFor="inputTail" className="col-form-label">DateTime </label>
             </div>
             <div className="col-auto">
                 <DatePicker
@@ -240,13 +268,16 @@ export default function Logger() {
 
         <ul className="nav nav-tabs">
             <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>Front End</button>
+                <button className={"nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>LogFile</button>
             </li>
             <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Back End</button>
+                <button className={"nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Front End</button>
             </li>
             <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===2?"active":"")} onClick={handleTabOnChange(2)}>Services</button>
+                <button className={"nav-link " + (tabIndex===2?"active":"")} onClick={handleTabOnChange(2)}>Back End</button>
+            </li>
+            <li className="nav-item">
+                <button className={"nav-link " + (tabIndex===3?"active":"")} onClick={handleTabOnChange(3)}>Services</button>
             </li>
         </ul>
         
@@ -263,7 +294,7 @@ export default function Logger() {
                         {
                             textConsole.length === 0 ?"":
                             textConsole.map((line,index)=>{
-                                return  (<p style={{margin:0,whiteSpace:"nowrap"}}> <span style={{color:"#445386",width:"32px",display:"inline-block"}}> {index+1} </span><span style={{color:"#445386"}}>|</span> {line.map(word=>(<span style={{color:word.color}}>{word.text}</span>))}</p>) 
+                                return  (<p style={{margin:0,whiteSpace:"nowrap"}}> <span style={{color:"#445386",width:"38px",display:"inline-block"}}> {index+1} </span> {line.map(word=>(<span style={{color:word.color}}>{word.text}</span>))}</p>) 
                             })
                         }
                             <AlwaysScrollToBottom />

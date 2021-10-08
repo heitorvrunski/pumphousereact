@@ -6,9 +6,11 @@ import Loading from "./Loading";
 import update from "react-addons-update";
 import Toast from "./Toast";
 import Actions from "../store/actions";
+import { useHistory } from "react-router";
 import { UserModal } from "./UserModal";
 
 const UsersConfig = () => {
+  const history = useHistory();
   const listGroup = [
     { value: "admin", label: "admin" },
     { value: "guest", label: "guest" },
@@ -123,8 +125,19 @@ const UsersConfig = () => {
   const onChangeErrorMessage = (event) => {
     dispatch(Actions.SetMessageError(""));
   };
+  const seeLogs = (event) => {
+    history.push("/TG9nc1N5c3RlbQ==");
+  };
 
-  return Object.keys(users).length === 0 ? (
+  return (
+    <>
+    <div className="row justify-content-center mx-2 d-flex">
+        <div className="card m-2" style={{ width: "520px" }}>
+          <h5>Logs</h5>
+          <button className="btn btn-principal mb-2" onClick={seeLogs}>See Logs</button>
+        </div>
+    </div>
+    {Object.keys(users).length === 0 ? (
     <Loading />
   ) : (
     <>
@@ -251,7 +264,11 @@ const UsersConfig = () => {
       />
       <UserModal />
     </>
-  );
+    )}
+    </>
+    
+  
+  )
 };
 
 export default UsersConfig;

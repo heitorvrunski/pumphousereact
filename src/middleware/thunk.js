@@ -43,6 +43,33 @@ const ApiNode = {
       .then((resp) => {result = resp.data});
     return result
   },
+  GetLogsFile:  async function  (tail){
+    var result;
+
+    await axios
+      .get(`http://${window.location.hostname}:3000/node/api/log/${tail}`, {
+        withCredentials: true,
+      })
+      .then((resp) => {result = resp.data});
+    return result
+  },
+  CheckDocker:  async function  (){
+    var result;
+
+    await axios
+      .get(`http://${window.location.hostname}:3000/node/api/cdocker`, {
+        withCredentials: true,
+      })
+      .then((resp) => {
+        if(resp.status===201)
+          result = true
+        else
+          result = false
+        })
+      .catch((resp)=>{result = false});
+      
+    return result
+  },
   GetLogsRange:  async function  (type,module,date){
       var result;
   
