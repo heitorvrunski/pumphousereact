@@ -14,6 +14,7 @@ import InputDate from "./TrendComponents/InputDate.jsx";
 import { FindConfig } from "../utils/SettingsUtils.js";
 import HighchartsExporting from "highcharts/modules/exporting";
 import Loading from "./Loading.jsx";
+import Button from "./SystemComponents/Button.jsx";
 
 export default function Trend() {
   HighchartsExporting(Highcharts);
@@ -114,26 +115,26 @@ export default function Trend() {
               <div className="card d-flex mb-1 mx-0 flex-row row mt-1">
                 <div
                   className="p-2 col-12 col-sm-12 col-md-2 "
-                  style={{ minWidth: "200px" }}
+                  style={{ minWidth: "217px" }}
                 >
                   <div className="d-flex flex-row">
                     <h5>Menu</h5>
-                    <button
+                    <Button
                       className="btn btn-principal mx-2"
                       type="button"
                       onClick={changeReloadAction}
                     >
                       {" "}
                       Reload
-                    </button>
-                    <button
+                    </Button>
+                    <Button
                       className="btn btn-principal"
                       type="button"
                       onClick={clearAction}
                     >
                       {" "}
                       Clear
-                    </button>
+                    </Button>
                   </div>
                 </div>
                 <div

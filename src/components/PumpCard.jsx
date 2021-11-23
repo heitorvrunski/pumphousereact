@@ -6,13 +6,13 @@ import {
   StopManualPump,
   SetManualFreqPump,
 } from "../commands/index.js";
+import Button from "./SystemComponents/Button.jsx";
 
 export default function PumpCard(props) {
   const pidEnableNode = ["PressurePID", "enable"];
   const pidEnable = useSelector((state) => state.Tags.getIn(pidEnableNode));
   const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
   const socket = useSelector((state) => state.SocketIO.socket);
-
   const handleChange = (event) => {
     const newFrenqHandle = event.target.validity.valid
       ? event.target.value
@@ -34,21 +34,24 @@ export default function PumpCard(props) {
     StopManualPump(props.index, socket);
   }
   return (
-    <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump">
+    <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump position-relative" style={{height:"-webkit-fill-available"}}>
+      <div className=" mt-1 d-flex position-absolute" style={{marginLeft:"-28px "}} >
+        <PumpImage cPump={props.cPump} width={props.cPump.SmallPump===1?"50px":"60px"} className="mx-0" />
+      </div>
       <ul
-        className="text-center text-wrap p-0 m-0 py-1"
+        className="text-center text-wrap p-0 ms-4 py-1"
         style={{ listStyleType: "none" }}
       >
         <li>
           <h4 className="mx-0 w-100">{props.cPump.Label}</h4>
         </li>
-        <li>
+        {/* <li>
           <div className="row my-1 card-Pump-Image">
             <div className="my-auto h-100 mt-1 justify-content-center d-flex">
-              <PumpImage cPump={props.cPump} width="90px" className="mx-0" />
+              <PumpImage cPump={props.cPump} width="60px" className="mx-0" />
             </div>
           </div>
-        </li>
+        </li> */}
         <li>
           <h4
             className={
@@ -78,18 +81,18 @@ export default function PumpCard(props) {
             value={NewFreq}
           />
         </li>
-        <li>
-          <button
+        {/* <li>
+          <Button
             type="button"
             className="btn btn-principal mx-0 my-1 w-100 "
             disabled={props.cPump.Status !== 1 || pidEnable === 1}
             onClick={setManualFreqPump}
           >
             Set Frequency
-          </button>
+          </Button>
         </li>
         <li>
-          <button
+          <Button
             type="button"
             className="btn btn-principal mx-0 my-1 w-100 "
             disabled={props.cPump.Status === 1 || pidEnable === 1}
@@ -97,10 +100,10 @@ export default function PumpCard(props) {
           >
             {" "}
             Start
-          </button>
+          </Button>
         </li>
         <li>
-          <button
+          <Button
             type="button"
             className="btn btn-principal mx-0 my-1 w-100 mb-2"
             disabled={props.cPump.Status !== 1 || pidEnable === 1}
@@ -108,7 +111,44 @@ export default function PumpCard(props) {
           >
             {" "}
             STOP
-          </button>
+          </Button>
+        </li> */}
+      </ul>
+      <ul
+        className="text-center text-wrap p-0"
+        style={{ listStyleType: "none" }}
+      >
+        <li>
+          <Button
+            type="button"
+            className="btn btn-principal mx-0 my-1 w-100 "
+            disabled={props.cPump.Status !== 1 || pidEnable === 1}
+            onClick={setManualFreqPump}
+          >
+            Set Frequency
+          </Button>
+        </li>
+        <li>
+          <Button
+            type="button"
+            className="btn btn-principal mx-0 my-1 w-100 "
+            disabled={props.cPump.Status === 1 || pidEnable === 1}
+            onClick={startManualPump}
+          >
+            {" "}
+            Start
+          </Button>
+        </li>
+        <li>
+          <Button
+            type="button"
+            className="btn btn-principal mx-0 my-1 w-100 mb-2"
+            disabled={props.cPump.Status !== 1 || pidEnable === 1}
+            onClick={stopManualPump}
+          >
+            {" "}
+            STOP
+          </Button>
         </li>
       </ul>
     </div>

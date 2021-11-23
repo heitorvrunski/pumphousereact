@@ -4,6 +4,8 @@ import Login from "./Login";
 import Home from "./Home";
 import Trend from "./Trend";
 import Logs from "./Logs";
+import Alarm from "./alarm";
+
 
 import ProtectedRoute from "./ProtectedRoute";
 import Settings from "./Settings";
@@ -33,15 +35,23 @@ const Routes = ({ socket }) => (
     />
 
     <ProtectedRoute
-      path="/UsersConfig"
+    exact
+      path="/system"
       socket={socket}
       component={UsersConfig}
       redirectto="/login"
     />
     <ProtectedRoute
-      path="/TG9nc1N5c3RlbQ=="
+      exact
+      path="/system/TG9nc1N5c3RlbQ=="
       socket={socket}
       component={Logs}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+      path="/alarms"
+      socket={socket}
+      component={Alarm}
       redirectto="/login"
     />
 

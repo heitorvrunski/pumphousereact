@@ -41,6 +41,25 @@ export const UpdateSettings = (browseName, value, socket) => {
   SendMessage(browseName, value, socket);
 };
 
+export const ActAlarm = (actRow, comment,tagAlarmList, socket) => {
+  const tag = actRow.status+"|"+FormatDate(actRow.activeTime)+"|"+actRow.type+"|"+actRow.tag+"|"+comment+"@"
+  tagAlarmList = tagAlarmList + tag;
+  SendMessage(["ActAlarm"], tagAlarmList, socket);
+};
+
+export const ActAllAlarm = (actAllAlarms,socket) => {
+  actAllAlarms = actAllAlarms===1?0:1
+  SendMessage(["AckAllAlarms"], actAllAlarms, socket);
+  SendMessage(["AckAllTrigger"], 1, socket);
+
+};
+
+//ActAllAlarm
+
+function FormatDate(date){
+  return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`
+}
+
 export const StartManualPump = (cPump, index, socket) => {
   var maxRamp = cPump.StartRamp;
   var sendMessages = [];

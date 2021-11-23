@@ -2,7 +2,7 @@ import React from "react";
 import pressureImage from "../Resource/Pressure_Transmitter.png";
 import PumpImage from "./PumpImage";
 import wave from "../Resource/wave.svg";
-
+import Button from "./SystemComponents/Button.jsx";
 import { useSelector } from "react-redux";
 import {
   EnablePressurePID,
@@ -10,11 +10,13 @@ import {
   EnableDesablePondPID,
   DisableAllPump,
 } from "../commands/index.js";
+import AlarmIcon from "./SystemComponents/AlarmIcon";
 
 //PressurePID.enable
 export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const socket = useSelector((state) => state.SocketIO.socket);
+
 
   function autoPressurePIDAction() {
     if (Tags.PressurePID.enable !== 1) {
@@ -37,7 +39,7 @@ export default function MainCard() {
     >
       <div className="container">
         <div className="row d-flex my-2 mx-2">
-          <button
+          <Button
             type="button"
             className="col btn btn-principal mx-1 w-20 "
             onClick={autoPressurePIDAction}
@@ -45,8 +47,8 @@ export default function MainCard() {
             {Tags.PressurePID.enable === 1
               ? "Disable Auto PID"
               : "Enable Auto PID"}
-          </button>
-          <button
+          </Button>
+          <Button
             type="button"
             className="col btn btn-principal mx-1 w-20 "
             onClick={autoPondFillPIDAction}
@@ -54,7 +56,7 @@ export default function MainCard() {
             {Tags.EnablePondFill === 1
               ? "Disable Pond Control"
               : "Enable Pond Control"}
-          </button>
+          </Button>
         </div>
 
         <div className="row">
@@ -67,25 +69,38 @@ export default function MainCard() {
               style={{ width: "305px", height: "430px" }}
             >
               <div className="position-absolute water-Tank-Box  ms-5 ">
-                <div className="wave" style={{background: `url(${wave}) repeat-x`}}>
 
-                </div>
+                <div className="wave" style={{background: `url(${wave}) repeat-x`}}></div>
                 <div
                   className="w-100 water-Tank"
-                  style={{ height: Tags.cLevel.Percentage + "%" }}
-                ></div>
+                  style={{ height: Tags.cLevel.Percentage + "%" }}></div>
+                  <div className="position-absolute top-0 end-0" style={{zIndex:1000}}>
+                    <AlarmIcon  width="25px" alarm="cLevel.Percentage" type="hihi" tooltip="Level % "/>
+                    <AlarmIcon  width="25px" alarm="cLevel.Percentage" type="hi" tooltip="Level % "/>
+                    <AlarmIcon  width="25px" alarm="cLevel.Percentage" type="lo" tooltip="Level % "/>
+                    <AlarmIcon  width="25px" alarm="cLevel.Percentage" type="lolo" tooltip="Level % "/>
+
+                  </div>
+
+
               </div>
               <div className="position-absolute ms-5 pumps-Images">
                 <div className="row">
                   <div
-                    className="pressure-Image p-0"
+                    className="pressure-Image p-0 position-relative"
                     style={{ marginBottom: "-5px" }}
                   >
                     <img
-                      className="h-100 w-100"
+                      className="h-100 w-100 position-absolute"
                       src={pressureImage}
                       alt="Pressure"
                     />
+                    <div className="ms-4 position-absolute mt-4">
+                      <AlarmIcon  width="25px" alarm="PressurePID.Current" type="lo"/>
+                      <AlarmIcon  width="25px" alarm="PressurePID.Current" type="lolo"/>
+                      <AlarmIcon  width="25px" alarm="PressurePID.Current" type="hi"/>
+                      <AlarmIcon  width="25px" alarm="PressurePID.Current" type="hihi"/>
+                    </div>
                   </div>
                   <div className=" pump-horizontal-div mb-0 p-0">
                     <div
@@ -109,8 +124,8 @@ export default function MainCard() {
                     <div className="pump-vertical-Pipe"></div>
                     <PumpImage
                       cPump={Tags.cPump[0]}
-                      width="64px"
-                      className="mx-0"
+                      width="55px"
+                      className="ms-2"
                     />
                   </div>
                   <div className="col px-1">
@@ -118,15 +133,15 @@ export default function MainCard() {
 
                     <PumpImage
                       cPump={Tags.cPump[1]}
-                      width="64px"
-                      className="mx-0"
+                      width="55px"
+                      className="m-auto"
                     />
                   </div>
                   <div className="col px-1">
                     <div className="pump-vertical-Pipe"></div>
                     <PumpImage
                       cPump={Tags.cPump[2]}
-                      width="64px"
+                      width="55px"
                       className="mx-0"
                     />
                   </div>
@@ -176,8 +191,8 @@ export default function MainCard() {
                 style={{ marginLeft: "-22px" }}
               >
                 <div className="d-flex justify-content-end flex-column mt-5 h-100">
-                  <div className=" align-items-center">
-                    <PumpImage cPump={Tags.cPump[3]} width="62px" />
+                  <div className=" align-items-center" style={{marginLeft:"15px"}}>
+                    <PumpImage cPump={Tags.cPump[3]} width="50px"  />
                   </div>
                   <div className="mb-5">
                     <div className="d-flex align-items-center">
@@ -220,7 +235,7 @@ export default function MainCard() {
             </div>
           </div>
           <div className="col col-xl-1 px-0 col-md-1 mx-0 mb-2">
-            <button
+            <Button
               type="button"
               className="btn btn-principal m-0 text-nowrap mx-0"
               style={{ height: "60px" }}
@@ -228,7 +243,7 @@ export default function MainCard() {
             >
               Disable <br />
               All Pumps
-            </button>
+            </Button>
           </div>
         </div>
       </div>

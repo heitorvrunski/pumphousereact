@@ -1,8 +1,10 @@
 import { useEffect, useState,useRef } from "react";
 import { ApiNode } from "../middleware/thunk";
-import CheckBox from "./TrendComponents/CheckBox.jsx";
+import CheckBox from "./TrendComponents/CheckBox";
 import DatePicker from "react-datepicker";
 import moment from "moment";
+import "./Logs.scss";
+import Button from "./SystemComponents/Button";
 
 import "react-datepicker/dist/react-datepicker.css";
 
@@ -181,14 +183,15 @@ export default function Logger() {
     };
 
   return (
-    <div className="row justify-content-center mx-1 h-100">
-      <div className="card d-flex h-100 overflow-hidden">
-      <div className={"row align-items-center "}>
+    <div className="justify-content-center py-2 d-flex flex-column overflow-hidden h-100">
+        <div className="card h-auto m-2">
+            <div className="card-body">
+            <div className={"row align-items-center"}>
             <div className="col-auto">
-                <h5>Logger</h5>
+                <h5>Logs</h5>
             </div>
             <div className="col-auto" >
-                <p className="ms-2" style={{display:"inline"}}>Back-End {insideDocker===true?"":<span style={{color:"red",fontWeight:"bold"}} >NOT</span>} running on container</p>
+                <p  style={{display:"inline"}}>Back-End {insideDocker===true?"":<span style={{color:"red",fontWeight:"bold"}} >NOT</span>} running on container</p>
             </div>
         </div>
         <div className="row g-3 align-items-center">
@@ -221,11 +224,12 @@ export default function Logger() {
 
             </div>
             <div className="col-auto">
-                <button type="submit" className="btn btn-principal" onClick={handleSubmitChanges}>Change</button>
+                <Button type="submit" className="btn btn-principal" onClick={handleSubmitChanges}>Change</Button>
 
             </div>
             <div className="col-auto">
-                <button type="submit" className="btn btn-principal" onClick={changeReload}>Reload</button>
+            <Button type="submit" className="btn btn-principal" onClick={changeReload}>Reload</Button>
+
             </div>
 
         </div>
@@ -258,52 +262,59 @@ export default function Logger() {
                     />              
             </div>
             <div className="col-auto">
-                <button type="submit" className="btn btn-principal" onClick={handleSubmitRangeChanges}>Change</button>
+            <Button type="submit" className="btn btn-principal" onClick={handleSubmitRangeChanges}>Change</Button>
+
             </div>
             <div className="col-auto">
-                <button type="submit" className="btn btn-principal" onClick={changeReload}>Reload</button>
+            <Button type="submit" className="btn btn-principal" onClick={changeReload}>Change</Button>
+
             </div>
 
         </div>
+            </div>
 
-        <ul className="nav nav-tabs">
-            <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>LogFile</button>
+
+        </div>
+      <div className="d-flex overflow-hidden flex-column p-0 flex-grow-1">
+
+        <ul className="nav nav-tabs d-flex flex-nowrap m-2 mb-0">
+            <li className="nav-item float-start">
+                <button className={"text-nowrap nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>LogFile</button>
             </li>
-            <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Front End</button>
+            <li className="nav-item float-start">
+                <button className={"text-nowrap nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Front End</button>
             </li>
-            <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===2?"active":"")} onClick={handleTabOnChange(2)}>Back End</button>
+            <li className="nav-item float-start">
+                <button className={"text-nowrap nav-link " + (tabIndex===2?"active":"")} onClick={handleTabOnChange(2)}>Back End</button>
             </li>
-            <li className="nav-item">
-                <button className={"nav-link " + (tabIndex===3?"active":"")} onClick={handleTabOnChange(3)}>Services</button>
+            <li className="nav-item float-start">
+                <button className={"text-nowrap nav-link " + (tabIndex===3?"active":"")} onClick={handleTabOnChange(3)}>Services</button>
             </li>
         </ul>
         
             
-            <div className="p-2 bg-white  d-flex position-relative flex-grow-1" style={{overflow:"inherit",backgroundColor:"#282a36",color:"white"}}>
-                <div className="position-absolute top-0 end-0 me-4 mt-2" style={{cursor:"pointer"}} onClick={donloadLog} >
-                    <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#eeeeee">
-                            <path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
-                            </svg>
+        <div className="p-2 bg-white position-relative div-code h-100 m-2 mt-0">
+            <div className="position-absolute top-0 end-0 me-4 mt-2" style={{cursor:"pointer"}} onClick={donloadLog} >
+                <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#eeeeee">
+                        <path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
+                </svg>
                         
             </div>
-            
-                <div className="font-code overflow-auto p-1 w-100" style={{backgroundColor:"#282a36",color:"white",}}>
-                        {
-                            textConsole.length === 0 ?"":
-                            textConsole.map((line,index)=>{
-                                return  (<p style={{margin:0,whiteSpace:"nowrap"}}> <span style={{color:"#445386",width:"38px",display:"inline-block"}}> {index+1} </span> {line.map(word=>(<span style={{color:word.color}}>{word.text}</span>))}</p>) 
-                            })
-                        }
-                            <AlwaysScrollToBottom />
-
-                </div>
-            
+        
+            <div className="font-code overflow-auto p-1 w-100 h-100 code" >
+                    {
+                        textConsole.length === 0 ?"":
+                        textConsole.map((line,index)=>{
+                            return  (<p style={{margin:0,whiteSpace:"nowrap"}}> <span style={{color:"#445386",width:"38px",display:"inline-block"}}> {index+1} </span> {line.map(word=>(<span style={{color:word.color}}>{word.text}</span>))}</p>) 
+                        })
+                    }
+                        <AlwaysScrollToBottom />
 
             </div>
-       
+        
+
+        </div>
+    
         </div>
     </div>
   );

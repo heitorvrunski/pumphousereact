@@ -123,6 +123,7 @@ const ApiNode = {
         }
       });
   },
+
   EditUser: (user) => (dispatch) => {
     axios
       .put(
@@ -178,6 +179,40 @@ const ApiNode = {
           dispatch(Actions.SetMessageError("Error to Delete User"));
         }
       });
+  },
+  GetAlarmRange: async function  (startDate,endDate){
+    var result;
+    await axios
+      .post(
+        `http://${window.location.hostname}:3000/node/api/alarm/range`,
+        {
+          startDate: startDate,
+          endDate: endDate,
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((resp) => {
+        result = resp.data});
+
+      return result
+
+
+  },
+  GetAlarmOnline:  async function  (){
+    var result;
+
+    await axios
+      .get(`http://${window.location.hostname}:3000/node/api/alarm/online`, {
+        withCredentials: true,
+      })
+      .then((resp) => {result = resp.data});
+    return result
   },
 };
 

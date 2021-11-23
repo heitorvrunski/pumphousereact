@@ -21,7 +21,7 @@ $colorInactive: #959595;
 $colorActive: #239645;
 $colorInfo: #032870;
 $widthPipe: 15px;
-$heightPipe: 270px;
+$heightPipe: 210px;
 
 .modal {
   position: fixed; /* Stay in place */
@@ -219,10 +219,29 @@ code {
   filter: hue-rotate(56deg);
 }
 .pump-Green {
-  filter: hue-rotate(109deg);
+  filter: hue-rotate(440deg);
+}
+
+.pump-Blue{
+  filter: hue-rotate(-140deg);
 }
 
 .pump-Grey {
+  filter: grayscale(100%);
+}
+
+.alarm-Yellow {
+  filter: hue-rotate(56deg);
+}
+.alarm-Green {
+  filter: hue-rotate(109deg);
+}
+
+.alarm-Blue{
+  filter: hue-rotate(-165deg);
+}
+
+.alarm-Grey {
   filter: grayscale(100%);
 }
 
@@ -233,8 +252,18 @@ code {
   background-color: $colorInactive;
 }
 
-.pump-Grey {
-  filter: grayscale(100%);
+
+
+
+
+.blink {
+  animation: blinker 1s linear infinite;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
 }
 
 .form-signin {

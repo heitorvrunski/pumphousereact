@@ -3,11 +3,29 @@ import { Collapse, Navbar, NavbarBrand, NavItem, Nav } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoginPartial from "./LoginPartial";
+import Badge from '@mui/material/Badge';
+import { createTheme,ThemeProvider } from '@mui/material/styles';
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#CFD8DC',
+    },
+    secondary: {
+      main: '#ba2d3d',
+    },
+  },
+});
 
 export default function NavMenu() {
   const [collapsed, SetCollapsed] = useState(true);
   const safetyNode = ["PressurePID", "Safety"];
   const groupUser = useSelector((state) => state.Auth.group);
+  const totalAlarms = useSelector(
+    (state) =>
+      (state.Tags.loading === true ? 0 : state.Tags.get("TotalAlarmsActive")) ?? 0
+  );
+  
   const safety = useSelector(
     (state) =>
       (state.Tags.loading === true ? 0 : state.Tags.getIn(safetyNode)) ?? 0
@@ -45,6 +63,7 @@ export default function NavMenu() {
           >
             Pump House Application
           </NavbarBrand>
+
           <button
             onClick={toggleNavbar}
             aria-label="Toggle navigation"
@@ -52,16 +71,20 @@ export default function NavMenu() {
             className=" btn navbar-toggler"
           >
             {collapsed ? (
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                height="35px"
-                viewBox="0 0 24 24"
-                width="35px"
-                fill="#ffffe7"
-              >
-                <path d="M0 0h24v24H0V0z" fill="none" />
-                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
-              </svg>
+              <ThemeProvider theme={theme}>
+                <Badge badgeContent={totalAlarms} color="secondary" style={{verticalAlign:"unset "}}>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    height="35px"
+                    viewBox="0 0 24 24"
+                    width="35px"
+                    fill="#ffffe7"
+                  >
+                    <path d="M0 0h24v24H0V0z" fill="none" />
+                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
+                  </svg>
+                </Badge>
+              </ThemeProvider>
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -93,7 +116,7 @@ export default function NavMenu() {
                 <NavLink
                   exact={true}
                   className={
-                    "text-primary text-Link me-2 is-not-active " +
+                    "text-primary text-Link me-3 my-2  is-not-active " +
                     checkIfHasnoGroup()
                   }
                   activeClassName="active"
@@ -106,7 +129,7 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-2 is-not-active " +
+                    "text-primary text-Link me-3 my-2  is-not-active " +
                     checkIfHasnoGroup()
                   }
                   activeClassName="active"
@@ -116,10 +139,32 @@ export default function NavMenu() {
                   Trend
                 </NavLink>
               </NavItem>
+              <li className={
+                    "me-3  nav-item " +
+                    checkIfHasnoGroup()
+                  }>
+                <ThemeProvider theme={theme}>
+                  <Badge badgeContent={totalAlarms} color="secondary" style={{verticalAlign:"unset "}}>
+                      <NavLink
+                        className={
+                          "text-primary text-Link is-not-active "
+                        }
+                        activeClassName="active"
+                        to="/Alarms"
+                        onClick={closeExpander}
+                      >
+                        Alarms
+                      </NavLink>
+                  </Badge>
+                </ThemeProvider>
+                
+              </li>
+              
+              
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-2  is-not-active " +
+                    "text-primary text-Link me-3 my-2  is-not-active " +
                     checkGroupCollapse("admin")
                   }
                   activeClassName="active"
@@ -133,11 +178,11 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-2 is-not-active " +
+                    "text-primary text-Link me-3 my-2 is-not-active " +
                     checkGroupCollapse("admin")
                   }
                   activeClassName="active"
-                  to="/UsersConfig"
+                  to="/system"
                   onClick={closeExpander}
                 >
                   System

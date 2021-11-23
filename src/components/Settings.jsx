@@ -4,6 +4,7 @@ import update from "react-addons-update";
 import { FindConfig } from "../utils/SettingsUtils";
 import { useSelector } from "react-redux";
 import { UpdateSettings } from "../commands";
+import Button from "./SystemComponents/Button.jsx"
 
 export default function Config() {
   const socket = useSelector((state) => state.SocketIO.socket);
@@ -62,13 +63,13 @@ export default function Config() {
           classInput="tableInput"
           handleOptionOnChange={handleOptionOnChange}
         />
-        <button
+        <Button
           type="button"
           className="btn btn-principal my-2"
           onClick={handleSubmitChanges}
         >
           Update
-        </button>
+        </Button>
       </div>
     </div>
   );

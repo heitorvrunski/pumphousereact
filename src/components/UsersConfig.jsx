@@ -8,6 +8,7 @@ import Toast from "./Toast";
 import Actions from "../store/actions";
 import { useHistory } from "react-router";
 import { UserModal } from "./UserModal";
+import Button from "./SystemComponents/Button.jsx"
 
 const UsersConfig = () => {
   const history = useHistory();
@@ -126,7 +127,7 @@ const UsersConfig = () => {
     dispatch(Actions.SetMessageError(""));
   };
   const seeLogs = (event) => {
-    history.push("/TG9nc1N5c3RlbQ==");
+    history.push("/system/TG9nc1N5c3RlbQ==");
   };
 
   return (
@@ -134,7 +135,7 @@ const UsersConfig = () => {
     <div className="row justify-content-center mx-2 d-flex">
         <div className="card m-2" style={{ width: "520px" }}>
           <h5>Logs</h5>
-          <button className="btn btn-principal mb-2" onClick={seeLogs}>See Logs</button>
+          <Button className="btn btn-principal mb-2" onClick={seeLogs}>See Logs</Button>
         </div>
     </div>
     {Object.keys(users).length === 0 ? (
@@ -176,12 +177,12 @@ const UsersConfig = () => {
                 options={listGroup}
                 onChange={handleSelectedChange}
               />
-              <button
+              <Button
                 type="submit"
                 className="btn btn-principal m-0 text-nowrap mx-0 mt-1"
               >
                 Create User
-              </button>
+              </Button>
             </form>
           </div>
           <hr></hr>

@@ -1,5 +1,5 @@
-import tankImage from "../Resource/Submersible_Pump4.png";
-import tankHeader from "../Resource/PumpHeader.png";
+import tankImage from "../Resource/Submersible_Pump4a.png";
+import tankHeader from "../Resource/PumpHeadera.png";
 
 export default function PumpImage(props) {
   var cPump = props.cPump;
@@ -14,12 +14,13 @@ export default function PumpImage(props) {
         width={props.width}
         src={tankImage}
         alt="Pump"
+        style={{objectFit:"cover",objectPosition:"12px 0"  }}
       />
       <img
         className={active + " position-absolute"}
         width={props.width}
         src={tankHeader}
-        style={{ marginLeft: "-2px" }}
+        style={{objectFit:"cover",objectPosition:"12px 0"  }}
         alt=""
       />
     </div>
