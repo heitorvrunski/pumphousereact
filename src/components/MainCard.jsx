@@ -17,6 +17,8 @@ export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const socket = useSelector((state) => state.SocketIO.socket);
   const safetyNode = ["PressurePID", "Safety"];
+  const watchdog = useSelector((state) => state.Tags.getIn(["WatchDog"]));;
+
 
   const safety = useSelector(
     (state) =>
@@ -252,13 +254,23 @@ export default function MainCard() {
             </Button>
             <div
                   className={
-                    safety === 1
+                    safety === 1 && watchdog !== 1
                       ? "safetyDiv align-content-center flex-wrap text-center blink my-2 "
                       : "collapsed"
                   }
                 >
                   {" "}
                   <h5>Safety Mode ON</h5>
+                </div>
+                <div
+                  className={
+                    watchdog === 1
+                      ? "safetyDiv align-content-center flex-wrap text-center blink my-2 "
+                      : "collapsed"
+                  }
+                >
+                  {" "}
+                  <h6>Comunication Error !</h6>
                 </div>
           </div>
         </div>

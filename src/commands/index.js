@@ -15,6 +15,21 @@ export const EnablePressurePID = (cPumps, socket) => {
 };
 export const DisablePressurePID = (socket) => {
   var sendMessages = [];
+  sendMessages.push([["cPump",0, "Command"], 1]);
+  sendMessages.push([["cPump",0, "Frequency"], 1]);
+  sendMessages.push([["cPump",0, "MaxRamp"], 1]);
+
+  sendMessages.push([["cPump",1, "Command"], 1]);
+  sendMessages.push([["cPump",1, "Frequency"], 1]);
+  sendMessages.push([["cPump",1, "MaxRamp"], 1]);
+
+  sendMessages.push([["cPump",2, "Command"], 1]);
+  sendMessages.push([["cPump",2, "Frequency"], 1]);
+  sendMessages.push([["cPump",2, "MaxRamp"], 1]);
+  
+
+
+
   sendMessages.push([["PressurePID", "enable"], 0]);
   sendMessages.push([["PressurePID", "Step "], 0]);
   SendMessages(sendMessages, socket);
@@ -74,7 +89,7 @@ export const StopManualPump = (index, socket) => {
 
   sendMessages.push([["cPump", index, "MaxRamp"], 0]);
   sendMessages.push([["cPump", index, "Command"], 1]);
-  sendMessages.push([["cPump", index, "status"], 0]);
+  //sendMessages.push([["cPump", index, "status"], 0]);
   SendMessages(sendMessages, socket);
 };
 

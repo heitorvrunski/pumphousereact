@@ -157,7 +157,7 @@ $heightPipe: 210px;
 }
 
 .safetyDiv {
-  width: 100px;
+  width: 110px;
   height: auto;
   color: white;
   background-color: red;
@@ -253,7 +253,15 @@ code {
 }
 
 
+.blink-Yellow {
+  animation: blinkerYellow 1s linear infinite;
+}
 
+@keyframes blinkerYellow {
+  50% {
+    filter: hue-rotate(56deg);
+  }
+}
 
 
 .blink {

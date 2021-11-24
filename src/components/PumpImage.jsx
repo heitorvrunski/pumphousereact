@@ -2,8 +2,13 @@ import tankImage from "../Resource/Submersible_Pump4a.png";
 import tankHeader from "../Resource/PumpHeadera.png";
 
 export default function PumpImage(props) {
-  var cPump = props.cPump;
-  var active = cPump.Status === 1 ? "pump-Green" : "";
+  const cPump = props.cPump;
+  const active = colorPump();
+  function colorPump(){
+    if(cPump.StatusOPC === 2)
+      return "pump-Grey blink-Yellow "
+    return cPump.StatusOPC === 1 ? "pump-Green" : "";
+  }
   return (
     <div
       className="pump_Image d-flex"
