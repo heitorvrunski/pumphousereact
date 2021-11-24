@@ -19,17 +19,12 @@ const theme = createTheme({
 
 export default function NavMenu() {
   const [collapsed, SetCollapsed] = useState(true);
-  const safetyNode = ["PressurePID", "Safety"];
   const groupUser = useSelector((state) => state.Auth.group);
   const totalAlarms = useSelector(
     (state) =>
       (state.Tags.loading === true ? 0 : state.Tags.get("TotalAlarmsActive")) ?? 0
   );
   
-  const safety = useSelector(
-    (state) =>
-      (state.Tags.loading === true ? 0 : state.Tags.getIn(safetyNode)) ?? 0
-  );
 
   function toggleNavbar() {
     SetCollapsed(!collapsed);
