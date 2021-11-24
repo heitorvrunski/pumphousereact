@@ -16,6 +16,12 @@ import AlarmIcon from "./SystemComponents/AlarmIcon";
 export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const socket = useSelector((state) => state.SocketIO.socket);
+  const safetyNode = ["PressurePID", "Safety"];
+
+  const safety = useSelector(
+    (state) =>
+      (state.Tags.loading === true ? 0 : state.Tags.getIn(safetyNode)) ?? 0
+  );
 
 
   function autoPressurePIDAction() {
@@ -244,6 +250,16 @@ export default function MainCard() {
               Disable <br />
               All Pumps
             </Button>
+            <div
+                  className={
+                    safety === 1
+                      ? "safetyDiv align-content-center flex-wrap text-center blink my-2 "
+                      : "collapsed"
+                  }
+                >
+                  {" "}
+                  <h5>Safety Mode ON</h5>
+                </div>
           </div>
         </div>
       </div>

@@ -19,17 +19,12 @@ const theme = createTheme({
 
 export default function NavMenu() {
   const [collapsed, SetCollapsed] = useState(true);
-  const safetyNode = ["PressurePID", "Safety"];
   const groupUser = useSelector((state) => state.Auth.group);
   const totalAlarms = useSelector(
     (state) =>
       (state.Tags.loading === true ? 0 : state.Tags.get("TotalAlarmsActive")) ?? 0
   );
   
-  const safety = useSelector(
-    (state) =>
-      (state.Tags.loading === true ? 0 : state.Tags.getIn(safetyNode)) ?? 0
-  );
 
   function toggleNavbar() {
     SetCollapsed(!collapsed);
@@ -100,7 +95,7 @@ export default function NavMenu() {
           </button>
           <Collapse isOpen={!collapsed} navbar>
             <Nav className={"navbar-nav me-auto mb-2 mb-lg-0 "} navbar>
-              <NavItem>
+              {/* <NavItem>
                 <div
                   className={
                     safety === 1
@@ -111,7 +106,7 @@ export default function NavMenu() {
                   {" "}
                   <h5>Safety Mode ON</h5>
                 </div>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink
                   exact={true}
