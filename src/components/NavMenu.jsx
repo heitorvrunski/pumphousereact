@@ -100,7 +100,7 @@ export default function NavMenu() {
           </button>
           <Collapse isOpen={!collapsed} navbar>
             <Nav className={"navbar-nav me-auto mb-2 mb-lg-0 "} navbar>
-              <NavItem>
+              {/* <NavItem>
                 <div
                   className={
                     safety === 1
@@ -111,7 +111,7 @@ export default function NavMenu() {
                   {" "}
                   <h5>Safety Mode ON</h5>
                 </div>
-              </NavItem>
+              </NavItem> */}
               <NavItem>
                 <NavLink
                   exact={true}
