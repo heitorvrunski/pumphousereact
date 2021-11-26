@@ -112,7 +112,7 @@ export default function Login() {
           Sign in
         </button>
          */}
-         <Button className="btn btn-lg btn-principal btn-block my-1" type="submit"> Sign in</Button>
+         <Button className="btn btn-lg btn-Light btn-block my-1" type="submit"> Sign in</Button>
         </div>
         
         <div className="mt-3  text-muted w-100 d-flex justify-content-center">
