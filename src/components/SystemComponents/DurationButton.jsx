@@ -24,13 +24,12 @@ export default function DurationButton(props) {
     >
       <div
         className={
-          "btn text-center align-middle p-0 flex-nowrap" +
-          (selected === true ? " selectedDuration" : "")
+          "btn text-center align-middle p-0 flex-nowrap" 
         }
         style={{ height: "30px", width: "105px" }}
       >
-        <p className="m-0">{label}</p>
-        <hr className={(selected === true ? "" : "collapsed ") + " m-0 "}></hr>
+        <p className={"m-0 "+
+          (selected === true ? " actived" : "")}>{label}</p>
       </div>
     </div>
   );

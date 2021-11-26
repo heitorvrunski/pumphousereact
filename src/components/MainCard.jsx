@@ -4,12 +4,8 @@ import PumpImage from "./PumpImage";
 import wave from "../Resource/wave.svg";
 import Button from "./SystemComponents/Button.jsx";
 import { useSelector } from "react-redux";
-import {
-  EnablePressurePID,
-  DisablePressurePID,
-  EnableDesablePondPID,
-  DisableAllPump,
-} from "../commands/index.js";
+import Commands from "../commands/index.js";
+
 import AlarmIcon from "./SystemComponents/AlarmIcon";
 
 //PressurePID.enable
@@ -28,17 +24,17 @@ export default function MainCard() {
 
   function autoPressurePIDAction() {
     if (Tags.PressurePID.enable !== 1) {
-      EnablePressurePID(Tags.cPump, socket);
+      Commands.EnablePressurePID(Tags.cPump, socket);
     } else {
-      DisablePressurePID(socket);
+      Commands.DisablePressurePID(socket);
     }
   }
 
   function autoPondFillPIDAction() {
-    EnableDesablePondPID(Tags.EnablePondFill, socket);
+    Commands.EnableDesablePondPID(Tags.EnablePondFill, socket);
   }
   function disableAllPumpAction() {
-    DisableAllPump(socket);
+    Commands.DisableAllPump(socket);
   }
   return (
     <div
@@ -49,7 +45,7 @@ export default function MainCard() {
         <div className="row d-flex my-2 mx-2">
           <Button
             type="button"
-            className="col btn btn-principal mx-1 w-20 "
+            className="col btn btn-Light mx-1 w-20 "
             onClick={autoPressurePIDAction}
           >
             {Tags.PressurePID.enable === 1
@@ -58,7 +54,7 @@ export default function MainCard() {
           </Button>
           <Button
             type="button"
-            className="col btn btn-principal mx-1 w-20 "
+            className="col btn btn-Light mx-1 w-20 "
             onClick={autoPondFillPIDAction}
           >
             {Tags.EnablePondFill === 1
@@ -245,7 +241,7 @@ export default function MainCard() {
           <div className="col col-xl-1 px-0 col-md-1 mx-0 mb-2">
             <Button
               type="button"
-              className="btn btn-principal m-0 text-nowrap mx-0"
+              className="btn btn-Light m-0 text-nowrap mx-0"
               style={{ height: "60px" }}
               onClick={disableAllPumpAction}
             >

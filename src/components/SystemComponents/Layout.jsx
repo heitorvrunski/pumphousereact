@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateData, FirstReadDone } from "../middleware/socketio";
+import { UpdateData, FirstReadDone } from "../../middleware/socketio";
 import Toast from "./Toast.jsx";
-import { ApiNode } from "../middleware/thunk";
+import { ApiNode } from "../../middleware/thunk";
 
 export default function Layout(props) {
   const socket = useSelector((state) => state.SocketIO.socket);
@@ -68,12 +68,15 @@ export default function Layout(props) {
   return (
     <div>
       <NavMenu />
-      <div
-        className="container-fluid"
-        style={{ marginTop: "60px", height: "90vh" }}
-      >
-        {props.children}
-      </div>
+      <main>
+        <div
+          className="container-fluid"
+          style={{ marginTop: "65px", height: "89vh" }}
+        >
+          {props.children}
+        </div>
+      </main>
+      
       <Toast
         messageError={errorMessage}
         className={errorStyle + " text-white"}

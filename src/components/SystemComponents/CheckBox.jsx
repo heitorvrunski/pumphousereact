@@ -1,9 +1,9 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 
 export default function CheckBox(props) {
   const state = props.state;
   const componentState = props.componentState;
-  const input = useRef()
+
   const [check, setcheck] = useState(state === componentState ? true : false);
 
   useEffect(() => {
@@ -23,7 +23,6 @@ export default function CheckBox(props) {
       <div className="d-flex">
         <input
           className={" form-check-input m-1"}
-          ref={input}
           type="checkbox"
           checked={check}
           value={check}

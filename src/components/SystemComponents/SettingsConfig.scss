@@ -1,0 +1,18 @@
+@import "../../Input.scss";
+
+.transition {
+  max-height: 600px;
+  height: auto;
+  transition: max-height 0.5s ease-in;
+}
+
+.off {
+  max-height: 0 !important;
+  transition: max-height 0.5s ease-out;
+  overflow: hidden;
+}
+
+.overflow-settings {
+  overflow-x: auto;
+  overflow-y: initial !important;
+}

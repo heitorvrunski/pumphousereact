@@ -5,16 +5,15 @@ import {
   CreateOptionsHighCharts,
   ClearOptions,
 } from "../services/highCharts/index.js";
-import CheckBox from "./SystemComponents/CheckBox.jsx";
-import CheckboxList from "./SystemComponents/CheckBoxList.jsx";
+import CheckBox from "./TrendComponents/CheckBox.jsx";
+import CheckboxList from "./TrendComponents/CheckBoxList.jsx";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
-import DurationButton from "./SystemComponents/DurationButton.jsx";
-import InputDate from "./SystemComponents/InputDate.jsx";
+import DurationButton from "./TrendComponents/DurationButton.jsx";
+import InputDate from "./TrendComponents/InputDate.jsx";
 import { FindConfig } from "../utils/SettingsUtils.js";
 import HighchartsExporting from "highcharts/modules/exporting";
-import Loading from "./SystemComponents/Loading.jsx";
-import "./Trend.scss";
+import Loading from "./Loading.jsx";
 import Button from "./SystemComponents/Button.jsx";
 
 export default function Trend() {
@@ -48,7 +47,6 @@ export default function Trend() {
     () => {
       if (!trends?.TagList) {
         var trendsAux = [];
-
         const config = FindConfig(configs, "TrendTagList");
         config.value.forEach((element) => {
           trendsAux.push({ tag: element, checked: false });
@@ -114,35 +112,33 @@ export default function Trend() {
         <div className="row h-100">
           <div className="col-12 col-md-12 col-xl-10 m-0 p-0 h-100 mb-1 remove-h-100-sm">
             <div className="d-flex flex-column h-100">
-              <div className=" d-flex m-2 flex-row row">
+              <div className="card d-flex mb-1 mx-0 flex-row row mt-1">
                 <div
                   className="p-2 col-12 col-sm-12 col-md-2 "
-                  style={{ minWidth: "250px" }}
+                  style={{ minWidth: "217px" }}
                 >
-                  <div className=" d-flex flex-row">
+                  <div className="d-flex flex-row">
                     <h5>Menu</h5>
                     <Button
-                    className="btn btn-principal mx-2"
-                    type="button"
-                    onClick={changeReloadAction}
+                      className="btn btn-principal mx-2"
+                      type="button"
+                      onClick={changeReloadAction}
                     >
+                      {" "}
                       Reload
-
                     </Button>
                     <Button
                       className="btn btn-principal"
                       type="button"
                       onClick={clearAction}
                     >
+                      {" "}
                       Clear
-
                     </Button>
-
-
                   </div>
                 </div>
                 <div
-                  className="card d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12"
+                  className="d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12"
                   style={{ maxWidth: "720px" }}
                 >
                   <div className="row my-1 d-flex flex-row">
@@ -227,7 +223,7 @@ export default function Trend() {
                   </div>
                 </div>
               </div>
-              <div className="card m-2 p-1 flex-grow-1 remove-Flex-grow-sm h-chart-sm">
+              <div className="card m-0 p-0 flex-grow-1 remove-Flex-grow-sm h-chart-sm">
                 <HighchartsReact
                   highcharts={Highcharts}
                   options={options}
@@ -238,7 +234,7 @@ export default function Trend() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-12 card  my-2 col-xl-2 mb-2">
+          <div className="col-12 col-md-12 card my-1 col-xl-2">
             <h5>List</h5>
             <hr className="my-0"></hr>
             <div className="h-sm overflow-auto">

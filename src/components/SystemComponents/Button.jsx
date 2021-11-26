@@ -27,7 +27,7 @@ export default function Button(props) {
         onClick={handleClick}
         className={props.className + " buttonNice"}
         style={props.style??{}}
-        disabled={props.disabled}
+        
         type={props.type??'button'}
         >
           {props.children}

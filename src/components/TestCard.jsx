@@ -35,7 +35,7 @@ const TestCard = () => {
       <h5 className="card-title">Demo Area</h5>
       <div className="row">
         <Button
-          className="col btn btn-principal mx-1 my-1"
+          className="col btn btn-Light mx-1 my-1"
           type="button"
           onClick={IncreseLevel}
         >
@@ -43,7 +43,7 @@ const TestCard = () => {
           Increase <br></br> Level
         </Button>
         <Button
-          className="col btn btn-principal mx-1 my-1"
+          className="col btn btn-Light mx-1 my-1"
           type="button"
           onClick={DecreseLevel}
         >
@@ -51,7 +51,7 @@ const TestCard = () => {
           Decrease <br></br> Level
         </Button>
         <Button
-          className="col btn btn-principal mx-1 my-1"
+          className="col btn btn-Light mx-1 my-1"
           type="button"
           onClick={IncresePressure}
         >
@@ -59,7 +59,7 @@ const TestCard = () => {
           Increase <br></br> Pressure
         </Button>
         <Button
-          className="col btn btn-principal mx-1 my-1"
+          className="col btn btn-Light mx-1 my-1"
           type="button"
           onClick={DecresePressure}
         >

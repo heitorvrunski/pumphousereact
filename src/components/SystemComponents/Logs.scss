@@ -1,11 +1,11 @@
-// @import "../../Input.scss";
+@import "../../Input.scss";
 .div-code {
   overflow: inherit;
   background-color: #282a36;
   color: "white";
   border-color: "white";
   border-radius: 0 0 0.75rem 0.75rem;
-  box-shadow: 0 0.25rem 0.3rem rgba(0,0,0, 0.1);
+  box-shadow: 0 0.25rem 0.3rem rgba($Black, 0.1);
 }
 .overflow-inherit {
   overflow: inherit !important;

@@ -1,0 +1,29 @@
+@import "../Input.scss";
+
+@media (max-width: 955px) {
+  .col-between-md-xl-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+    margin-left: 0 !important;
+  }
+}
+
+@media (max-width: 1200px) {
+  .h-sm {
+    display: flex !important;
+    height: 150px !important;
+    flex-wrap: wrap !important;
+    align-content: flex-start !important;
+  }
+  .h-chart-sm {
+    height: 400px !important;
+  }
+
+  .remove-Flex-grow-sm {
+    flex-grow: unset !important;
+  }
+
+  .remove-h-100-sm {
+    height: unset !important;
+  }
+}

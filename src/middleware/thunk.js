@@ -9,6 +9,91 @@ const ApiNode = {
       .then((resp) => resp.data)
       .then((tasks) => dispatch(Actions.GetSysConfig(tasks)));
   },
+  PutSysConfig: (sysConfig) => (dispatch) => {
+    axios
+      .put(
+        `http://${window.location.hostname}:3000/node/api/sysConfig/${sysConfig.param}`,
+        {
+          param: sysConfig.param,
+          value: sysConfig.value
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((data) => {
+        setTimeout(() => {
+          dispatch(ApiNode.GetSysConfig());
+        }, 100);
+      })
+      .catch((data) => {
+        if (data.response) {
+          dispatch(Actions.SetMessageError(data.response.data.error));
+        } else {
+          dispatch(Actions.SetMessageError("Error to update Config"));
+        }
+      });
+  },
+  PostSysConfig: (sysConfig) => (dispatch) => {
+    axios
+      .post(
+        `http://${window.location.hostname}:3000/node/api/sysConfig`,
+        {
+          param: sysConfig.param,
+          value: sysConfig.value
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((data) => {
+        setTimeout(() => {
+          dispatch(ApiNode.GetSysConfig());
+        }, 100);
+      })
+      .catch((data) => {
+        if (data.response) {
+          dispatch(Actions.SetMessageError(data.response.data.error));
+        } else {
+          dispatch(Actions.SetMessageError("Error to Create Config"));
+        }
+      });
+  },
+  DeleteSysConfig: (sysConfig) => (dispatch) => {
+    axios
+      .post(
+        `http://${window.location.hostname}:3000/node/api/sysConfig/${sysConfig.param}`,
+        {
+        },
+        {
+          withCredentials: true,
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((data) => {
+        setTimeout(() => {
+          dispatch(ApiNode.GetSysConfig());
+        }, 100);
+      })
+      .catch((data) => {
+        if (data.response) {
+          dispatch(Actions.SetMessageError(data.response.data.error));
+        } else {
+          dispatch(Actions.SetMessageError("Error to delete Config"));
+        }
+      });
+  },
   RefreshToken: () => (dispatch) => {
     axios
       .get(`http://${window.location.hostname}:3000/node/api/auth/refresh`, {
@@ -213,6 +298,17 @@ const ApiNode = {
       })
       .then((resp) => {result = resp.data});
     return result
+  },
+  RestartNode: () => {
+    axios
+      .get(
+        `http://${window.location.hostname}:3000/node/api/Docker/rbackend`,
+        {
+          withCredentials: true,
+        }
+      )
+      .then(window.location.href = "/")
+      .catch(console.log("Error to restart node"));
   },
 };
 

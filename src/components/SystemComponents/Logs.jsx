@@ -1,10 +1,10 @@
 import { useEffect, useState,useRef } from "react";
-import { ApiNode } from "../middleware/thunk";
-import CheckBox from "./TrendComponents/CheckBox";
+import { ApiNode } from "../../middleware/thunk";
+import CheckBox from "./CheckBox.jsx";
 import DatePicker from "react-datepicker";
 import moment from "moment";
 import "./Logs.scss";
-import Button from "./SystemComponents/Button";
+import Button from "./Button";
 
 import "react-datepicker/dist/react-datepicker.css";
 

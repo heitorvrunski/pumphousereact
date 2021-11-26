@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Route, Redirect } from "react-router-dom";
-import isAuthenticated from "../services/auth.js";
-import { ApiNode } from "../middleware/thunk.js";
+import isAuthenticated from "../../services/auth.js";
+import { ApiNode } from "../../middleware/thunk.js";
 import Loading from "./Loading.jsx";
-import { ActionSocketConnect } from "../middleware/socketio.js";
+import { ActionSocketConnect } from "../../middleware/socketio.js";
 
 const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   const dispatch = useDispatch();

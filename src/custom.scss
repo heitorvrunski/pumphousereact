@@ -23,32 +23,32 @@ $colorInfo: #032870;
 $widthPipe: 15px;
 $heightPipe: 210px;
 
-.modal {
-  position: fixed; /* Stay in place */
-  z-index: 500; /* Sit on top */
-  left: 0;
-  top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0, 0, 0); /* Fallback color */
-  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
-}
+// .modal {
+//   position: fixed; /* Stay in place */
+//   z-index: 500; /* Sit on top */
+//   left: 0;
+//   top: 0;
+//   width: 100%; /* Full width */
+//   height: 100%; /* Full height */
+//   overflow: auto; /* Enable scroll if needed */
+//   background-color: rgb(0, 0, 0); /* Fallback color */
+//   background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+// }
 
 /* Modal Content/Box */
-.modal-content {
-  position: relative;
-  background-color: #fefefe;
-  margin: auto;
-  padding: 0;
-  display: flex;
-  border: 1px solid #888;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  -webkit-animation-name: animatetop;
-  -webkit-animation-duration: 0.4s;
-  animation-name: animatetop;
-  animation-duration: 0.4s;
-}
+// .modal-content {
+//   position: relative;
+//   background-color: #fefefe;
+//   margin: auto;
+//   padding: 0;
+//   display: flex;
+//   border: 1px solid #888;
+//   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+//   -webkit-animation-name: animatetop;
+//   -webkit-animation-duration: 0.4s;
+//   animation-name: animatetop;
+//   animation-duration: 0.4s;
+// }
 
 /* Add Animation */
 @-webkit-keyframes animatetop {
@@ -73,29 +73,29 @@ $heightPipe: 210px;
   }
 }
 
-.btn-Icon {
-  cursor: pointer;
-}
+// .btn-Icon {
+//   cursor: pointer;
+// }
 
-.deactivate-Icon {
-  fill: $colorInactive !important;
-  cursor: default !important;
-}
+// .deactivate-Icon {
+//   fill: $colorInactive !important;
+//   cursor: default !important;
+// }
 
-.icon-ok {
-  fill: $colorActive;
-}
-.icon-danger {
-  fill: #d11818;
-}
+// .icon-ok {
+//   fill: $colorActive;
+// }
+// .icon-danger {
+//   fill: #d11818;
+// }
 
-.form-check-input {
-  height: 20px;
-  width: 20px;
-}
-.icon-Login {
-  fill: $colorFont1;
-}
+// .form-check-input {
+//   height: 20px;
+//   width: 20px;
+// }
+// .icon-Login {
+//   fill: $colorFont1;
+// }
 
 @media (max-width: 955px) {
   .col-between-md-xl-12 {
@@ -125,36 +125,36 @@ $heightPipe: 210px;
   }
 }
 
-.pointer-Selected {
-  cursor: pointer;
-}
+// .pointer-Selected {
+//   cursor: pointer;
+// }
 
-.navbar-toggler {
-  border: unset;
-}
-.font-code {
-  font-family: "monaco";
-}
+// .navbar-toggler {
+//   border: unset;
+// }
+// .font-code {
+//   font-family: "monaco";
+// }
 
-.center-screen {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  min-height: 80vh;
-}
+// .center-screen {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+//   text-align: center;
+//   min-height: 80vh;
+// }
 
 .is-not-active:not(.active) {
   filter: brightness(0.8);
 }
 
-.tableInput {
-  width: 80px !important;
-}
+// .tableInput {
+//   width: 80px !important;
+// }
 
-.tableLabel {
-  width: 300px !important;
-}
+// .tableLabel {
+//   width: 300px !important;
+// }
 
 .safetyDiv {
   width: 110px;
@@ -165,55 +165,55 @@ $heightPipe: 210px;
   align-items: center;
 }
 
-.selectedDuration {
-  background-color: $colorBackSelectedButton1;
-}
+// .selectedDuration {
+//   background-color: $colorBackSelectedButton1;
+// }
 
-.collapsed {
-  display: none !important;
-}
+// .collapsed {
+//   display: none !important;
+// }
 
 .text-Link {
   font-size: 18px;
   text-decoration: none;
 }
 
-.box-shadow {
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
-}
+// .box-shadow {
+//   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.05);
+// }
 
 //#fcfcfc
 
-body {
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  background-color: $colorBody;
-}
+// body {
+//   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+//   background-color: $colorBody;
+// }
 
-code {
-  color: #e01a76;
-}
+// code {
+//   color: #e01a76;
+// }
 
-.card {
-  background-color: $colorBackCards !important;
-  border-color: $colorBorderCards;
-}
+// .card {
+//   background-color: $colorBackCards !important;
+//   border-color: $colorBorderCards;
+// }
 
-.bg-primary {
-  background-color: $colorBack1 !important;
-}
-.text-primary {
-  color: $colorFont1 !important;
-}
+// .bg-primary {
+//   background-color: $colorBack1 !important;
+// }
+// .text-primary {
+//   color: $colorFont1 !important;
+// }
 
-.text-info {
-  color: $colorInfo !important;
-}
-.bg-secundary {
-  background-color: $colorBack2 !important;
-}
-.text-secundary {
-  color: $colorFont2 !important;
-}
+// .text-info {
+//   color: $colorInfo !important;
+// }
+// .bg-secundary {
+//   background-color: $colorBack2 !important;
+// }
+// .text-secundary {
+//   color: $colorFont2 !important;
+// }
 
 .pump-Yellow {
   filter: hue-rotate(56deg);
@@ -274,35 +274,35 @@ code {
   }
 }
 
-.form-signin {
-  width: 100%;
-  max-width: 330px;
-  padding: 15px;
-  margin: 0 auto;
-}
+// .form-signin {
+//   width: 100%;
+//   max-width: 330px;
+//   padding: 15px;
+//   margin: 0 auto;
+// }
 
-.btn-principal {
-  background-color: $colorBackButton1 !important;
-  color: $colorFontButton1 !important;
-  border: $colorborderButton1 !important;
-}
-.btn-principal:active {
-  background: $colorBackSelectedButton1 !important;
-  outline: none !important;
-  box-shadow: none;
-}
+// .btn-principal {
+//   background-color: $colorBackButton1 !important;
+//   color: $colorFontButton1 !important;
+//   border: $colorborderButton1 !important;
+// }
+// .btn-principal:active {
+//   background: $colorBackSelectedButton1 !important;
+//   outline: none !important;
+//   box-shadow: none;
+// }
 
-.btn-principal:hover {
-  //background:$colorBackSelectedButton1 !important;
-  outline: none !important;
-  box-shadow: none;
-}
+// .btn-principal:hover {
+//   //background:$colorBackSelectedButton1 !important;
+//   outline: none !important;
+//   box-shadow: none;
+// }
 
-.btn:focus,
-.btn:active {
-  outline: none !important;
-  box-shadow: none;
-}
+// .btn:focus,
+// .btn:active {
+//   outline: none !important;
+//   box-shadow: none;
+// }
 
 .card-Pump {
   /*    height: 600px;
@@ -331,23 +331,23 @@ code {
   margin-top: 5rem !important;
 }
 
-.menuToogle {
-  fill: $colorFont1;
-}
+// .menuToogle {
+//   fill: $colorFont1;
+// }
 
-.span-Primary {
-  background-color: $colorFont1 !important;
-  color: black;
-  border: solid 1px $colorborderButton1;
-}
+// .span-Primary {
+//   background-color: $colorFont1 !important;
+//   color: black;
+//   border: solid 1px $colorborderButton1;
+// }
 
-.bg-inactive {
-  background-color: $colorInactive !important;
-}
+// .bg-inactive {
+//   background-color: $colorInactive !important;
+// }
 
-.bg-active {
-  background-color: $colorActive !important;
-}
+// .bg-active {
+//   background-color: $colorActive !important;
+// }
 
 .water-Tank {
   background-color: $colorWater;
@@ -433,49 +433,49 @@ code {
   background-color: $colorBorderWaterTank;
 }
 
-.toastFadeIn {
-  animation: fadein 2s;
-  -moz-animation: fadein 2s; /* Firefox */
-  -webkit-animation: fadein 2s; /* Safari and Chrome */
-  -o-animation: fadein 2s; /* Opera */
-}
-@keyframes fadein {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-moz-keyframes fadein {
-  /* Firefox */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-@-webkit-keyframes fadein {
-  /* Safari and Chrome */
-  from {
-    opacity: 0;
-  }
-  to {
-    right: 0px !important;
+// .toastFadeIn {
+//   animation: fadein 2s;
+//   -moz-animation: fadein 2s; /* Firefox */
+//   -webkit-animation: fadein 2s; /* Safari and Chrome */
+//   -o-animation: fadein 2s; /* Opera */
+// }
+// @keyframes fadein {
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+// @-moz-keyframes fadein {
+//   /* Firefox */
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
+// @-webkit-keyframes fadein {
+//   /* Safari and Chrome */
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     right: 0px !important;
 
-    opacity: 1;
-  }
-}
-@-o-keyframes fadein {
-  /* Opera */
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
+//     opacity: 1;
+//   }
+// }
+// @-o-keyframes fadein {
+//   /* Opera */
+//   from {
+//     opacity: 0;
+//   }
+//   to {
+//     opacity: 1;
+//   }
+// }
 
 .wave {
   width: 6400px;

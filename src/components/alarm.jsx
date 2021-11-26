@@ -5,7 +5,7 @@ import { DataGrid,GridToolbarExport,GridToolbarDensitySelector  } from '@mui/x-d
 import DatePicker from "react-datepicker";
 import Modal from "./SystemComponents/Modal.jsx";
 import Button from "./SystemComponents/Button.jsx"
-import { ActAlarm,ActAllAlarm } from "../commands/index.js";
+import Commands from "../commands/index.js";
 
 import PropTypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
@@ -70,7 +70,7 @@ const columns = [
             <div style={{height:"100%",alignItems:"center",display:"flex",lineHeight:"normal"
         }}>
 
-                <div style={{backgroundColor:params.value==="Active"?"#ba2d3d":(params.value==="Act"?"#636500":(params.value==="Norm"?"#006265":"white")),
+                <div style={{backgroundColor:params.value==="Active"?"#ba2d3d":(params.value==="Ack"?"#636500":(params.value==="Norm"?"#006265":"white")),
                     color:"white",
                     height:"25px",
                     padding:"5px",
@@ -175,7 +175,7 @@ export default function Alarm() {
             const row=
             {
                 id:index,
-                status : result[0]==="1"?"Active":(result[0]==="2"?"Act":(result[0]==="3"?"Norm":"Ok"))                ,//result[0],
+                status : result[0]==="1"?"Active":(result[0]==="2"?"Ack":(result[0]==="3"?"Norm":"Ok"))                ,//result[0],
                 activeTime : FormatDate(result[1]),
                 ackTime : result[2],
                 normTime : result[3],
@@ -212,14 +212,14 @@ export default function Alarm() {
         }
     };
     const HandleActRow = () => {
-        ActAlarm(tagAct,commentTagAct,tagAlarmList,socket)
+        Commands.ActAlarm(tagAct,commentTagAct,tagAlarmList,socket)
         setIsOpenModal(false)
         setCommentTagAct("")
 
     };
 
     const HandleActAll = () => {
-        ActAllAlarm(actAllAlarms,socket)
+        Commands.ActAllAlarm(actAllAlarms,socket)
         setIsOpenModalActAll(false)
 
     };

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./Toast.scss";
 
 export default function Toast(props) {
   const [errorShow, setErrorShow] = useState(false);

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
 import PumpImage from "./PumpImage";
 import { useSelector } from "react-redux";
-import {
-  StartManualPump,
-  StopManualPump,
-  SetManualFreqPump,
-} from "../commands/index.js";
+import Commands from "../commands/index.js";
+
 import Button from "./SystemComponents/Button.jsx";
 
 export default function PumpCard(props) {
@@ -23,15 +20,15 @@ export default function PumpCard(props) {
     if (NewFreq > 60 || NewFreq < 5) {
       SetNewFreq(0);
     } else {
-      SetManualFreqPump(props.index, NewFreq, socket);
+      Commands.SetManualFreqPump(props.index, NewFreq, socket);
     }
   }
 
   function startManualPump() {
-    StartManualPump(props.cPump, props.index, socket);
+    Commands.StartManualPump(props.cPump, props.index, socket);
   }
   function stopManualPump() {
-    StopManualPump(props.index, socket);
+    Commands.StopManualPump(props.index, socket);
   }
   return (
     <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump position-relative" style={{height:"-webkit-fill-available"}}>
@@ -121,7 +118,7 @@ export default function PumpCard(props) {
         <li>
           <Button
             type="button"
-            className="btn btn-principal mx-0 my-1 w-100 "
+            className="btn btn-Light mx-0 my-1 w-100 "
             disabled={props.cPump.Status !== 1 || pidEnable === 1}
             onClick={setManualFreqPump}
           >
@@ -131,7 +128,7 @@ export default function PumpCard(props) {
         <li>
           <Button
             type="button"
-            className="btn btn-principal mx-0 my-1 w-100 "
+            className="btn btn-Light mx-0 my-1 w-100 "
             disabled={props.cPump.Status === 1 || pidEnable === 1}
             onClick={startManualPump}
           >
@@ -142,7 +139,7 @@ export default function PumpCard(props) {
         <li>
           <Button
             type="button"
-            className="btn btn-principal mx-0 my-1 w-100 mb-2"
+            className="btn btn-Light mx-0 my-1 w-100 mb-2"
             disabled={props.cPump.Status !== 1 || pidEnable === 1}
             onClick={stopManualPump}
           >

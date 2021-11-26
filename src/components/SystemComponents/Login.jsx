@@ -1,9 +1,12 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import axios from "axios";
+// import logo from "../../resource/logo.png"
 
 import Toast from "./Toast";
-import Actions from "../store/actions";
+import Actions from "../../store/actions";
+import "./Login.scss";
+import Button from "./Button";
 
 export default function Login() {
   const dispatch = useDispatch();
@@ -73,9 +76,14 @@ export default function Login() {
   };
 
   return (
-    <div className="text-center align-middle">
-      <form className="form-signin mt-5" onSubmit={handleSubmit}>
-        <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+    <div className="row justify-content-center  d-flex">
+    <div className="card  d-flex" style={{ width: "320px" }}>
+    <form className="form-signin " onSubmit={handleSubmit}>
+        {/* <div className="m-3  text-muted w-100 d-flex justify-content-center">
+        <img src={logo} width="120px" alt="logo"></img>
+
+        </div> */}
+        <h1 className="h3 mb-3">Please sign in</h1>
         <label htmlFor="inputEmail" className="sr-only">
           Login
         </label>
@@ -88,21 +96,29 @@ export default function Login() {
           autoFocus=""
           onChange={handleInputChange}
         ></input>
-        <label htmlFor="inputPassword" className="sr-only">
+        <label htmlFor="inputPassword" className="sr-only mt-2">
           Password
         </label>
         <input
           type="password"
-          className="form-control"
+          className="form-control mb-2"
           placeholder="Password"
           name="password"
           required=""
           onChange={handleInputChange}
         ></input>
-        <button className="btn btn-lg btn-primary btn-block my-1" type="submit">
+        <div className="d-flex justify-content-start">
+        {/* <button className="btn btn-lg btn-principal btn-block my-1" type="submit">
           Sign in
         </button>
-        <p className="mt-5 mb-3 text-muted">© 2021</p>
+         */}
+         <Button className="btn btn-lg btn-principal btn-block my-1" type="submit"> Sign in</Button>
+        </div>
+        
+        <div className="mt-3  text-muted w-100 d-flex justify-content-center">
+        <p >© 2021</p>
+
+        </div>
       </form>
 
       <Toast
@@ -111,6 +127,45 @@ export default function Login() {
         onChangeErrorMessage={onChangeErrorMessage}
       />
     </div>
+  </div>
+    // <div className="text-center align-middle">
+      // <form className="form-signin mt-5" onSubmit={handleSubmit}>
+      //   <h1 className="h3 mb-3 font-weight-normal">Please sign in</h1>
+      //   <label htmlFor="inputEmail" className="sr-only">
+      //     Login
+      //   </label>
+      //   <input
+      //     type="text"
+      //     className="form-control"
+      //     placeholder="Login"
+      //     name="login"
+      //     required=""
+      //     autoFocus=""
+      //     onChange={handleInputChange}
+      //   ></input>
+      //   <label htmlFor="inputPassword" className="sr-only">
+      //     Password
+      //   </label>
+      //   <input
+      //     type="password"
+      //     className="form-control"
+      //     placeholder="Password"
+      //     name="password"
+      //     required=""
+      //     onChange={handleInputChange}
+      //   ></input>
+      //   <button className="btn btn-lg btn-primary btn-block my-1" type="submit">
+      //     Sign in
+      //   </button>
+      //   <p className="mt-5 mb-3 text-muted">© 2021</p>
+      // </form>
+
+      // <Toast
+      //   messageError={error.errorMsg}
+      //   className="bg-danger text-white"
+      //   onChangeErrorMessage={onChangeErrorMessage}
+      // />
+    // </div>
   );
 }
 /*

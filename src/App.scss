@@ -1,0 +1,252 @@
+@import "./Input.scss";
+body {
+  font-family: $font_family;
+  background-color: $colorBody;
+}
+
+.table .table-dense {
+  padding: 0 !important;
+}
+
+.selected-row {
+  background-color: rgba($Black, 0.1);
+}
+
+.form-check-input:checked {
+  background-color: $colorInputChecked;
+  border-color: $colorInputChecked;
+}
+
+.bg-Header {
+  background-color: $colorHeader_Font !important;
+}
+
+.btn-Icon {
+  cursor: pointer;
+}
+
+.deactivate-Icon {
+  fill: $colorInactive !important;
+  cursor: default !important;
+}
+.icon-principal {
+  fill: $colorDark;
+}
+.icon-ok {
+  fill: $colorActive;
+}
+.icon-danger {
+  fill: #d11818;
+}
+
+.icon-Login {
+  fill: $colorDark_Font;
+}
+.pointer-Selected {
+  cursor: pointer;
+}
+.selectedDuration {
+  background-color: $colorDark_Font;
+}
+
+.collapsed {
+  display: none !important;
+}
+
+.bg-primary {
+  background-color: $colorDark !important;
+}
+.text-primary {
+  color: $colorDark_Font !important;
+}
+
+.text-info {
+  color: $colorInfo !important;
+}
+.bg-secundary {
+  background-color: $colorCOMPLEMENTARY !important;
+}
+.text-secundary {
+  color: $colorCOMPLEMENTARY_Font !important;
+}
+
+.btn-principal {
+  background-color: $colorDark !important;
+  color: $colorDark_Font !important;
+  font-weight: 400;
+}
+
+.btn-Mid {
+  background-color: $colorMid !important;
+  color: $colorMid_Font !important;
+  font-weight: 400;
+}
+
+.btn-Light {
+  background-color: $colorLight !important;
+  color: $colorLight_Font !important;
+  font-weight: 400;
+}
+
+
+.card {
+  border-color: "white";
+  border: unset;
+  border-radius: 0.7rem;
+  // box-shadow: 0 0.5rem 1rem rgba($Black, 0.15);
+  box-shadow: 0 0.25rem 0.3rem rgba($Black, 0.1);
+}
+
+.nav-tabs .nav-link.active,
+.nav-tabs .nav-item.show .nav-link {
+  color: #495057;
+  background-color: #fff;
+  border-color: #fff #fff #fff;
+  border-radius: 0.5rem 0.5rem 0 0;
+  height: 100%;
+  display: flex;
+  box-shadow: 0 0.25rem 0.3rem rgba($Black, 0.1);
+}
+
+.btn-principal:active {
+  background: $colorDark !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.btn-principal:hover {
+  //background:$colorBackSelectedButton1 !important;
+  outline: none !important;
+  box-shadow: none;
+}
+
+.btn:focus,
+.btn:active {
+  outline: none !important;
+  box-shadow: none;
+}
+
+.menuToogle {
+  fill: $colorDark_Font;
+}
+
+.span-Primary {
+  background-color: $colorDark_Font !important;
+  color: black;
+}
+
+.bg-inactive {
+  background-color: $colorInactive !important;
+}
+
+.bg-active {
+  background-color: $colorActive !important;
+}
+
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+.nav-link {
+  color: #adadad;
+  font-weight: 500;
+}
+.nav-link:hover {
+  color: $colorMid;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+.font-code {
+  font-family: "monaco";
+}
+
+.center-screen {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  min-height: 80vh;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal {
+  position: fixed; /* Stay in place */
+  z-index: 500; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+.modal-content {
+  position: relative;
+  background-color: #fefefe;
+  margin: auto;
+  padding: 0;
+  display: flex;
+  border: 1px solid #888;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  -webkit-animation-name: animatetop;
+  -webkit-animation-duration: 0.4s;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
