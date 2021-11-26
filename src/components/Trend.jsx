@@ -117,7 +117,7 @@ export default function Trend() {
               <div className=" d-flex m-2 flex-row row">
                 <div
                   className="p-2 col-12 col-sm-12 col-md-2 "
-                  style={{ minWidth: "250px" }}
+                  style={{ minWidth: "220px" }}
                 >
                   <div className=" d-flex flex-row">
                     <h5>Menu</h5>
