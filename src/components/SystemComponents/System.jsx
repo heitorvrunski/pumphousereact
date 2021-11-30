@@ -14,6 +14,8 @@ const UsersConfig = () => {
   const listGroup = [
     { value: "admin", label: "admin" },
     { value: "guest", label: "guest" },
+    { value: "operator", label: "operator" },
+
   ];
   const usersRedux = useSelector((state) => state.Users.Users);
   const messageError = useSelector((state) => state.Users.MessageError);

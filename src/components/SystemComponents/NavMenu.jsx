@@ -4,6 +4,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 import LoginPartial from "./LoginPartial";
 import Badge from '@mui/material/Badge';
+import CheckGroup from "../../utils/CheckGroup";
 import "./NavMenu.scss";
 
 import { createTheme,ThemeProvider } from '@mui/material/styles';
@@ -32,19 +33,7 @@ export default function NavMenu() {
     SetCollapsed(!collapsed);
   }
 
-  function checkGroupCollapse(group) {
-    if (groupUser !== group) {
-      return "collapsed";
-    }
-    return "";
-  }
 
-  function checkIfHasnoGroup() {
-    if (groupUser === "") {
-      return "collapsed";
-    }
-    return "";
-  }
 
   function closeExpander() {
     SetCollapsed(true);
@@ -114,7 +103,8 @@ export default function NavMenu() {
                   exact={true}
                   className={
                     "text-primary text-Link me-3 my-2  is-not-active " +
-                    checkIfHasnoGroup()
+                    (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
+
                   }
                   activeClassName="active"
                   to="/"
@@ -127,7 +117,7 @@ export default function NavMenu() {
                 <NavLink
                   className={
                     "text-primary text-Link me-3 my-2  is-not-active " +
-                    checkIfHasnoGroup()
+                    (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
                   }
                   activeClassName="active"
                   to="/Trend"
@@ -138,7 +128,7 @@ export default function NavMenu() {
               </NavItem>
               <li className={
                     "me-3  nav-item " +
-                    checkIfHasnoGroup()
+                    (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
                   }>
                 <ThemeProvider theme={theme}>
                   <Badge badgeContent={totalAlarms} color="secondary" style={{verticalAlign:"unset "}}>
@@ -162,7 +152,7 @@ export default function NavMenu() {
                 <NavLink
                   className={
                     "text-primary text-Link me-3 my-2  is-not-active " +
-                    checkGroupCollapse("admin")
+                    (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
                   }
                   activeClassName="active"
                   to="/Settings"
@@ -176,7 +166,7 @@ export default function NavMenu() {
                 <NavLink
                   className={
                     "text-primary text-Link me-3 my-2 is-not-active " +
-                    checkGroupCollapse("admin")
+                    (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
                   }
                   activeClassName="active"
                   to="/system"

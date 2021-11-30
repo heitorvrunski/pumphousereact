@@ -2,12 +2,14 @@ import React, { useState } from "react";
 import PumpImage from "./PumpImage";
 import { useSelector } from "react-redux";
 import Commands from "../commands/index.js";
-
+import CheckGroup from "../utils/CheckGroup";
 import Button from "./SystemComponents/Button.jsx";
 
 export default function PumpCard(props) {
   const pidEnableNode = ["PressurePID", "enable"];
   const pidEnable = useSelector((state) => state.Tags.getIn(pidEnableNode));
+  const groupUser = useSelector((state) => state.Auth.group);
+
   const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
   const socket = useSelector((state) => state.SocketIO.socket);
   const handleChange = (event) => {
@@ -32,23 +34,33 @@ export default function PumpCard(props) {
   }
   return (
     <div className="card col mx-2 col-4 my-2 col-xl-1 card-Pump position-relative" style={{height:"-webkit-fill-available"}}>
-      <div className=" mt-1 d-flex position-absolute" style={{marginLeft:"-28px "}} >
-        <PumpImage cPump={props.cPump} width={props.cPump.SmallPump===1?"50px":"60px"} className="mx-0" />
+      {props.cPump.IsPond!==1?
+        <div className={" mt-1 d-flex position-absolute "} style={{marginLeft:"-28px "}} >
+        <PumpImage cPump={props.cPump} width={props.cPump.SmallImage===1?"50px":"60px"} className="mx-0" />
       </div>
+      :
+      null
+      }
+      
       <ul
-        className="text-center text-wrap p-0 ms-4 py-1"
+        className={"text-center text-wrap p-0  py-1 " + (props.cPump.IsPond!==1?"ms-4":"")}
         style={{ listStyleType: "none" }}
       >
         <li>
           <h4 className="mx-0 w-100">{props.cPump.Label}</h4>
         </li>
-        {/* <li>
-          <div className="row my-1 card-Pump-Image">
-            <div className="my-auto h-100 mt-1 justify-content-center d-flex">
-              <PumpImage cPump={props.cPump} width="60px" className="mx-0" />
+        {props.cPump.IsPond===1?
+          <li>
+            <div className="row my-1 card-Pump-Image">
+              <div className="my-auto h-100 mt-1 justify-content-center d-flex">
+                <PumpImage cPump={props.cPump} width="90px" className="mx-0" style={{width:"90px"}} />
+              </div>
             </div>
-          </div>
-        </li> */}
+          </li>
+        :
+          null
+        }
+
         <li>
           <h4
             className={
@@ -119,7 +131,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disabled={props.cPump.Status !== 1 || pidEnable === 1}
+            disable={(props.cPump.Status !== 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
             onClick={setManualFreqPump}
           >
             Set Frequency
@@ -129,7 +141,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disabled={props.cPump.Status === 1 || pidEnable === 1}
+            disable={(props.cPump.Status === 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
             onClick={startManualPump}
           >
             {" "}
@@ -140,7 +152,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 mb-2"
-            disabled={props.cPump.Status !== 1 || pidEnable === 1}
+            disable={(props.cPump.Status !== 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
             onClick={stopManualPump}
           >
             {" "}

@@ -5,7 +5,7 @@ import wave from "../Resource/wave.svg";
 import Button from "./SystemComponents/Button.jsx";
 import { useSelector } from "react-redux";
 import Commands from "../commands/index.js";
-
+import CheckGroup from "../utils/CheckGroup";
 import AlarmIcon from "./SystemComponents/AlarmIcon";
 
 //PressurePID.enable
@@ -14,6 +14,7 @@ export default function MainCard() {
   const socket = useSelector((state) => state.SocketIO.socket);
   const safetyNode = ["PressurePID", "Safety"];
   const watchdog = useSelector((state) => state.Tags.getIn(["WatchDog"]));;
+  const groupUser = useSelector((state) => state.Auth.group);
 
 
   const safety = useSelector(
@@ -47,6 +48,8 @@ export default function MainCard() {
             type="button"
             className="col btn btn-Light mx-1 w-20 "
             onClick={autoPressurePIDAction}
+                          disable={CheckGroup.checkGroup("guest",groupUser)===true?true:false}
+
           >
             {Tags.PressurePID.enable === 1
               ? "Disable Auto PID"
@@ -56,6 +59,8 @@ export default function MainCard() {
             type="button"
             className="col btn btn-Light mx-1 w-20 "
             onClick={autoPondFillPIDAction}
+            disable={CheckGroup.checkGroup("guest",groupUser)===true?true:false}
+
           >
             {Tags.EnablePondFill === 1
               ? "Disable Pond Control"
@@ -136,15 +141,16 @@ export default function MainCard() {
                     <div className="pump-vertical-Pipe"></div>
 
                     <PumpImage
-                      cPump={Tags.cPump[1]}
-                      width="55px"
+                      cPump={Tags.cPump[2]}
+                      width="45px"
                       className="m-auto"
+                      style={{marginLeft:"3px"}}
                     />
                   </div>
                   <div className="col px-1">
                     <div className="pump-vertical-Pipe"></div>
                     <PumpImage
-                      cPump={Tags.cPump[2]}
+                      cPump={Tags.cPump[1]}
                       width="55px"
                       className="mx-0"
                     />
@@ -195,8 +201,8 @@ export default function MainCard() {
                 style={{ marginLeft: "-22px" }}
               >
                 <div className="d-flex justify-content-end flex-column mt-5 h-100">
-                  <div className=" align-items-center" style={{marginLeft:"15px"}}>
-                    <PumpImage cPump={Tags.cPump[3]} width="50px"  />
+                  <div className=" align-items-center" >
+                    <PumpImage cPump={Tags.cPump[3]} width="62px"  />
                   </div>
                   <div className="mb-5">
                     <div className="d-flex align-items-center">
@@ -244,6 +250,7 @@ export default function MainCard() {
               className="btn btn-Light m-0 text-nowrap mx-0"
               style={{ height: "60px" }}
               onClick={disableAllPumpAction}
+              disable={CheckGroup.checkGroup("guest",groupUser)===true?true:false}
             >
               Disable <br />
               All Pumps

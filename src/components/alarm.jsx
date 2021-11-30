@@ -6,7 +6,7 @@ import DatePicker from "react-datepicker";
 import Modal from "./SystemComponents/Modal.jsx";
 import Button from "./SystemComponents/Button.jsx"
 import Commands from "../commands/index.js";
-
+import CheckGroup from "../utils/CheckGroup.js";
 import PropTypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
@@ -108,6 +108,7 @@ const columns = [
 export default function Alarm() {
     
 
+    const groupUser = useSelector((state) => state.Auth.group);
 
     const [alarmData, setAlarmData] = useState([]) 
     const [tabIndex, setTabIndex] = useState(0)
@@ -204,7 +205,7 @@ export default function Alarm() {
     }
 
     const onclickRow = (params,event) => {
-        if(tabIndex===0&&(params.row.status==="Active"||params.row.status==="Norm")){
+        if(tabIndex===0&&(params.row.status==="Active"||params.row.status==="Norm")&&CheckGroup.checkGroup("guest",groupUser)===false){
             setTagAct(params.row)
             inputSettings.current.value = ""
             setCommentTagAct("")
@@ -267,7 +268,7 @@ export default function Alarm() {
         
             </div>
             <div className={" mt-2 ms-2 align-items-center " + (tabIndex!==0?"collapsed":"")}>
-                <Button className="btn btn-principal " onClick={()=>{setIsOpenModalActAll(true)}} style={{width:"150px"}}> Act All</Button>
+                <Button className="btn btn-principal " onClick={()=>{setIsOpenModalActAll(true)}} style={{width:"150px"}}             disable={CheckGroup.checkGroup("guest",groupUser)}> Act All</Button>
             </div>
 
             <div style={{height:"-webkit-fill-available"}}>
