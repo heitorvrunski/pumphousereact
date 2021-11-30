@@ -12,7 +12,7 @@ const UsersConfig = (props) => {
   const handleOnClick = () => {
     if (auth === true) {
       dispatch(ApiNode.Logoff());
-      window.location.href = "/login"
+      window.location.href = "/#/login"
       //history.push("/login");
     } else {
       history.push("/login");
