@@ -9,8 +9,9 @@ export default function Layout(props) {
   const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
+  
   const [errorStyle, setErrorStyle] = useState("");
-
+ 
   const Auth = useSelector((state) => state.Auth);
 
   useEffect(() => {
