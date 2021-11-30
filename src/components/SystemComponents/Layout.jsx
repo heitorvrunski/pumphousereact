@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState,useRef } from "react";
 import NavMenu from "./NavMenu";
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateData, FirstReadDone } from "../../middleware/socketio";
 import Toast from "./Toast.jsx";
 import { ApiNode } from "../../middleware/thunk";
+import IdleTimer from "react-idle-timer";
+
 
 export default function Layout(props) {
+  const idleTimerRef = useRef(null)
   const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
@@ -66,24 +69,32 @@ export default function Layout(props) {
     setErrorMessage("");
   };
 
+  const onIdleHandle = () =>{
+    dispatch(ApiNode.Logoff());
+    window.location.href = "/#/login"
+  }
+
   return (
-    <div>
-      <NavMenu />
-      <main>
-        <div
-          className="container-fluid"
-          style={{ marginTop: "65px", height: "89vh" }}
-        >
-          {props.children}
-        </div>
-      </main>
-      
-      <Toast
-        messageError={errorMessage}
-        className={errorStyle + " text-white"}
-        onChangeErrorMessage={onChangeErrorMessage}
-      />
-    </div>
+    <IdleTimer ref={idleTimerRef} timeout={300000} onIdle={onIdleHandle}>
+      <div>
+        <NavMenu />
+        <main>
+          <div
+            className="container-fluid"
+            style={{ marginTop: "65px", height: "89vh" }}
+          >
+            {props.children}
+          </div>
+        </main>
+        
+        <Toast
+          messageError={errorMessage}
+          className={errorStyle + " text-white"}
+          onChangeErrorMessage={onChangeErrorMessage}
+        />
+      </div>
+    </IdleTimer>
+
   );
 }
 /*<Home socket = {socket}/>  */
