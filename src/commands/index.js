@@ -5,7 +5,7 @@ const Commands = {
     var i,
       sendMessages = [];
     for (i === 0; i < cPumps.length; i++) {
-      if (cPumps[i].Command <= 1) {
+      if (cPumps[i].Command = 0) {
         sendMessages.push([["cPumps", i, "Frequency"], 0]);
       }
       sendMessages.push([["cPumps", i, "MaxRamp"], cPumps[i].StartRamp]);
@@ -16,17 +16,17 @@ const Commands = {
   },
   DisablePressurePID : (socket) => {
     var sendMessages = [];
-    sendMessages.push([["cPump",0, "Command"], 1]);
-    sendMessages.push([["cPump",0, "Frequency"], 1]);
-    sendMessages.push([["cPump",0, "MaxRamp"], 1]);
+    sendMessages.push([["cPump",0, "Command"], 0]);
+    sendMessages.push([["cPump",0, "Frequency"], 0]);
+    sendMessages.push([["cPump",0, "MaxRamp"], 0]);
   
-    sendMessages.push([["cPump",1, "Command"], 1]);
-    sendMessages.push([["cPump",1, "Frequency"], 1]);
-    sendMessages.push([["cPump",1, "MaxRamp"], 1]);
+    sendMessages.push([["cPump",1, "Command"], 0]);
+    sendMessages.push([["cPump",1, "Frequency"], 0]);
+    sendMessages.push([["cPump",1, "MaxRamp"], 0]);
   
-    sendMessages.push([["cPump",2, "Command"], 1]);
-    sendMessages.push([["cPump",2, "Frequency"], 1]);
-    sendMessages.push([["cPump",2, "MaxRamp"], 1]);
+    sendMessages.push([["cPump",2, "Command"], 0]);
+    sendMessages.push([["cPump",2, "Frequency"], 0]);
+    sendMessages.push([["cPump",2, "MaxRamp"], 0]);
     
   
   
@@ -43,11 +43,11 @@ const Commands = {
     var sendMessages = [];
     sendMessages.push([["PressurePID", "enable"], 0]);
     sendMessages.push([["PressurePID", "Step"], 0]);
-    sendMessages.push([["cPump", 0, "Command"], 1]);
+    sendMessages.push([["cPump", 0, "Command"], 0]);
     sendMessages.push([["cPump", 0, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", 1, "Command"], 1]);
+    sendMessages.push([["cPump", 1, "Command"], 0]);
     sendMessages.push([["cPump", 1, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", 2, "Command"], 1]);
+    sendMessages.push([["cPump", 2, "Command"], 0]);
     sendMessages.push([["cPump", 2, "MaxRamp"], 0]);
     SendMessages(sendMessages, socket);
   },
@@ -55,7 +55,7 @@ const Commands = {
     var maxRamp = cPump.StartRamp;
     var sendMessages = [];
     sendMessages.push([["cPump", index, "MaxRamp"], maxRamp]);
-    sendMessages.push([["cPump", index, "Command"], 10]);
+    sendMessages.push([["cPump", index, "Command"], 1]);
     //sendMessages.push([['cPump',index,'status'],1])
     SendMessages(sendMessages, socket);
   },
@@ -63,7 +63,7 @@ const Commands = {
     var sendMessages = [];
   
     sendMessages.push([["cPump", index, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", index, "Command"], 1]);
+    sendMessages.push([["cPump", index, "Command"], 0]);
     //sendMessages.push([["cPump", index, "status"], 0]);
     SendMessages(sendMessages, socket);
   },
