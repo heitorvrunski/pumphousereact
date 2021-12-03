@@ -30,6 +30,7 @@ export default function SettingsConfig(props) {
     const [typeDelete,setTypeDelete] = useState(0);
     const [typeOptions,setTypeOptions] = useState(0);
     const [deleteConfigIndex,setDeleteConfigIndex] = useState(0);
+    const [nameSettings,setNameSettings] = useState("");
     const [deleteColumnIndex,setDeleteColumnIndex] = useState(0);
     const [reloadConfigs,setReloadConfigs] = useState(false);
     const [newConfig,setNewConfig] = useState({});
@@ -57,27 +58,41 @@ export default function SettingsConfig(props) {
         var settingsAux = [];
 
         const config = FindConfig(settingsNode, settingsNode[selectedSettings].name);
+        console.log(config.value.length)
 
         if(config.value.length >0){
             setColumns(Object.keys(config.value[0]))
-            config.value.forEach((element) => {
+            config.value.forEach((element,index) => {
                 var keys = Object.keys(element);
                 var object = {}
-                keys.map((tag,i) => {
-                    object[tag] = element[tag];
-                    object[tag+"New"] = element[tag];
-                    return null;
-
-                })
+                if(nameSettings!==settingsNode[selectedSettings].name||settings.length!==config.value.length){
+                    keys.map((tag,i) => {
+                        object[tag] = element[tag];
+                        object[tag+"New"] = element[tag];
+                        return null;
+    
+                    })
+                }else{
+                    keys.map((tag,i) => {
+                        object[tag] = element[tag];
+                        object[tag+"New"] = settings[index][tag+"New"];
+                        return null;
+    
+                    })
+                }
+                
                 settingsAux.push(object);
             });
+
             setTypeOptions(typeof settingsAux[0]?.browseName==="string"?0:1)
         }else{
             setColumns(["label"])
             setTypeOptions(1)
         }
+        setNameSettings(settingsNode[selectedSettings].name)
         setNewConfig({})
         setSettings(settingsAux)
+    // eslint-disable-next-line
     }, [settingsNode,selectedSettings,reloadConfigs]);
 
 
@@ -140,8 +155,18 @@ export default function SettingsConfig(props) {
         const properties = Object.keys(settings[idx]);
         for (let index = 0; index < properties.length; index++) {
             if(!properties[index].endsWith("New"))
-                if(settings[idx][properties[index]]!==settings[idx][properties[index]+"New"])
-                    return true
+                if(settings[idx][properties[index]]!==settings[idx][properties[index]+"New"]){
+                
+                    if(typeof settings[idx][properties[index]].push==="function"){
+                        for(let i = 0 ; i<settings[idx][properties[index]].length;i++){
+                            if(settings[idx][properties[index]][i]!==settings[idx][properties[index]+"New"][i])
+                            return true
+                        }
+                    }else{
+                        return true
+                    }
+
+                }
         }
         return false
     }
@@ -299,6 +324,7 @@ export default function SettingsConfig(props) {
     const handleChangeSettings = index => event =>{
         setSettings([]);
         setColumns([]);
+        setReloadConfigs(!reloadConfigs)
 
         setSelectedSettings(index)
     }

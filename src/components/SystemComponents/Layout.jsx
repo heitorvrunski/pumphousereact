@@ -81,7 +81,7 @@ export default function Layout(props) {
         <main>
           <div
             className="container-fluid"
-            style={{ marginTop: "65px", height: "89vh" }}
+            style={{ marginTop: "65px", height: "88vh" }}
           >
             {props.children}
           </div>

@@ -47,7 +47,7 @@ export default function PumpCard(props) {
         style={{ listStyleType: "none" }}
       >
         <li>
-          <h4 className="mx-0 w-100">{props.cPump.Label}</h4>
+          <h5 className="mx-0 w-100" style={{fontWeight:"bold"}}>{props.cPump.Label} </h5>
         </li>
         {props.cPump.IsPond===1?
           <li>

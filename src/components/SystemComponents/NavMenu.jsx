@@ -44,7 +44,7 @@ export default function NavMenu() {
         <div className="container-fluid">
           <NavbarBrand
             tag={Link}
-            className="navbar-brand text-primary pt-0 me-5"
+            className="navbar-brand text-primary pt-0"
             to="/"
           >
             Pump House Application

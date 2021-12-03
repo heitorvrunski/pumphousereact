@@ -5,7 +5,7 @@ const Commands = {
     var i,
       sendMessages = [];
     for (i === 0; i < cPumps.length; i++) {
-      if (cPumps[i].Command = 0) {
+      if (cPumps[i].Command === 0) {
         sendMessages.push([["cPumps", i, "Frequency"], 0]);
       }
       sendMessages.push([["cPumps", i, "MaxRamp"], cPumps[i].StartRamp]);
