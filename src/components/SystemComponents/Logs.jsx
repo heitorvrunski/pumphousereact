@@ -110,31 +110,31 @@ export default function Logger() {
                 if((element.split("\x1b[32m")).length !==1){
 
                     line.push({
-                        text:element.split("\x1b[32m")[0],
+                        text:element.split("\x1b[32m")[0]??"",
                         color:"white"
 
                     });
                     line.push({
-                        text:element.replace("\x1b","").replace("\x1B","").match(rx).toString().replace("[32m","").replace("[39m",""),
+                        text:element.replace("\x1b","").replace("\x1B","").match(rx)?.toString().replace("[32m","").replace("[39m","")??"",
                         color:"#61cf7f"
                     });
                     line.push({
-                        text:element.split("\x1b[39m")[1],
+                        text:element.split("\x1b[39m")[1]??"",
                         color:"white"
 
                     });
                 }else if((element.split("\x1b[31m")).length !==1){
                     line.push({
-                        text:element.split("\x1b[31m")[0],
+                        text:element.split("\x1b[31m")[0]??"",
                         color:"white"
 
                     });
                     line.push({
-                        text:element.replace("\x1b","").replace("\x1B","").match(rxError).toString().replace("[31m","").replace("[39m",""),
+                        text:element.replace("\x1b","").replace("\x1B","").match(rxError)?.toString().replace("[31m","").replace("[39m","")??"",
                         color:"red"
                     });
                     line.push({
-                        text:element.split("\x1b[39m")[1],
+                        text:element.split("\x1b[39m")[1]??"",
                         color:"white"
 
                     });
