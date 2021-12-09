@@ -97,6 +97,7 @@ export default function Logger() {
         var allText = [];
             for(var i = 0;i<logs.length;i++){
                 var element = logs[i];
+                if(element!==null){
                 // eslint-disable-next-line
                 var rx = new RegExp("([\[(])32m[\\d\\D]*([\[(])39m", "g");
                 // eslint-disable-next-line
@@ -152,6 +153,8 @@ export default function Logger() {
                     )
                 }
                 allText.push(line);
+                }
+
             }
         return allText;
 
