@@ -121,7 +121,7 @@ export default function MainCard() {
                       </span>
                       <span className="bg-white d-inline-flex border px-2 text-info ">
                         <h6>
-                          <b>{Tags.PressurePID.Current} PSIG</b>
+                          <b>{Tags.PressurePID.Current.toFixed(2)} PSIG</b>
                         </h6>
                       </span>
                     </div>
@@ -160,21 +160,7 @@ export default function MainCard() {
               <div className="position-absolute  mt-5 ld-div">
                 <div className="d-flex align-items-start flex-column bd-highlight mt-5 h-100">
                   <div className="mb-auto d-block  bd-highlight">
-                    <div className="d-flex">
-                      <div
-                        className={
-                          "rounded-circle ld-Circle " +
-                          (Tags.cLevel.LSH === 1
-                            ? "ld-Circle-Active"
-                            : "ld-Circle-Inactive")
-                        }
-                      ></div>
-                      <hr className="ld-hr" />
-                    </div>
-                    <span className="span-Primary d-inline-flex px-1">
-                      {" "}
-                      <h5 className="m-0">LSH</h5>
-                    </span>
+
                   </div>
 
                   <div className="d-block bd-highlight mb-0">
@@ -219,11 +205,11 @@ export default function MainCard() {
             >
               <div>
                 <span className="span-Primary d-inline-flex px-2 ">
-                  <h6>Flow Trans.</h6>
+                  <h6>Flow</h6>
                 </span>
                 <span className="bg-white d-inline-flex border px-2 text-info ">
                   <h6>
-                    <b>0</b>{" "}
+                    <b>{Tags.cFlux.Value.toFixed(2)}</b>{" "}
                   </h6>
                 </span>
               </div>{" "}
@@ -233,7 +219,7 @@ export default function MainCard() {
                 </span>
                 <span className="bg-white d-inline-flex border px-2 text-info ">
                   <h6>
-                    <b>{Tags.cLevel.Percentage} %</b>
+                    <b>{Tags.cLevel.Percentage.toFixed(2)} %</b>
                   </h6>
                 </span>
               </div>
