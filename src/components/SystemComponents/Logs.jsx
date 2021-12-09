@@ -73,16 +73,12 @@ export default function Logger() {
     const donloadLog = () => {
         var logDoc = '';
         for(const line of textConsole){
-        console.log(line)
-
             var lineaux = ''
             for (const word of line){
                 lineaux += word.text;
             }
             logDoc +=lineaux+"\n"
         }
-
-        console.log(logDoc)
         const element = document.createElement("a");
         const file = new Blob([logDoc], {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
