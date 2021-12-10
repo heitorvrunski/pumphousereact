@@ -117,7 +117,7 @@ export default function MainCard() {
                       style={{ marginTop: "-35px", marginRight: "-10px" }}
                     >
                       <span className="span-Primary d-inline-flex px-2">
-                        <h6>Pressure Trans.</h6>
+                        <h6>Pressure</h6>
                       </span>
                       <span className="bg-white d-inline-flex border px-2 text-info ">
                         <h6>
