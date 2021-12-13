@@ -1,7 +1,7 @@
 import { SendMessage } from "../middleware/socketio";
 
 const Commands = {
-  EnablePressurePID : (cPumps, socket) => {
+  EnablePressurePID : (cPumps,setOrderPump, socket) => {
     var i,
       sendMessages = [];
     for (i === 0; i < cPumps.length; i++) {
@@ -12,6 +12,8 @@ const Commands = {
     }
     //push
     sendMessages.push([["PressurePID", "enable"], 1]);
+    setOrderPump = setOrderPump===1?0:1;
+    sendMessages.push([["SetOrderPump"], setOrderPump]);
     SendMessages(sendMessages, socket);
   },
   DisablePressurePID : (socket) => {

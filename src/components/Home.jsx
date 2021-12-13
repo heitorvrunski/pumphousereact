@@ -13,7 +13,7 @@ export default function Home() {
     <>
       {/* <div className="row justify-content-start">
         <TestCard/>
-      </div> */}
+      </div>  */}
       <div className="row justify-content-center">
         <MainCard />
         {cPump.map((pump, index) => (

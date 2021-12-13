@@ -13,7 +13,9 @@ export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const socket = useSelector((state) => state.SocketIO.socket);
   const safetyNode = ["PressurePID", "Safety"];
-  const watchdog = useSelector((state) => state.Tags.getIn(["WatchDog"]));;
+  const watchdog = useSelector((state) => state.Tags.getIn(["WatchDog"]));
+  const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
+
   const groupUser = useSelector((state) => state.Auth.group);
 
 
@@ -25,7 +27,7 @@ export default function MainCard() {
 
   function autoPressurePIDAction() {
     if (Tags.PressurePID.enable !== 1) {
-      Commands.EnablePressurePID(Tags.cPump, socket);
+      Commands.EnablePressurePID(Tags.cPump,setOrderPump, socket);
     } else {
       Commands.DisablePressurePID(socket);
     }
