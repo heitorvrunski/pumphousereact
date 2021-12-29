@@ -14,8 +14,6 @@ export default function Layout(props) {
   const [errorMessage, setErrorMessage] = useState("");
   
   const [errorStyle, setErrorStyle] = useState("");
-  console.log(`Node Port -> ${process.env.REACT_APP_NODE_PORT}`)
-  console.log(`Node Port with test -> ${process.env.REACT_APP_NODE_PORT??3000}`)
 
   const Auth = useSelector((state) => state.Auth);
 
