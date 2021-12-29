@@ -35,7 +35,7 @@ export default function Login() {
       pw: state.password,
     };
     if (login.user.trim() && login.pw.trim()) {
-      var serverURL = `http://${window.location.hostname}:3000`;
+      var serverURL = `http://${window.location.hostname}:${process.env.NODE_PORT??3000}`;
 
       axios
         .post(

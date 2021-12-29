@@ -1,5 +1,5 @@
 import io from "socket.io-client";
-const socket = io.connect(`http://${window.location.hostname}:3000`, {
+const socket = io.connect(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}`, {
   withCredentials: true,
 });
 const INITIAL_STATE = {
