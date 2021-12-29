@@ -11,7 +11,7 @@ colorList[4] = "#008B8B";
 colorList[5] = "#1D7CF2";
 
 export const CreateOptionsHighCharts = async (tags, optionsChart) => {
-  const serverURL = `http://${window.location.hostname}:${process.env.NODE_ENV??3000}`;
+  const serverURL = `http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}`;
   firstDate = 9999999999999;
   lastDate = 0;
   var seriesOptions = [];

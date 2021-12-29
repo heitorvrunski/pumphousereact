@@ -1,5 +1,5 @@
 import axios from "axios";
-const serverURL = `http://${window.location.hostname}:${process.env.NODE_ENV??3000}`;
+const serverURL = `http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}`;
 
 export default async function isAuthenticated() {
   var result;
