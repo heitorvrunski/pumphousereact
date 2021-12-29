@@ -3,7 +3,7 @@ import Actions from "../store/actions.jsx";
 const ApiNode = {
   GetSysConfig: () => (dispatch) => {
     axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/sysConfig`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/sysConfig`, {
         withCredentials: true,
       })
       .then((resp) => resp.data)
@@ -12,7 +12,7 @@ const ApiNode = {
   PutSysConfig: (sysConfig) => (dispatch) => {
     axios
       .put(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/sysConfig/${sysConfig.param}`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/sysConfig/${sysConfig.param}`,
         {
           param: sysConfig.param,
           value: sysConfig.value
@@ -41,7 +41,7 @@ const ApiNode = {
   PostSysConfig: (sysConfig) => (dispatch) => {
     axios
       .post(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/sysConfig`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/sysConfig`,
         {
           param: sysConfig.param,
           value: sysConfig.value
@@ -70,7 +70,7 @@ const ApiNode = {
   DeleteSysConfig: (sysConfig) => (dispatch) => {
     axios
       .post(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/sysConfig/${sysConfig.param}`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/sysConfig/${sysConfig.param}`,
         {
         },
         {
@@ -96,7 +96,7 @@ const ApiNode = {
   },
   RefreshToken: () => (dispatch) => {
     axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/auth/refresh`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/auth/refresh`, {
         withCredentials: true,
       })
       .then((resp) => resp.data)
@@ -104,7 +104,7 @@ const ApiNode = {
   },
  Logoff: () => (dispatch) => {
     axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/auth/logoff`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/auth/logoff`, {
         withCredentials: true,
       })
       .then((resp) => resp.data)
@@ -112,7 +112,7 @@ const ApiNode = {
   },
   GetUsers: () => (dispatch) => {
     axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/Users`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/Users`, {
         withCredentials: true,
       })
       .then((resp) => resp.data)
@@ -122,7 +122,7 @@ const ApiNode = {
     var result;
 
     await axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/logDocker/${tail}/${module}`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/logDocker/${tail}/${module}`, {
         withCredentials: true,
       })
       .then((resp) => {result = resp.data});
@@ -132,7 +132,7 @@ const ApiNode = {
     var result;
 
     await axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/log/${tail}`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/log/${tail}`, {
         withCredentials: true,
       })
       .then((resp) => {result = resp.data});
@@ -142,7 +142,7 @@ const ApiNode = {
     var result;
 
     await axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/cdocker`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/cdocker`, {
         withCredentials: true,
       })
       .then((resp) => {
@@ -160,7 +160,7 @@ const ApiNode = {
   
       await axios
         .post(
-          `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/logDocker/range`,
+          `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/logDocker/range`,
           {
             type: type,
             module: module,
@@ -181,7 +181,7 @@ const ApiNode = {
   CreateUser: (newUser) => (dispatch) => {
     axios
       .post(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/Users`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/Users`,
         {
           user: newUser.user,
           password: newUser.password,
@@ -212,7 +212,7 @@ const ApiNode = {
   EditUser: (user) => (dispatch) => {
     axios
       .put(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/Users/${user.user}`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/Users/${user.user}`,
         {
           user: user.user,
           block: user.block,
@@ -242,7 +242,7 @@ const ApiNode = {
   DeleteUser: (user) => (dispatch) => {
     axios
       .post(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/Users/${user.user}`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/Users/${user.user}`,
         {},
         {
           withCredentials: true,
@@ -269,7 +269,7 @@ const ApiNode = {
     var result;
     await axios
       .post(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/alarm/range`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/alarm/range`,
         {
           startDate: startDate,
           endDate: endDate,
@@ -291,9 +291,8 @@ const ApiNode = {
   },
   GetAlarmOnline:  async function  (){
     var result;
-
     await axios
-      .get(`http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/alarm/online`, {
+      .get(`http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/alarm/online`, {
         withCredentials: true,
       })
       .then((resp) => {result = resp.data});
@@ -302,7 +301,7 @@ const ApiNode = {
   RestartNode: () => {
     axios
       .get(
-        `http://${window.location.hostname}:${process.env.NODE_PORT??3000}/node/api/Docker/rbackend`,
+        `http://${window.location.hostname}:${process.env.NODE_ENV??3000}/node/api/Docker/rbackend`,
         {
           withCredentials: true,
         }
