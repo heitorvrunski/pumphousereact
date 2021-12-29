@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import pressureImage from "../Resource/Pressure_Transmitter.png";
 import PumpImage from "./PumpImage";
 import wave from "../Resource/wave.svg";
@@ -11,7 +11,9 @@ import AlarmIcon from "./SystemComponents/AlarmIcon";
 //PressurePID.enable
 export default function MainCard() {
   const Tags = useSelector((state) => state.Tags.toJS());
-  const socket = useSelector((state) => state.SocketIO.socket);
+  const socketIO = useSelector((state) => state.SocketIO);
+  const [socket,setSocket] = useState()
+  socketIO.then(x=>{setSocket(x.socket)})
   const safetyNode = ["PressurePID", "Safety"];
   const watchdog = useSelector((state) => state.Tags.getIn(["WatchDog"]));
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));

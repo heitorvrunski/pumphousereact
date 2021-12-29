@@ -11,8 +11,10 @@ export default function PumpCard(props) {
   const groupUser = useSelector((state) => state.Auth.group);
 
   const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
-  const socket = useSelector((state) => state.SocketIO.socket);
-  const handleChange = (event) => {
+  const socketIO = useSelector((state) => state.SocketIO);
+  const [socket,setSocket] = useState()
+  socketIO.then(x=>{setSocket(x.socket)})
+    const handleChange = (event) => {
     const newFrenqHandle = event.target.validity.valid
       ? event.target.value
       : NewFreq;

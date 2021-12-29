@@ -49,7 +49,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
           "Error reading Tags. You will be redirected to the main page"
         );
         setTimeout(() => {
-          window.location.href = "/";
+          //window.location.href = "/";
         }, 4000);
       }
     }
@@ -57,7 +57,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
 
   useEffect(() => {
     if (state === "loggedin" && loadingRender === true && isJoined === false) {
-      dispatch(ActionSocketConnect());
+      dispatch(ActionSocketConnect(dispatch));
       dispatch(ApiNode.GetSysConfig());
       setTimeout(() => {
         setCheckIsLoadTags(true);

@@ -1,4 +1,4 @@
-import React from "react";
+import React,{useState} from "react";
 import { useSelector } from "react-redux";
 import { SendMessage } from "../middleware/socketio.js";
 import Button from "./SystemComponents/Button.jsx";
@@ -6,8 +6,9 @@ import Button from "./SystemComponents/Button.jsx";
 const TestCard = () => {
   const itemP = ["PressurePID", "Current"];
   const itemL = ["cLevel", "Percentage"];
-  const socket = useSelector((state) => state.SocketIO.socket);
-
+  const socketIO = useSelector((state) => state.SocketIO);
+  const [socket,setSocket] = useState()
+  socketIO.then(x=>{setSocket(x.socket)})
   const pressure = useSelector((state) => state.Tags.getIn(itemP));
   const level = useSelector((state) => state.Tags.getIn(itemL));
 

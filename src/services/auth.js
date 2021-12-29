@@ -4,7 +4,7 @@ const serverURL = `http://${window.location.hostname}:3000`;
 export default async function isAuthenticated() {
   var result;
   await axios
-    .get(`${serverURL}/node/api/users/checkAuth`, { withCredentials: true })
+    .get(`${serverURL}/node/api/users/checkAuth`, {  })
     .then((response) => {
       if (response.status === 200) {
         result = true;

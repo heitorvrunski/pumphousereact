@@ -18,38 +18,58 @@ export default function Layout(props) {
   const Auth = useSelector((state) => state.Auth);
 
   useEffect(() => {
-    socket.on("writeError", (data) => {
-      const browseName = data.browseName;
-      const tagName =
-        "to write tag: " +
-        (browseName.length === 3
-          ? `${browseName[0]}[${browseName[1]}].${browseName[2]}`
-          : browseName.length === 1
-          ? `${browseName[0]}`
-          : `${browseName[0]}.${browseName[1]}`);
-      //bg-warning
-      setErrorStyle("bg-danger");
+    console.log(socket)
+    try
+    {
+      socket.on("writeError", (data) => {
+        const browseName = data.browseName;
+        const tagName =
+          "to write tag: " +
+          (browseName.length === 3
+            ? `${browseName[0]}[${browseName[1]}].${browseName[2]}`
+            : browseName.length === 1
+            ? `${browseName[0]}`
+            : `${browseName[0]}.${browseName[1]}`);
+        //bg-warning
+        setErrorStyle("bg-danger");
+  
+        setErrorMessage(tagName);
+      });
+    }catch(exx)
+    {
 
-      setErrorMessage(tagName);
-    });
+    }
+    
   }, [socket]);
 
   useEffect(() => {
+    try
+    {
     socket.on("invalidAccess", (data) => {
       const messageError = "No has Access to Write Tags";
 
       setErrorStyle("bg-warning");
       setErrorMessage(messageError);
     });
+  }catch(exx)
+  {
+
+  }
   }, [socket]);
 
   useEffect(() => {
+    try
+    {
     socket.on("loadData", (data) => {
       dispatch(UpdateData(data));
     });
     socket.on("firstReadDone", () => {
       dispatch(FirstReadDone());
     });
+  }catch(exx)
+  {
+
+  }
   }, [dispatch, socket]);
 
   useEffect(() => {

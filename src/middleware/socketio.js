@@ -18,11 +18,12 @@ export const FirstReadDone = () => {
 export const SendMessage = (item, value, socket) => {
   const data = {
     browseName: item,
-    value: value,
+    value: value.toString(),
     dataType: DataType(value),
   };
   console.log("Sent Data ->", data);
-  socket.emit("write", data);
+  console.log(socket)
+  socket.send("Write", data);
 };
 
 function DataType(value) {
@@ -38,6 +39,6 @@ function DataType(value) {
   }
 }
 
-export const ActionSocketConnect = () => {
-  return { type: "Connect_Socket" };
+export const ActionSocketConnect = (dispatch) => {
+  return { type: "Connect_Socket",dispatch };
 };
