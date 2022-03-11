@@ -1,5 +1,5 @@
 export const UpdateData = (data) => {
-  console.log("Received Data <-", data);
+  //console.log("Received Data <-", data);
 
   var tag = data.browseName;
   var value = data.value;
@@ -8,6 +8,19 @@ export const UpdateData = (data) => {
     value: value,
   };
   return { type: "UpdateData", dataUpdate };
+};
+
+export const SendLogs = (data,logType) => {
+  var type = 'Received Data <-'
+  var tagstring = '';
+  data.browseName.forEach(element => {
+    tagstring += element+"."
+  });
+  tagstring=  tagstring.substring(0,tagstring.length-1);
+  var message = data.timestamp + ' ' + type + ' TAG - ' +tagstring+' | value: ' + data.value;
+
+  
+  return { type: "Add_OPCLogs", message };
 };
 
 export const FirstReadDone = () => {

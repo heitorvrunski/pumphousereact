@@ -58,7 +58,6 @@ export default function SettingsConfig(props) {
         var settingsAux = [];
 
         const config = FindConfig(settingsNode, settingsNode[selectedSettings].name);
-        console.log(config.value.length)
 
         if(config.value.length >0){
             setColumns(Object.keys(config.value[0]))
@@ -348,7 +347,6 @@ export default function SettingsConfig(props) {
         });
         const value = JSON.stringify(array);
         dispatch(ApiNode.PutSysConfig({param:param,value}))
-        console.log(newColumn)
         if(newColumn==="browseName")
             setTypeOptions(typeNewColumn)
         setIsOpenNewColumn(false)

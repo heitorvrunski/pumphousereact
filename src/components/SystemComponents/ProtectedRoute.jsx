@@ -21,7 +21,8 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   const socket = useSelector((state) => state.SocketIO.socket);
 
   useEffect(() => {
-    (async function () {
+
+    async function fetchData() {
       try {
         var isUserLogged = await isAuthenticated();
         setState(isUserLogged === true ? "loggedin" : "redirect");
@@ -31,7 +32,8 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
       if (state === "redirect") {
         setCanOpen("redirect");
       }
-    })();
+    };
+    return fetchData();
   }, [state]);
 
   useEffect(() => {

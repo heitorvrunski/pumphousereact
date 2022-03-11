@@ -5,6 +5,8 @@ import Trend from "./Trend";
 import Auth from "./Auth";
 import SocketIO from "./socketIO";
 import Users from "./Users";
+import OPCLogs from "./OPCLogs";
+
 
 export default combineReducers({
   Tags,
@@ -13,4 +15,5 @@ export default combineReducers({
   Auth,
   SocketIO,
   Users,
+  OPCLogs,
 });

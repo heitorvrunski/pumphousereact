@@ -7,12 +7,13 @@ import Toast from "./Toast";
 import Actions from "../../store/actions";
 import "./Login.scss";
 import Button from "./Button";
-
 export default function Login() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
     login: "",
     password: "",
+    rememberMe: false,
+
   });
 
   const [error, setError] = useState({
@@ -21,7 +22,7 @@ export default function Login() {
 
   const handleInputChange = (event) => {
     const target = event.target;
-    const value = target.value;
+    const value = target.type==='checkbox'?target.checked: target.value;
     const name = target.name;
     setState((prevState) => ({
       ...prevState,
@@ -33,6 +34,7 @@ export default function Login() {
     const login = {
       user: state.login,
       pw: state.password,
+      rememberMe:state.rememberMe
     };
     if (login.user.trim() && login.pw.trim()) {
       var serverURL = `http://${window.location.hostname}:3000`;
@@ -40,7 +42,7 @@ export default function Login() {
       axios
         .post(
           `${serverURL}/node/api/auth/login`,
-          JSON.stringify({ user: login.user, password: login.pw }),
+          JSON.stringify({ user: login.user, password: login.pw,rememberMe:login.rememberMe }),
           {
             withCredentials: true,
             headers: {
@@ -107,11 +109,18 @@ export default function Login() {
           required=""
           onChange={handleInputChange}
         ></input>
+        <div className="d-flex">
+        <input
+            className={" form-check-input m-1"}
+            type="checkbox"
+            name="rememberMe"
+            onChange={handleInputChange}
+          ></input>
+          <h6 className="mt-1">Remember Me</h6>
+        </div>
+
+
         <div className="d-flex justify-content-start">
-        {/* <button className="btn btn-lg btn-principal btn-block my-1" type="submit">
-          Sign in
-        </button>
-         */}
          <Button className="btn btn-lg btn-Light btn-block my-1" type="submit"> Sign in</Button>
         </div>
         

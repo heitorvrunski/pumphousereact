@@ -1,4 +1,6 @@
 import { useEffect, useState,useRef } from "react";
+import { useSelector } from "react-redux";
+
 import { ApiNode } from "../../middleware/thunk";
 import CheckBox from "./CheckBox.jsx";
 import DatePicker from "react-datepicker";
@@ -21,13 +23,21 @@ export default function Logger() {
     const [typeRange,settypeRange] = useState(0)
     const [reload,setReload] = useState(false)
     const [insideDocker,setInsideDocker] = useState(false)
-    
+    const OPCLogs = useSelector((state) => state.OPCLogs.Logs);
 
 
     useEffect( ()=>{
         fetchData();
         async function fetchData() {
-            if(tabIndex!==0){
+            if(tabIndex===0){
+                const logs = await ApiNode.GetLogsFile(tail);
+                if(typeof logs.logs !== "undefined"){
+                    setTextConsole(fillTextConsole(logs.logs));
+                }
+            }else if(tabIndex===4){
+                setTextConsole(fillTextConsole(OPCLogs.slice(Math.max(OPCLogs.length - tail, 0))));
+
+            }else{
                 if(typeRange===0){
                     const logs = await ApiNode.GetLogs(tail,tabIndex);
                     if(typeof logs.logs !== "undefined"){
@@ -39,11 +49,6 @@ export default function Logger() {
                     if(typeof logs.logs !== "undefined"){
                         setTextConsole(fillTextConsole(logs.logs));
                     }
-                }
-            }else{
-                const logs = await ApiNode.GetLogsFile(tail);
-                if(typeof logs.logs !== "undefined"){
-                    setTextConsole(fillTextConsole(logs.logs));
                 }
             }
             
@@ -99,7 +104,7 @@ export default function Logger() {
                 // eslint-disable-next-line
                 var rxError = new RegExp("([\[(])31m[\\d\\D]*([\[(])39m", "g");
                 var line = [];
-                if(tabIndex!==0){
+                if(tabIndex===1||tabIndex===2||tabIndex===3){
                     line.push({
                         text:element.substring(0,19)+" ",
                         color:"#828489"
@@ -202,7 +207,7 @@ export default function Logger() {
                     eventChange={changeMode}
                     />
             </div>
-            <div className={"col-auto " + (tabIndex===0?"collapsed":"")}>
+            <div className={"col-auto " + (tabIndex===0||tabIndex===4?"collapsed":"")}>
                 <CheckBox
                     label="By Date"
                     componentState={1}
@@ -281,6 +286,9 @@ export default function Logger() {
                 <button className={"text-nowrap nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>LogFile</button>
             </li>
             <li className="nav-item float-start">
+                <button className={"text-nowrap nav-link " + (tabIndex===4?"active":"")} onClick={handleTabOnChange(4)}>OPC Logs</button>
+            </li>
+            <li className="nav-item float-start">
                 <button className={"text-nowrap nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Front End</button>
             </li>
             <li className="nav-item float-start">
@@ -304,7 +312,7 @@ export default function Logger() {
                     {
                         textConsole.length === 0 ?"":
                         textConsole.map((line,index)=>{
-                            return  (<p style={{margin:0,whiteSpace:"nowrap"}}> <span style={{color:"#445386",width:"38px",display:"inline-block"}}> {index+1} </span> {line.map(word=>(<span style={{color:word.color}}>{word.text}</span>))}</p>) 
+                            return  (<p style={{margin:0,whiteSpace:"nowrap"}} key={'row'+index}> <span style={{color:"#445386",width:"38px",display:"inline-block"}}> {index+1} </span> {line.map((word,idx)=>(<span key={'word'+idx} style={{color:word.color}}>{word.text}</span>))}</p>) 
                         })
                     }
                         <AlwaysScrollToBottom />

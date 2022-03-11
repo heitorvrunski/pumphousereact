@@ -55,9 +55,7 @@ export default function Config() {
     const target = event.target;
     const idx = parseInt(target.id);
     const value = target.value;
-    console.log(target.id)
 
-    console.log(value)
 
     const state = update(settings, {
       [idx]: {
