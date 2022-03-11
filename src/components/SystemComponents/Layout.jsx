@@ -58,7 +58,6 @@ export default function Layout(props) {
     if (Auth.isAuth === true) {
       const dateNow = new Date();
       const dateExpires = new Date(Auth.expires);
-      console.log(dateExpires)
       const timeout = dateExpires.getTime() - dateNow.getTime() - 60 * 1000;
 
       setTimeout(() => {
