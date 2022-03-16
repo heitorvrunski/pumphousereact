@@ -65,10 +65,10 @@ export default function PumpCard(props) {
           <h4
             className={
               "mx-0 my-1 w-100 " +
-              (props.cPump.Status === 1 ? "text-success" : "text-danger")
+              (props.cPump.StatusOPC === 1 ? "text-success" : "text-danger")
             }
           >
-            {props.cPump.Status === 1 ? "RUNNING" : "STOP"}
+            {props.cPump.StatusOPC === 1 ? "RUNNING" : "STOP"}
           </h4>
         </li>
         <li>
