@@ -137,6 +137,10 @@ const UsersConfig = () => {
     history.push("/system/TG9nc1N5c3RlbQ==");
   };
 
+  const seeWatch = (event) => {
+    history.push("/system/watch");
+  };
+
   const handleOnCloseModal = (modal) => event =>{
     if(modal===0)
       setModalUser(false)
@@ -161,9 +165,18 @@ const UsersConfig = () => {
 
 
         <div className="row m-0" >
-          <h5>Logs</h5>
-          <Button className="btn btn-principal m-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
+          <div className="col-6">
+            <h5>Logs</h5>
+            <Button className="btn btn-principal my-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
+          </div>
+          <div className="col-6" >
+            <h5>Watch Window</h5>
+            <Button className="btn btn-principal my-2 mt-0" style={{width:"auto"}} onClick={seeWatch}>Go to Watch windows</Button>
+          </div>
         </div>
+
+        
+
         <div className="row m-0" >
           <h5>Restart Back-End in Docker</h5>
           <Button className="btn btn-danger m-2 mt-0" style={{width:"auto"}} onClick={()=>{setModalNode(true)}}>Restart</Button>

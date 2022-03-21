@@ -5,6 +5,7 @@ import Home from "../Home";
 import Trend from "../Trend";
 import Logs from "./Logs";
 import Alarm from "../alarm";
+import WindowWatch from "./WindowWatch";
 
 
 
@@ -41,6 +42,13 @@ const Routes = ({ socket }) => (
       path="/Settings"
       socket={socket}
       component={Settings}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+    exact
+      path="/system/watch"
+      socket={socket}
+      component={WindowWatch}
       redirectto="/login"
     />
     <ProtectedRoute

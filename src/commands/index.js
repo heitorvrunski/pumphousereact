@@ -1,6 +1,9 @@
 import { SendMessage } from "../middleware/socketio";
 
 const Commands = {
+  SendGenericMessage: (browseName, value, socket)=>{
+    SendMessage(browseName, value, socket);
+  },
   EnablePressurePID : (cPumps,setOrderPump, socket) => {
     var i,
       sendMessages = [];
