@@ -32,9 +32,19 @@ export default function WindowWatch(props) {
                 auxSelected.push({browseName:null,value:'',setValue:'',selectedTag:''})
             setSelectedRows(auxSelected)
         }else{
-            for(var k = 0 ; k<numLines;k++)
+            var auxSelected2 = []
+
+            for(var k = 0 ; k<numLines;k++){
                 if(selectedRows[k].browseName!==null)
-                    setSelectedRows(update(selectedRows,{[k]:{$set:{browseName:selectedRows[k].browseName,value:tags.getIn(selectedRows[k].browseName),setValue:selectedRows[k].setValue}}}))
+                    auxSelected2.push({browseName:selectedRows[k].browseName,value:tags.getIn(selectedRows[k].browseName),setValue:selectedRows[k].setValue,selectedTag:selectedRows[k].selectedTag})
+                else
+                    auxSelected2.push({browseName:null,value:'',setValue:'',selectedTag:''})
+
+            }
+            setSelectedRows(auxSelected2)
+
+                
+                    //setSelectedRows(update(selectedRows,{[k]:{$set:{browseName:selectedRows[k].browseName,value:tags.getIn(selectedRows[k].browseName),setValue:selectedRows[k].setValue}}}))
             
 
         }
