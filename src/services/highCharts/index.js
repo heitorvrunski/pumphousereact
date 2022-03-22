@@ -39,17 +39,23 @@ export const CreateOptionsHighCharts = async (tags, optionsChart) => {
         const minutesStart = parseInt(optionsChart.startTime.split(':')[1]);
         const hoursEnd = parseInt(optionsChart.endTime.split(':')[0]);
         const minutesEnd = parseInt(optionsChart.endTime.split(':')[1]);
-        const dateStart = new Date(optionsChart.startPeriod);
-        const dateEnd = new Date(optionsChart.endPeriod);
-        console.log(new Date(dateStart.getFullYear(),dateStart.getMonth(),dateStart.getDate(),hoursStart,minutesStart,0).toJSON())
+        const dataStart2Send = new Date(optionsChart.startPeriod);
+        dataStart2Send.setTime(dataStart2Send.getTime() + (hoursStart*60*60*1000))
+        dataStart2Send.setTime(dataStart2Send.getTime() + (minutesStart*60*1000))
+
+        const dataEnd2Send = new Date(optionsChart.endPeriod);
+        dataEnd2Send.setTime(dataEnd2Send.getTime() + (hoursEnd*60*60*1000))
+        dataEnd2Send.setTime(dataEnd2Send.getTime() + (minutesEnd*60*1000))
+
+
         
 
         await axios
           .post(
             `${serverURL}/node/api/trend/singleTag/range`,
             {
-              startDate: new Date(dateStart.getFullYear(),dateStart.getMonth(),dateStart.getDate(),hoursStart,minutesStart,0).toJSON(),
-              endDate: new Date(dateEnd.getFullYear(),dateEnd.getMonth(),dateEnd.getDate(),hoursEnd,minutesEnd,0).toJSON(),
+              startDate: dataStart2Send.toJSON(),
+              endDate: dataEnd2Send.toJSON(),
               tag: element.browseName,
             },
             {

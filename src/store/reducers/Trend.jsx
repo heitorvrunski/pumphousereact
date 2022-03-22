@@ -7,6 +7,7 @@ export default function Trend(state = INITIAL_STATE, action) {
     case "Config_Trends":
       const dateNotFormated = new Date(Date.now());
       const timeNow = new Date(dateNotFormated.toISOString().split("T")[0]);
+
       state = {
         TagList: action.value,
         options: {
