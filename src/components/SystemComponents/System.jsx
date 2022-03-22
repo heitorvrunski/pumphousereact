@@ -137,9 +137,7 @@ const UsersConfig = () => {
     history.push("/system/TG9nc1N5c3RlbQ==");
   };
 
-  const seeWatch = (event) => {
-    history.push("/system/watch");
-  };
+
 
   const handleOnCloseModal = (modal) => event =>{
     if(modal===0)
