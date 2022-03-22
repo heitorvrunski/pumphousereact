@@ -161,7 +161,19 @@ export default function NavMenu() {
                   Settings
                 </NavLink>
               </NavItem>
-
+              <NavItem>
+                <NavLink
+                  className={
+                    "text-primary text-Link me-3 my-2 is-not-active " +
+                    (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
+                  }
+                  activeClassName="active"
+                  to="/watch"
+                  onClick={closeExpander}
+                >
+                  Watch
+                </NavLink>
+              </NavItem>
               <NavItem>
                 <NavLink
                   className={

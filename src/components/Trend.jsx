@@ -25,11 +25,14 @@ export default function Trend() {
   const configs = useSelector((state) => state.SysConfig);
   const trends = useSelector((state) => state.Trend);
   const mode = useSelector((state) => state.Trend?.options?.mode) ?? [];
+  const byTime = useSelector((state) => state.Trend?.options?.byTime) ?? false;
+
   const duration = useSelector((state) => state.Trend?.options?.duration) ?? [];
   const startPeriod =
     useSelector((state) => state.Trend?.options?.startPeriod) ?? 0;
   const endPeriod =
     useSelector((state) => state.Trend?.options?.endPeriod) ?? 0;
+
   const dateStart =
     startPeriod !== 0 ? new Date(startPeriod).toISOString().substr(0, 10) : "";
   const dateEnd =
@@ -101,6 +104,12 @@ export default function Trend() {
   const clearAction = () => {
     dispatch(Actions.ClearAllTrends());
   };
+  const handleByTimeChange = (e) =>{
+    var value = e.target.checked;
+    dispatch(Actions.SetByTime(value));
+
+
+  }
 
   const changeReloadAction = () => {
     setReload(!reload);
@@ -206,22 +215,43 @@ export default function Trend() {
                       </div>
                       <div
                         className={
-                          "ms-2 d-flex row  justify-content-start " +
+                          "ms-2 d-flex row  justify-content-start" +
                           (mode === 1 ? "" : " collapsed")
                         }
+
                       >
+                        <div style={{"display":"contents"}}>
                         <InputDate
-                          className="col-md-auto mb-1"
+                          className="mb-1 me-2"
                           input={dateStart}
+
                           name="startPeriod"
                           label="Start: "
+                          byTime={byTime}
                         ></InputDate>
                         <InputDate
-                          className="col-md-auto"
+                          className=""
                           input={dateEnd}
+
                           name="endPeriod"
                           label="End: "
+                          byTime={byTime}
+
                         ></InputDate>
+                        </div>
+                        <div style={{"display":"block"}} className="m-0 p-0">
+                          <div className="d-flex m-0 p-0">
+                          <input
+                              className={" form-check-input m-1"}
+                              type="checkbox"
+                              onChange={handleByTimeChange}
+                            ></input>
+                            <h6 className="mt-1">By date and time</h6>
+                          </div>
+
+                          
+                           
+                        </div>
                       </div>
                     </div>
                   </div>

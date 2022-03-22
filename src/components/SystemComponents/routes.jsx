@@ -46,7 +46,7 @@ const Routes = ({ socket }) => (
     />
     <ProtectedRoute
     exact
-      path="/system/watch"
+      path="/watch"
       socket={socket}
       component={WindowWatch}
       redirectto="/login"

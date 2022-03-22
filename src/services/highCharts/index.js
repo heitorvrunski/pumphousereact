@@ -35,13 +35,21 @@ export const CreateOptionsHighCharts = async (tags, optionsChart) => {
       for (var idx2 = 0; idx2 < tags.length; idx2++) {
         const element = tags[idx2];
         const id = idx2;
+        const hoursStart = parseInt(optionsChart.startTime.split(':')[0]);
+        const minutesStart = parseInt(optionsChart.startTime.split(':')[1]);
+        const hoursEnd = parseInt(optionsChart.endTime.split(':')[0]);
+        const minutesEnd = parseInt(optionsChart.endTime.split(':')[1]);
+        const dateStart = new Date(optionsChart.startPeriod);
+        const dateEnd = new Date(optionsChart.endPeriod);
+        console.log(new Date(dateStart.getFullYear(),dateStart.getMonth(),dateStart.getDate(),hoursStart,minutesStart,0).toJSON())
+        
 
         await axios
           .post(
             `${serverURL}/node/api/trend/singleTag/range`,
             {
-              startDate: new Date(optionsChart.startPeriod).toJSON(),
-              endDate: new Date(optionsChart.endPeriod).toJSON(),
+              startDate: new Date(dateStart.getFullYear(),dateStart.getMonth(),dateStart.getDate(),hoursStart,minutesStart,0).toJSON(),
+              endDate: new Date(dateEnd.getFullYear(),dateEnd.getMonth(),dateEnd.getDate(),hoursEnd,minutesEnd,0).toJSON(),
               tag: element.browseName,
             },
             {

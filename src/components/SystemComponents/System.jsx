@@ -165,14 +165,9 @@ const UsersConfig = () => {
 
 
         <div className="row m-0" >
-          <div className="col-6">
             <h5>Logs</h5>
-            <Button className="btn btn-principal my-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
-          </div>
-          <div className="col-6" >
-            <h5>Watch Window</h5>
-            <Button className="btn btn-principal my-2 mt-0" style={{width:"auto"}} onClick={seeWatch}>Go to Watch windows</Button>
-          </div>
+            <Button className="btn btn-principal m-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
+
         </div>
 
         

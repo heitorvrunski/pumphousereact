@@ -14,6 +14,10 @@ export default function Trend(state = INITIAL_STATE, action) {
           duration: 1,
           startPeriod: timeNow.setDate(timeNow.getDate()),
           endPeriod: timeNow.setDate(timeNow.getDate() + 1),
+          byTime: false,
+          startTime: '00:00',
+          endTime: '00:00',
+
         },
       };
 
@@ -45,7 +49,13 @@ export default function Trend(state = INITIAL_STATE, action) {
         options: {
           [action.name]: { $set: new Date(action.dateSplit) },
         },
-      });
+      });//Set_Time_Range
+      case "Set_Time_Range":
+        return update(state, {
+          options: {
+            [action.name]: { $set: action.time },
+          },
+        });
     case "Clear_All_Trends":
       const tags = state.TagList;
       tags.forEach((element) => {
@@ -55,6 +65,21 @@ export default function Trend(state = INITIAL_STATE, action) {
       return update(state, {
         TagList: { $set: tags },
       });
+      case "Set_byTime":
+        if(action.value===false)
+          return update(state, {
+            options: {
+              byTime: { $set: action.value },
+              startTime: { $set: '00:00' },
+              endTime: { $set: '00:00'},
+            },
+          });
+        else
+          return update(state, {
+            options: {
+              byTime: { $set: action.value },
+            },
+          });
     default:
       return state;
   }
