@@ -101,7 +101,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disable={(props.cPump.Status !== 1 || //pidEnable === 1
+            disable={(props.cPump.Status !== 1 || 
               (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
               
               )||CheckGroup.checkGroup("guest",groupUser)}
@@ -114,7 +114,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disable={(props.cPump.Status === 1 ||  //pidEnable === 1
+            disable={(props.cPump.Status === 1 ||  
               (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
               )||CheckGroup.checkGroup("guest",groupUser)}
             onClick={startManualPump}
@@ -127,7 +127,7 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 mb-2"
-            disable={(props.cPump.Status !== 1 ||  //pidEnable === 1
+            disable={(props.cPump.Status !== 1 ||  
               (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
               )||CheckGroup.checkGroup("guest",groupUser)}
             onClick={stopManualPump}
