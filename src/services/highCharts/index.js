@@ -46,8 +46,8 @@ export const CreateOptionsHighCharts = async (tags, optionsChart) => {
         const dataEnd2Send = new Date(optionsChart.endPeriod);
         dataEnd2Send.setTime(dataEnd2Send.getTime() + (hoursEnd*60*60*1000))
         dataEnd2Send.setTime(dataEnd2Send.getTime() + (minutesEnd*60*1000))
-
-
+        console.log(dataStart2Send.toJSON())
+        console.log(dataEnd2Send.toJSON())
         
 
         await axios
