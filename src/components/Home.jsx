@@ -17,7 +17,7 @@ export default function Home() {
       <div className="row justify-content-center">
         <MainCard />
         {cPump.map((pump, index) => (
-          <PumpCard key={index} index={index} cPump={pump.toJS()} />
+          <PumpCard key={index} index={index===1 ? 2 : index === 2 ? 1 : index} cPump={pump.toJS()} />
         ))}
       </div>
     </>
