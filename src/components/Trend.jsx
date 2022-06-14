@@ -15,6 +15,8 @@ import { FindConfig } from "../utils/SettingsUtils.js";
 import HighchartsExporting from "highcharts/modules/exporting";
 import Loading from "./SystemComponents/Loading.jsx";
 import "./Trend.scss";
+import "../services/highCharts/CustomStyle.scss";
+
 import Button from "./SystemComponents/Button.jsx";
 
 export default function Trend() {
@@ -25,11 +27,14 @@ export default function Trend() {
   const configs = useSelector((state) => state.SysConfig);
   const trends = useSelector((state) => state.Trend);
   const mode = useSelector((state) => state.Trend?.options?.mode) ?? [];
+  const byTime = useSelector((state) => state.Trend?.options?.byTime) ?? false;
+
   const duration = useSelector((state) => state.Trend?.options?.duration) ?? [];
   const startPeriod =
     useSelector((state) => state.Trend?.options?.startPeriod) ?? 0;
   const endPeriod =
     useSelector((state) => state.Trend?.options?.endPeriod) ?? 0;
+
   const dateStart =
     startPeriod !== 0 ? new Date(startPeriod).toISOString().substr(0, 10) : "";
   const dateEnd =
@@ -101,13 +106,19 @@ export default function Trend() {
   const clearAction = () => {
     dispatch(Actions.ClearAllTrends());
   };
+  const handleByTimeChange = (e) =>{
+    var value = e.target.checked;
+    dispatch(Actions.SetByTime(value));
+
+
+  }
 
   const changeReloadAction = () => {
     setReload(!reload);
   };
 
   return (
-    <div className="container-fluid h-100">
+    <div className="container-fluid h-100 text-Dark">
       {!trends?.TagList ? (
         <Loading />
       ) : (
@@ -120,7 +131,7 @@ export default function Trend() {
                   style={{ minWidth: "220px" }}
                 >
                   <div className=" d-flex flex-row">
-                    <h5>Menu</h5>
+                    <h5 className="f-500">Menu</h5>
                     <Button
                     className="btn btn-principal mx-2"
                     type="button"
@@ -142,7 +153,7 @@ export default function Trend() {
                   </div>
                 </div>
                 <div
-                  className="card d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12"
+                  className="card d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12 p-1"
                   style={{ maxWidth: "720px" }}
                 >
                   <div className="row my-1 d-flex flex-row">
@@ -150,10 +161,11 @@ export default function Trend() {
                       className="d-flex mx-0 col-2 col-md-2 justify-content-start px-2"
                       style={{ minWidth: "240px" }}
                     >
-                      <h5>Period</h5>
+                      <h5 className="f-500">Period</h5>
 
                       <CheckBox
                         label="Duration"
+                        className="text-Light"
                         componentState={0}
                         state={mode}
                         eventChange={changeMode}
@@ -161,6 +173,7 @@ export default function Trend() {
 
                       <CheckBox
                         label="Range"
+                        className="text-Light"
                         componentState={1}
                         state={mode}
                         eventChange={changeMode}
@@ -174,6 +187,7 @@ export default function Trend() {
                         style={{ minWidth: "200px" }}
                       >
                         <DurationButton
+
                           eventChange={changeDuration}
                           duration={duration}
                           buttonDuration={1}
@@ -206,22 +220,43 @@ export default function Trend() {
                       </div>
                       <div
                         className={
-                          "ms-2 d-flex row  justify-content-start " +
+                          "ms-2 d-flex row  justify-content-start" +
                           (mode === 1 ? "" : " collapsed")
                         }
+
                       >
+                        <div style={{"display":"contents"}}>
                         <InputDate
-                          className="col-md-auto mb-1"
+                          className="mb-1 me-2"
                           input={dateStart}
+
                           name="startPeriod"
                           label="Start: "
+                          byTime={byTime}
                         ></InputDate>
                         <InputDate
-                          className="col-md-auto"
+                          className=""
                           input={dateEnd}
+
                           name="endPeriod"
                           label="End: "
+                          byTime={byTime}
+
                         ></InputDate>
+                        </div>
+                        <div style={{"display":"block"}} className="m-0 p-0">
+                          <div className="d-flex m-0 p-0">
+                          <input
+                              className={" form-check-input m-1"}
+                              type="checkbox"
+                              onChange={handleByTimeChange}
+                            ></input>
+                            <h6 className="mt-1">By date and time</h6>
+                          </div>
+
+                          
+                           
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -238,7 +273,7 @@ export default function Trend() {
               </div>
             </div>
           </div>
-          <div className="col-12 col-md-12 card  my-2 col-xl-2 mb-2">
+          <div className="col-12 col-md-12 card  my-2 col-xl-2 mb-2 p-2">
             <h5>List</h5>
             <hr className="my-0"></hr>
             <div className="h-sm overflow-auto">

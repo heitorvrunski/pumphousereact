@@ -35,13 +35,27 @@ export const CreateOptionsHighCharts = async (tags, optionsChart) => {
       for (var idx2 = 0; idx2 < tags.length; idx2++) {
         const element = tags[idx2];
         const id = idx2;
+        const hoursStart = parseInt(optionsChart.startTime.split(':')[0]);
+        const minutesStart = parseInt(optionsChart.startTime.split(':')[1]);
+        const hoursEnd = parseInt(optionsChart.endTime.split(':')[0]);
+        const minutesEnd = parseInt(optionsChart.endTime.split(':')[1]);
+        const dataStart2Send = new Date(optionsChart.startPeriod);
+        dataStart2Send.setTime(dataStart2Send.getTime() + (hoursStart*60*60*1000))
+        dataStart2Send.setTime(dataStart2Send.getTime() + (minutesStart*60*1000))
+
+        const dataEnd2Send = new Date(optionsChart.endPeriod);
+        dataEnd2Send.setTime(dataEnd2Send.getTime() + (hoursEnd*60*60*1000))
+        dataEnd2Send.setTime(dataEnd2Send.getTime() + (minutesEnd*60*1000))
+        console.log(dataStart2Send.toJSON())
+        console.log(dataEnd2Send.toJSON())
+        
 
         await axios
           .post(
             `${serverURL}/node/api/trend/singleTag/range`,
             {
-              startDate: new Date(optionsChart.startPeriod).toJSON(),
-              endDate: new Date(optionsChart.endPeriod).toJSON(),
+              startDate: dataStart2Send.toJSON(),
+              endDate: dataEnd2Send.toJSON(),
               tag: element.browseName,
             },
             {
@@ -108,11 +122,13 @@ function createOptions(seriesOptions) {
   return {
     rangeSelector: {
       inputEnabled: false,
+      
       buttons: [
         {
           type: "minute",
           count: 10,
           text: "10m",
+          
         },
         {
           type: "minute",
@@ -149,8 +165,23 @@ function createOptions(seriesOptions) {
           text: "All",
         },
       ],
+      
     },
+    scrollbar: {
+      barBackgroundColor: '#171717',
+      barBorderRadius: 2,
+      barBorderWidth: 0,
+      buttonBackgroundColor: '#171717',
+      buttonBorderWidth: 0,
+      buttonBorderRadius: 2,
+      trackBackgroundColor: '#171717',
+      trackBorderWidth: 1,
+      trackBorderRadius: 8,
+      trackBorderColor: '#171717'
+  },
     legend: {
+      itemStyle:{color:'#b4b4b4'},
+
       enabled: true,
     },
 

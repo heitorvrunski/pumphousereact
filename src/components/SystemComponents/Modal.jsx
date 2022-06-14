@@ -9,9 +9,9 @@ export default function Modal(props) {
       className="modal"
       style={isOpen ? { display: "flex" } : { display: "none" }}
     >
-      <div className="modal-content" style={{ width: "300px" }}>
+      <div className="modal-content bg-secundary" style={{ width: "300px" }}>
         <div className="d-flex m-2 flex-column">
-          <h6 className="btn-Icon" onClick={handleOnClose}>
+          <h6 className="btn-Icon text-Mid" onClick={handleOnClose}>
             X
           </h6>
           {props.children}

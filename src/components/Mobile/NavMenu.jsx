@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Collapse, Navbar, NavbarBrand, NavItem, Nav } from "reactstrap";
 import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import LoginPartial from "./LoginPartial";
+import LoginPartial from "../SystemComponents/LoginPartial";
 import Badge from '@mui/material/Badge';
 import CheckGroup from "../../utils/CheckGroup";
 import "./NavMenu.scss";
@@ -40,11 +40,11 @@ export default function NavMenu() {
   }
   return (
     <header>
-      <Navbar className="navbar navbar-expand-lg navbar-toggleable-sm ng-white text-primary fixed-top shadow-sm mb-3 bg-primary">
+      <Navbar className="navbar navbar-expand-lg navbar-toggleable-sm ng-white text-secundary fixed-top shadow-sm mb-3 bg-secundary">
         <div className="container-fluid">
           <NavbarBrand
             tag={Link}
-            className="navbar-brand text-primary pt-0"
+            className="navbar-brand text-primary pt-0 f-400"
             to="/"
           >
             Pump House Application
@@ -64,7 +64,7 @@ export default function NavMenu() {
                     height="35px"
                     viewBox="0 0 24 24"
                     width="35px"
-                    fill="#ffffe7"
+                    fill="#f0f0f0"
                   >
                     <path d="M0 0h24v24H0V0z" fill="none" />
                     <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z" />
@@ -77,7 +77,7 @@ export default function NavMenu() {
                 height="35px"
                 viewBox="0 0 24 24"
                 width="35px"
-                fill="#ffffe7"
+                fill="#f0f0f0"
               >
                 <path d="M0 0h24v24H0V0z" fill="none" />
                 <path d="M3 18h6v-2H3v2zM3 6v2h18V6H3zm0 7h12v-2H3v2z" />
@@ -102,7 +102,7 @@ export default function NavMenu() {
                 <NavLink
                   exact={true}
                   className={
-                    "text-primary text-Link me-3 my-2  is-not-active " +
+                    "text-primary text-Link me-3 my-2 f-400 is-not-active " +
                     (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
 
                   }
@@ -115,8 +115,23 @@ export default function NavMenu() {
               </NavItem>
               <NavItem>
                 <NavLink
+                  exact={true}
                   className={
-                    "text-primary text-Link me-3 my-2  is-not-active " +
+                    "text-primary text-Link me-3 my-2 f-400 is-not-active " +
+                    (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
+
+                  }
+                  activeClassName="active"
+                  to="/Control"
+                  onClick={closeExpander}
+                >
+                  Control
+                </NavLink>
+              </NavItem>
+              <NavItem>
+                <NavLink
+                  className={
+                    "text-primary text-Link me-3 my-2 f-400 is-not-active " +
                     (CheckGroup.checkIfHasnoGroup(groupUser)===true?"collapsed":"")
                   }
                   activeClassName="active"
@@ -134,7 +149,7 @@ export default function NavMenu() {
                   <Badge badgeContent={totalAlarms} color="secondary" style={{verticalAlign:"unset "}}>
                       <NavLink
                         className={
-                          "text-primary text-Link is-not-active "
+                          "text-primary f-400 text-Link is-not-active "
                         }
                         activeClassName="active"
                         to="/Alarms"
@@ -151,7 +166,7 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-3 my-2  is-not-active " +
+                    "text-primary text-Link me-3 my-2 f-400  is-not-active " +
                     (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
                   }
                   activeClassName="active"
@@ -164,7 +179,7 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-3 my-2 is-not-active " +
+                    "text-primary text-Link me-3 my-2 f-400 is-not-active " +
                     (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
                   }
                   activeClassName="active"
@@ -177,7 +192,7 @@ export default function NavMenu() {
               <NavItem>
                 <NavLink
                   className={
-                    "text-primary text-Link me-3 my-2 is-not-active " +
+                    "text-primary text-Link me-3 my-2 f-400 is-not-active " +
                     (CheckGroup.checkGroup("admin",groupUser)===true?"":"collapsed")
                   }
                   activeClassName="active"

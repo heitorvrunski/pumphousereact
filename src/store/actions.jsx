@@ -18,6 +18,9 @@ const Actions = {
     const dateSplit = value.replaceAll("-", "/");
     return { type: "Set_Date_Range", dateSplit, name };
   },
+  SetTimeRangeAction: (time, name) => {
+    return { type: "Set_Time_Range", time, name };
+  },
   ClearAllTrends: (value) => {
     return { type: "Clear_All_Trends" };
   },
@@ -38,6 +41,9 @@ const Actions = {
   },
   SetModalUser: (userModel, isOpen) => {
     return { type: "Set_Modal_User", userModel, isOpen };
+  },
+  SetByTime: (value) => {
+    return { type: "Set_byTime", value };
   },
 };
 export default Actions;

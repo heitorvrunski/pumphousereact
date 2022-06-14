@@ -14,13 +14,13 @@ export default function CheckBoxList(props) {
   return (
     <div className="d-flex my-2 pointer-Selected" style={{ width: "180px" }}>
       <input
-        className="form-check-input m-1"
+        className="form-check-input m-1 "
         checked={defaltCheck}
         value={defaltCheck}
         type="checkbox"
         onChange={changeState}
       ></input>
-      <h6 className="align-middle mt-1" onClick={changeState}>
+      <h6 className="align-middle mt-1 text-Light" onClick={changeState}>
         {props.tag}
       </h6>
     </div>

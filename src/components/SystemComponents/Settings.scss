@@ -1,9 +1,16 @@
 @import "../../Input.scss";
 
-.tableInput {
-  width: 80px !important;
+.form-control {
+  border-radius: 2;
+  border: 0;
+  background-color: $colorBody !important;
 }
+
 
 .tableLabel {
   width: 300px !important;
+}
+
+.form-settings{
+  width: 80px !important;
 }

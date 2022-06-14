@@ -7,12 +7,13 @@ import Toast from "./Toast";
 import Actions from "../../store/actions";
 import "./Login.scss";
 import Button from "./Button";
-
 export default function Login() {
   const dispatch = useDispatch();
   const [state, setState] = useState({
     login: "",
     password: "",
+    rememberMe: false,
+
   });
 
   const [error, setError] = useState({
@@ -21,7 +22,7 @@ export default function Login() {
 
   const handleInputChange = (event) => {
     const target = event.target;
-    const value = target.value;
+    const value = target.type==='checkbox'?target.checked: target.value;
     const name = target.name;
     setState((prevState) => ({
       ...prevState,
@@ -33,6 +34,7 @@ export default function Login() {
     const login = {
       user: state.login,
       pw: state.password,
+      rememberMe:state.rememberMe
     };
     if (login.user.trim() && login.pw.trim()) {
       var serverURL = `http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}`;
@@ -40,7 +42,7 @@ export default function Login() {
       axios
         .post(
           `${serverURL}/node/api/auth/login`,
-          JSON.stringify({ user: login.user, password: login.pw }),
+          JSON.stringify({ user: login.user, password: login.pw,rememberMe:login.rememberMe }),
           {
             withCredentials: true,
             headers: {
@@ -77,46 +79,53 @@ export default function Login() {
 
   return (
     <div className="row justify-content-center  d-flex">
-    <div className="card  d-flex" style={{ width: "320px" }}>
+    <div className="card d-flex" style={{ width: "320px" }}>
     <form className="form-signin " onSubmit={handleSubmit}>
         {/* <div className="m-3  text-muted w-100 d-flex justify-content-center">
         <img src={logo} width="120px" alt="logo"></img>
 
         </div> */}
-        <h1 className="h3 mb-3">Please sign in</h1>
-        <label htmlFor="inputEmail" className="sr-only">
+        <h1 className="h3 mb-3 text-Mid">Please sign in</h1>
+        <label htmlFor="inputEmail" className="sr-only text-Light">
           Login
         </label>
         <input
           type="text"
-          className="form-control"
+          className="form-control form-Dark"
           placeholder="Login"
           name="login"
           required=""
           autoFocus=""
           onChange={handleInputChange}
         ></input>
-        <label htmlFor="inputPassword" className="sr-only mt-2">
+        <label htmlFor="inputPassword" className="sr-only mt-2 text-Light">
           Password
         </label>
         <input
           type="password"
-          className="form-control mb-2"
+          className="form-control mb-2 form-Dark"
           placeholder="Password"
           name="password"
           required=""
           onChange={handleInputChange}
         ></input>
+        <div className="d-flex">
+        <input
+            className={" form-check-input m-1"}
+            type="checkbox"
+            name="rememberMe"
+            onChange={handleInputChange}
+          ></input>
+          <h6 className="mt-1 text-Light">Remember Me</h6>
+        </div>
+
+
         <div className="d-flex justify-content-start">
-        {/* <button className="btn btn-lg btn-principal btn-block my-1" type="submit">
-          Sign in
-        </button>
-         */}
-         <Button className="btn btn-lg btn-Light btn-block my-1" type="submit"> Sign in</Button>
+         <Button className="btn btn-lg btn-principal btn-block my-1" type="submit"> Sign in</Button>
         </div>
         
-        <div className="mt-3  text-muted w-100 d-flex justify-content-center">
-        <p >© 2021</p>
+        <div className="mt-3  text-muted w-100 d-flex justify-content-center text-Light">
+        <p >© 2022</p>
 
         </div>
       </form>

@@ -8,6 +8,8 @@ import Button from "./SystemComponents/Button.jsx";
 export default function PumpCard(props) {
   const pidEnableNode = ["PressurePID", "enable"];
   const pidEnable = useSelector((state) => state.Tags.getIn(pidEnableNode));
+  const pondEnableNode = ["EnablePondFill"];
+  const pondEnable = useSelector((state) => state.Tags.getIn(pondEnableNode));
   const groupUser = useSelector((state) => state.Auth.group);
 
   const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
@@ -65,10 +67,10 @@ export default function PumpCard(props) {
           <h4
             className={
               "mx-0 my-1 w-100 " +
-              (props.cPump.Status === 1 ? "text-success" : "text-danger")
+              (props.cPump.StatusOPC === 1 ? "text-success" : "text-danger")
             }
           >
-            {props.cPump.Status === 1 ? "RUNNING" : "STOP"}
+            {props.cPump.StatusOPC === 1 ? "RUNNING" : "STOP"}
           </h4>
         </li>
         <li>
@@ -90,38 +92,6 @@ export default function PumpCard(props) {
             value={NewFreq}
           />
         </li>
-        {/* <li>
-          <Button
-            type="button"
-            className="btn btn-principal mx-0 my-1 w-100 "
-            disabled={props.cPump.Status !== 1 || pidEnable === 1}
-            onClick={setManualFreqPump}
-          >
-            Set Frequency
-          </Button>
-        </li>
-        <li>
-          <Button
-            type="button"
-            className="btn btn-principal mx-0 my-1 w-100 "
-            disabled={props.cPump.Status === 1 || pidEnable === 1}
-            onClick={startManualPump}
-          >
-            {" "}
-            Start
-          </Button>
-        </li>
-        <li>
-          <Button
-            type="button"
-            className="btn btn-principal mx-0 my-1 w-100 mb-2"
-            disabled={props.cPump.Status !== 1 || pidEnable === 1}
-            onClick={stopManualPump}
-          >
-            {" "}
-            STOP
-          </Button>
-        </li> */}
       </ul>
       <ul
         className="text-center text-wrap p-0"
@@ -131,7 +101,10 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disable={(props.cPump.Status !== 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
+            disable={(props.cPump.Status !== 1 || 
+              (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
+              
+              )||CheckGroup.checkGroup("guest",groupUser)}
             onClick={setManualFreqPump}
           >
             Set Frequency
@@ -141,7 +114,9 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 "
-            disable={(props.cPump.Status === 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
+            disable={(props.cPump.Status === 1 ||  
+              (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
+              )||CheckGroup.checkGroup("guest",groupUser)}
             onClick={startManualPump}
           >
             {" "}
@@ -152,7 +127,9 @@ export default function PumpCard(props) {
           <Button
             type="button"
             className="btn btn-Light mx-0 my-1 w-100 mb-2"
-            disable={(props.cPump.Status !== 1 || pidEnable === 1)||CheckGroup.checkGroup("guest",groupUser)}
+            disable={(props.cPump.Status !== 1 ||  
+              (pidEnable === 1&&props.cPump.IsPond!==1) || (pondEnable===1&&props.cPump.IsPond===1)
+              )||CheckGroup.checkGroup("guest",groupUser)}
             onClick={stopManualPump}
           >
             {" "}

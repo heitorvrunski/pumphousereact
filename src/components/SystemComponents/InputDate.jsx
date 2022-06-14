@@ -5,10 +5,17 @@ import Actions from "../../store/actions.jsx";
 export default function InputDate(props) {
   const dispatch = useDispatch();
   const [defaltInput, setdefaltInput] = useState(new Date());
+
   const name = props.name;
   const changeDateRange = (event) => {
     if (event.target.value) {
       dispatch(Actions.SetDateRangeAction(event.target.value, name));
+    }
+  };
+  const handleTimeChange = (event) => {
+
+    if (event.target.value) {
+      dispatch(Actions.SetTimeRangeAction(event.target.value, name.replace('Period','Time')));
     }
   };
   useEffect(() => {
@@ -25,6 +32,14 @@ export default function InputDate(props) {
           onChange={changeDateRange}
           style={{ width: "135px" }}
         ></input>
+        {props.byTime===true?
+      <input
+      type="time"
+      defaultValue="00:00"
+      onChange={handleTimeChange}
+    ></input>
+    :null  
+      }
       </div>
     </div>
   );

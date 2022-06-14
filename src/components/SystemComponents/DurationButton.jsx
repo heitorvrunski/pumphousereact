@@ -24,7 +24,7 @@ export default function DurationButton(props) {
     >
       <div
         className={
-          "btn text-center align-middle p-0 flex-nowrap" 
+          "btn text-center align-middle p-0 flex-nowrap text-Light" 
         }
         style={{ height: "30px", width: "105px" }}
       >

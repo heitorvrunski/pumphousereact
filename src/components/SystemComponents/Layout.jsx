@@ -1,14 +1,16 @@
-import React, { useEffect, useState,useRef } from "react";
+import React, { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
+import LayoutMobile from "../Mobile/LayoutMobile";
+
 import { useDispatch, useSelector } from "react-redux";
-import { UpdateData, FirstReadDone } from "../../middleware/socketio";
+import { UpdateData, FirstReadDone,SendLogs } from "../../middleware/socketio";
 import Toast from "./Toast.jsx";
 import { ApiNode } from "../../middleware/thunk";
-import IdleTimer from "react-idle-timer";
+//import IdleTimer from "react-idle-timer";
 
 
 export default function Layout(props) {
-  const idleTimerRef = useRef(null)
+  //const idleTimerRef = useRef(null)
   const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
   const [errorMessage, setErrorMessage] = useState("");
@@ -46,6 +48,8 @@ export default function Layout(props) {
   useEffect(() => {
     socket.on("loadData", (data) => {
       dispatch(UpdateData(data));
+      dispatch(SendLogs(data,0));
+
     });
     socket.on("firstReadDone", () => {
       dispatch(FirstReadDone());
@@ -56,7 +60,6 @@ export default function Layout(props) {
     if (Auth.isAuth === true) {
       const dateNow = new Date();
       const dateExpires = new Date(Auth.expires);
-
       const timeout = dateExpires.getTime() - dateNow.getTime() - 60 * 1000;
 
       setTimeout(() => {
@@ -69,23 +72,17 @@ export default function Layout(props) {
     setErrorMessage("");
   };
 
-  const onIdleHandle = () =>{
+  /*const onIdleHandle = () =>{
     dispatch(ApiNode.Logoff());
     window.location.href = "/#/login"
-  }
+  }*/
 
   return (
-    <IdleTimer ref={idleTimerRef} timeout={300000} onIdle={onIdleHandle}>
+    // <IdleTimer ref={idleTimerRef} timeout={300000} onIdle={onIdleHandle}>
       <div>
-        <NavMenu />
-        <main>
-          <div
-            className="container-fluid"
-            style={{ marginTop: "65px", height: "88vh" }}
-          >
-            {props.children}
-          </div>
-        </main>
+        <LayoutMobile>
+          {props.children}
+        </LayoutMobile>
         
         <Toast
           messageError={errorMessage}
@@ -93,7 +90,7 @@ export default function Layout(props) {
           onChangeErrorMessage={onChangeErrorMessage}
         />
       </div>
-    </IdleTimer>
+    // </IdleTimer>
 
   );
 }
