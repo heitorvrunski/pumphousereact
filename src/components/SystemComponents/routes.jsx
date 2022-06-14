@@ -2,6 +2,9 @@ import React from "react";
 import { Route, Switch } from "react-router-dom";
 import Login from "./Login";
 import Home from "../Home";
+import Control from "../Control";
+
+
 import Trend from "../Trend";
 import Logs from "./Logs";
 import Alarm from "../alarm";
@@ -62,6 +65,13 @@ const Routes = ({ socket }) => (
       path="/system"
       socket={socket}
       component={System}
+      redirectto="/login"
+    />
+    <ProtectedRoute
+    exact
+      path="/Control"
+      socket={socket}
+      component={Control}
       redirectto="/login"
     />
     <ProtectedRoute

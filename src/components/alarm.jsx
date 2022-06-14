@@ -1,7 +1,10 @@
-import React,{useState,useEffect,useRef} from "react";
+import React,{useState,useEffect,useRef,useMemo} from "react";
+
 import { useSelector } from "react-redux";
 import { ApiNode } from "../middleware/thunk.js";
 import { DataGrid,GridToolbarExport,GridToolbarDensitySelector  } from '@mui/x-data-grid';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+
 import DatePicker from "react-datepicker";
 import Modal from "./SystemComponents/Modal.jsx";
 import Button from "./SystemComponents/Button.jsx"
@@ -105,8 +108,17 @@ const columns = [
 
   ];
 
+
 export default function Alarm() {
-    
+    const theme = useMemo(
+        () =>
+          createTheme({
+            palette: {
+              mode: 'dark' ,
+            },
+          }),
+        [],
+      );
 
     const groupUser = useSelector((state) => state.Auth.group);
 
@@ -233,12 +245,12 @@ export default function Alarm() {
     }
     return (
         <>
-        <div className="h-100 d-flex flex-column mt-1">
+        <div className="h-100 d-flex flex-column mt-1 ">
             <div className="d-flex flex-row mx-2">
                 <Button className="btn  btn-principal me-2 " style={styleButton(0)} onClick={()=>{setTabIndex(0)}}> Online</Button>
                 <Button className="btn  btn-principal " style={styleButton(1)} onClick={()=>{setTabIndex(1)}}> History</Button>
             </div>
-            <div className={"row mx-2 d-flex justify-content-start " + (tabIndex!==1?"collapsed":"")}>
+            <div className={"row mx-2 d-flex justify-content-start text-Light " + (tabIndex!==1?"collapsed":"")}>
                 <div className="col-12 col-sm-3 d-flex align-items-center" style={{minWidth:"230px"}}>
                     <label htmlFor="inputTail" className="col-form-label me-2">From </label>
                     <DatePicker
@@ -248,15 +260,15 @@ export default function Alarm() {
                         onChange={(date) => setDateFrom(date)}
                     />  
                 </div>
-                <div className="col-12 col-sm-4  d-flex align-items-center" style={{minWidth:"350px"}}>
-                    <label htmlFor="inputTail" className="col-form-label me-2">To </label>
+                <div className="col-12 col-sm-4  d-flex align-items-center" style={{minWidth:"355px"}}>
+                    <label htmlFor="inputTail" className="col-form-label me-2 ">To </label>
                     <DatePicker
                         selected={dateTo}
                         showTimeSelect
                         dateFormat="MM/dd/yy HH:mm"
                         onChange={(date) => setDateTo(date)}
                     />    
-                    <Button type="submit" className="btn btn-principal" style={{width:"150px"}}
+                    <Button type="submit" className="btn btn-principal" style={{width:"155px"}}
                 onClick={()=>setReload(!reload)}
                 >Reload </Button>           
                 </div>
@@ -268,13 +280,15 @@ export default function Alarm() {
         
             </div>
             <div className={" mt-2 ms-2 align-items-center " + (tabIndex!==0?"collapsed":"")}>
-                <Button className="btn btn-principal " onClick={()=>{setIsOpenModalActAll(true)}} style={{width:"150px"}}             disable={CheckGroup.checkGroup("guest",groupUser)}> Act All</Button>
+                <Button className="btn btn-principal " onClick={()=>{setIsOpenModalActAll(true)}} style={{width:"157px"}}             disable={CheckGroup.checkGroup("guest",groupUser)}> Act All</Button>
             </div>
 
             <div style={{height:"-webkit-fill-available"}}>
             <div className="card m-2 h-100" >
                 <div style={{ height: "100%", width: '100%' }}>
+                <ThemeProvider theme={theme}>
                     <DataGrid 
+                        className="border-0"
                         rows={rows} 
                         columns={columns} 
                         onCellClick={onclickRow}
@@ -287,8 +301,12 @@ export default function Alarm() {
                               clearSearch: () => requestSearch(''),
                             },
                           }}
+                          sx={{
+                            border: 0
 
+                          }}
                         />
+                        </ThemeProvider>
                 </div>
             </div>
             </div>

@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import NavMenu from "./NavMenu";
+import LayoutMobile from "../Mobile/LayoutMobile";
+
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateData, FirstReadDone,SendLogs } from "../../middleware/socketio";
 import Toast from "./Toast.jsx";
@@ -78,15 +80,9 @@ export default function Layout(props) {
   return (
     // <IdleTimer ref={idleTimerRef} timeout={300000} onIdle={onIdleHandle}>
       <div>
-        <NavMenu />
-        <main>
-          <div
-            className="container-fluid"
-            style={{ marginTop: "65px", height: "88vh" }}
-          >
-            {props.children}
-          </div>
-        </main>
+        <LayoutMobile>
+          {props.children}
+        </LayoutMobile>
         
         <Toast
           messageError={errorMessage}

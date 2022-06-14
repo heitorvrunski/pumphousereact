@@ -122,11 +122,13 @@ function createOptions(seriesOptions) {
   return {
     rangeSelector: {
       inputEnabled: false,
+      
       buttons: [
         {
           type: "minute",
           count: 10,
           text: "10m",
+          
         },
         {
           type: "minute",
@@ -163,8 +165,23 @@ function createOptions(seriesOptions) {
           text: "All",
         },
       ],
+      
     },
+    scrollbar: {
+      barBackgroundColor: '#171717',
+      barBorderRadius: 2,
+      barBorderWidth: 0,
+      buttonBackgroundColor: '#171717',
+      buttonBorderWidth: 0,
+      buttonBorderRadius: 2,
+      trackBackgroundColor: '#171717',
+      trackBorderWidth: 1,
+      trackBorderRadius: 8,
+      trackBorderColor: '#171717'
+  },
     legend: {
+      itemStyle:{color:'#b4b4b4'},
+
       enabled: true,
     },
 

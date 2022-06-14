@@ -8,6 +8,8 @@ import Modal from "./Modal"
 import Actions from "../../store/actions";
 import "./SettingsConfig.scss"
 import { ApiNode } from "../../middleware/thunk";
+import customStyles from '../../utils/SelectCustomStyle'
+
 import CheckBox from "./CheckBox";
 
 export default function SettingsConfig(props) {
@@ -354,13 +356,13 @@ export default function SettingsConfig(props) {
     }
     return (
         <>
-        <div className="row justify-content-center d-flex p-2 h-100">
+        <div className="row justify-content-center d-flex p-2 h-100 text-Dark">
             <div className="d-flex p-0 m-2 flex-column mb-2  w-auto " style={{height:"fit-content"}}>
             <h5>Settings</h5>
 
             <ul className="list-group card">
                 {sysConfigs.map((element,index)=>(
-                <li key={index+"Setting"} className={"list-group-item d-flex justify-content-between align-items-center "+(selectedSettings===index?"selected-row":"")} onClick={handleChangeSettings(index)} style={{cursor:"pointer"}}>
+                <li key={index+"Setting"} className={"list-group-item  text-Mid d-flex justify-content-between align-items-center "+(selectedSettings===index?"selected-row":"bg-secundary")} onClick={handleChangeSettings(index)} style={{cursor:"pointer"}}>
                     {element[0]}
                     <span className="badge bg-primary rounded-pill ms-2">{element[1]}</span>
                 </li>
@@ -404,6 +406,7 @@ export default function SettingsConfig(props) {
                                             <p className="p-0 m-0">{col}:</p>
                                             <div style={{minWidth:"220px"}} >
                                             <Select
+                                                styles={customStyles}
                                                 className="basic-single me-2"
                                                 classNamePrefix="select"
                                                 isClearable={true}
@@ -450,9 +453,9 @@ export default function SettingsConfig(props) {
                         <thead>
                             <tr>
                                 {columns.map((element,idx)=>(
-                                    <th key={idx+"Header"}>
+                                    <th key={idx+"Header"} className="text-Mid">
                                         <div className="d-flex flex-row justify-content-between" style={{borderRight:"1px solid rgba(0,0,0,0.4)"}}>
-                                        <h6>{element}</h6>
+                                        <h6 >{element}</h6>
                                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#000000" className="btn-Icon icon-danger" 
                                         onClick={()=>{
                                             setDeleteColumnIndex(idx)
@@ -467,7 +470,7 @@ export default function SettingsConfig(props) {
                                     </th>
                                 ))}
                                     <th>
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="btn-Icon" height="24px" viewBox="0 0 24 24" width="24px" onClick={()=>{setIsOpenNewColumn(true);inputColumn.current.value=""}}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="#d4d4d4" className="btn-Icon" height="24px" viewBox="0 0 24 24" width="24px" onClick={()=>{setIsOpenNewColumn(true);inputColumn.current.value=""}}>
                                         <path d="M0 0h24v24H0V0z" fill="none"/><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
                                     </svg>
                                     </th>
@@ -483,6 +486,7 @@ export default function SettingsConfig(props) {
                                     <td key={index+"c"+i} style={{minWidth:"220px"}}>
                                         {cell==="browseName"?
                                         <Select
+                                        styles={customStyles}
                                         className="basic-single"
                                         classNamePrefix="select"
                                         defaultValue={{ 
@@ -493,7 +497,6 @@ export default function SettingsConfig(props) {
                                         isSearchable={true}
                                         options={options}
                                         menuPortalTarget={document.body}
-                                        styles={{ menuPortal: base => ({ ...base, zIndex: 9999 }) }}
                                         onChange={(e)=>{setSettings(update(settings,{[index]:{ browseNameNew: {$set:e.value}}}))}}
 
                                         />
@@ -550,7 +553,7 @@ export default function SettingsConfig(props) {
             </div>
         </div>
         <Modal isOpen={isOpenModal} handleOnClose={()=>{setIsOpenModal(false)}}>
-            <div className="d-flex flex-row my-2">
+            <div className=" d-flex flex-row my-2 ">
                 <h5>Name:</h5>
                 <input ref={inputSettings} type="text" className="mx-2" placeholder="setting" onChange={(e)=>setNewParam(e.target.value)}></input>
             </div>

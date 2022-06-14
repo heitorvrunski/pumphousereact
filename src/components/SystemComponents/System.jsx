@@ -9,6 +9,8 @@ import Actions from "../../store/actions";
 import { useHistory } from "react-router";
 import Modal from "./Modal";
 import Button from "./Button";
+import customStyles from '../../utils/SelectCustomStyle'
+
 const UsersConfig = () => {
   const history = useHistory();
   const listGroup = [
@@ -162,7 +164,7 @@ const UsersConfig = () => {
         <div className="mx-2 w-100" style={{maxWidth:"520px"}}>
 
 
-        <div className="row m-0" >
+        <div className="row m-0 text-Dark" >
             <h5>Logs</h5>
             <Button className="btn btn-principal m-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
 
@@ -170,7 +172,7 @@ const UsersConfig = () => {
 
         
 
-        <div className="row m-0" >
+        <div className="row m-0 text-Dark" >
           <h5>Restart Back-End in Docker</h5>
           <Button className="btn btn-danger m-2 mt-0" style={{width:"auto"}} onClick={()=>{setModalNode(true)}}>Restart</Button>
         </div>
@@ -178,42 +180,44 @@ const UsersConfig = () => {
     <Loading />
   ) : (
     <>
-      <div className="row m-0" >
+      <div className="row m-0 text-Dark" >
         <h5>Users</h5>
       </div>
 
       <div className="row card m-2" >
         <div className="card-body">
-        <h5 className="card-title">New User</h5>
+        <h5 className="card-title text-Dark">New User</h5>
           <form onSubmit={handleCreateUser}>
-            <label className="sr-only">Login</label>
+            <label className="sr-only text-Light">Login</label>
             <input
               type="text"
-              className="form-control"
+              className="form-control form-Dark"
               placeholder="user"
               name="user"
               required=""
               autoFocus=""
               onChange={handleInputChange}
             ></input>
-            <label htmlFor="inputPassword" className="sr-only">
+            <label htmlFor="inputPassword " className="sr-only text-Light">
               Password
             </label>
             <input
               type="password"
-              className="form-control"
+              className="form-control form-Dark"
               placeholder="Password"
               name="password"
               required=""
               onChange={handleInputChange}
             ></input>
-            <label htmlFor="inputPassword" className="sr-only">
+            <label htmlFor="inputPassword" className="sr-only text-Light">
               Group
             </label>
 
             <Select
               defaultValue={{ value: newUser.group, label: newUser.group }}
               options={listGroup}
+              styles={customStyles}
+
               onChange={handleSelectedChange}
             />
             <Button
@@ -228,12 +232,12 @@ const UsersConfig = () => {
       </div>
       <div className="row card m-2" >
         <div className="card-body">
-          <h5 className="card-title">List of Users</h5>
+          <h5 className="card-title text-Dark">List of Users</h5>
 
 
           <div className="table-responsive">
           <table
-            className="table overflow-auto"
+            className="table overflow-auto text-Mid"
             style={{ minWidth: "350px" }}
           >
             <thead>
@@ -250,6 +254,7 @@ const UsersConfig = () => {
                   <td> {data.user}</td>
                   <td style={{ minWidth: "130px" }}>
                     <Select
+                      styles={customStyles}
                       defaultValue={{
                         value: data.group,
                         label: data.group,

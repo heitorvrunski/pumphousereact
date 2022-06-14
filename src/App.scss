@@ -3,13 +3,26 @@ body {
   font-family: $font_family;
   background-color: $colorBody;
 }
+:root {
+  color-scheme: dark;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    -webkit-box-shadow: 0 0 0 30px $colorBody inset !important;
+}
+input:-webkit-autofill{
+  -webkit-text-fill-color: $colorDark_Font !important;
+}
 
 .table .table-dense {
   padding: 0 !important;
 }
 
 .selected-row {
-  background-color: rgba($Black, 0.1);
+  background-color: rgba($colorMid, 0.1) !important;
 }
 
 .form-check-input:checked {
@@ -66,6 +79,44 @@ body {
 .bg-secundary {
   background-color: $colorCOMPLEMENTARY !important;
 }
+.f-100 {
+  font-weight: 100;
+}
+.f-200 {
+  font-weight: 200;
+}
+.f-300 {
+  font-weight: 300;
+}
+.f-400 {
+  font-weight: 400;
+}
+.f-500 {
+  font-weight: 500;
+}
+.f-600 {
+  font-weight: 600;
+}
+.f-700 {
+  font-weight: 700;
+}
+.f-800 {
+  font-weight: 800;
+}
+.f-900 {
+  font-weight: 900;
+}
+
+.text-Dark {
+  color: $colorDark_Font !important;
+}
+.text-Mid {
+  color: $colorMid_Font !important;
+}
+.text-Light {
+  color: $colorLight_Font !important;
+}
+
 .text-secundary {
   color: $colorCOMPLEMENTARY_Font !important;
 }
@@ -75,6 +126,13 @@ body {
   color: $colorDark_Font !important;
   font-weight: 400;
 }
+.form-Dark{
+  background-color: $colorCOMPLEMENTARY !important;
+  color: $colorCOMPLEMENTARY_Font !important;
+
+
+}
+
 
 .btn-Mid {
   background-color: $colorMid !important;
@@ -90,7 +148,8 @@ body {
 
 
 .card {
-  border-color: "white";
+  background-color:$colorCOMPLEMENTARY !important;
+  border-color: $colorCOMPLEMENTARY !important;
   border: unset;
   border-radius: 0.7rem;
   // box-shadow: 0 0.5rem 1rem rgba($Black, 0.15);
@@ -220,7 +279,7 @@ body {
   margin: auto;
   padding: 0;
   display: flex;
-  border: 1px solid #888;
+  border: 1px solid rgb(26, 26, 26);
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   -webkit-animation-name: animatetop;
   -webkit-animation-duration: 0.4s;

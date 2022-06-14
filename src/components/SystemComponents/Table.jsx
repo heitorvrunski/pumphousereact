@@ -1,4 +1,7 @@
 import Select from "react-select";
+
+import customStyles from '../../utils/SelectCustomStyle'
+
 export default function Table(props) {
   const data = props.data;
   const options = [
@@ -28,7 +31,8 @@ export default function Table(props) {
               {row.measureType===1?
                 <td style={{minWidth:"90px"}}>
                   <Select
-                    className="basic-single me-2"
+                    styles={customStyles}
+                    className="basic-single me-2 text-Dark"
                     classNamePrefix="select"
                     options={options}
                     defaultValue={{ 
@@ -43,7 +47,7 @@ export default function Table(props) {
                 <td className={props.classLabel ?? ""}>{row.viewMeasure}</td>
               }
 
-              <td className={props.classInput ?? ""}>
+              <td >
                 <input
                   type="number"
                   id={row.index}

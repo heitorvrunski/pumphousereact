@@ -1,0 +1,56 @@
+@import "./highcharts.css";
+@import "../../Input.scss";
+
+
+
+.highcharts-background{
+    background-color: $colorCOMPLEMENTARY !important;
+    fill: $colorCOMPLEMENTARY !important;
+}
+.highcharts-contextbutton {
+    background-color: $colorCOMPLEMENTARY !important;
+    fill: $colorCOMPLEMENTARY !important;
+}
+
+.highcharts-button{
+    background-color: $colorCOMPLEMENTARY !important;
+    fill: $colorBody !important;
+    color: $colorLight_Font;
+}
+.highcharts-range-selector-buttons{
+    color: $colorLight_Font;
+    fill:$colorDark_Font !important;
+
+}
+
+
+.highcharts-title{
+    color: $colorDark_Font !important;
+    fill:$colorDark_Font !important;
+}
+.highcharts-scrollbar-button {
+    fill: $colorBody;
+    stroke: $colorBody;
+    stroke-width: 1px;
+}
+
+.highcharts-scrollbar-thumb {
+    fill: $colorBody;
+    stroke: $colorBody;
+    stroke-width: 1px;
+}
+
+.highcharts-scrollbar-track {
+    fill: rgb(30, 30, 30);
+    stroke: rgb(30, 30, 30);
+    stroke-width: 1px;
+}
+
+option{
+    color: $colorLight_Font;
+    fill:$colorDark_Font !important;
+
+    background: $colorCOMPLEMENTARY; 
+}
+
+

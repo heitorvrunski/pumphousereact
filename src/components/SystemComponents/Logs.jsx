@@ -187,19 +187,19 @@ export default function Logger() {
     };
 
   return (
-    <div className="justify-content-center py-2 d-flex flex-column overflow-hidden h-100">
+    <div className="justify-content-center py-2 d-flex flex-column overflow-hidden h-100 ">
         <div className="card h-auto m-2">
             <div className="card-body">
             <div className={"row align-items-center"}>
-            <div className="col-auto">
+            <div className="col-auto text-Dark">
                 <h5>Logs</h5>
             </div>
-            <div className="col-auto" >
+            <div className="col-auto text-Light ms-2" >
                 <p  style={{display:"inline"}}>Back-End {insideDocker===true?"":<span style={{color:"red",fontWeight:"bold"}} >NOT</span>} running on container</p>
             </div>
         </div>
-        <div className="row g-3 align-items-center">
-            <div className="col-auto">
+        <div className="row g-3 align-items-center ">
+            <div className="col-auto text-Mid">
             <CheckBox
                     label="Per Lines"
                     componentState={0}
@@ -207,7 +207,7 @@ export default function Logger() {
                     eventChange={changeMode}
                     />
             </div>
-            <div className={"col-auto " + (tabIndex===0||tabIndex===4?"collapsed":"")}>
+            <div className={"col-auto text-Mid " + (tabIndex===0||tabIndex===4?"collapsed":"")}>
                 <CheckBox
                     label="By Date"
                     componentState={1}
@@ -219,16 +219,16 @@ export default function Logger() {
 
         </div>
 
-        <div className={"row g-3 align-items-center " + (typeRange!==0?"collapsed":"")}>
+        <div className={"row g-3 align-items-center text-Mid " + (typeRange!==0?"collapsed":"")}>
             <div className="col-auto">
-                <label htmlFor="inputTail" className="col-form-label">Set the num. of last lines: </label>
+                <label htmlFor="inputTail" className="col-form-label me-1">Set the num. of last lines: </label>
             </div>
-            <div className="col-auto">
+            <div className="col-auto me-1">
                 <input type="number" style={{width:"80px"}} id="inputTail" className="form-control" defaultValue={tail} onChange={handleTailChanges}></input>
 
             </div>
             <div className="col-auto">
-                <Button type="submit" className="btn btn-principal" onClick={handleSubmitChanges}>Change</Button>
+                <Button type="submit" className="btn btn-principal me-1" onClick={handleSubmitChanges}>Change</Button>
 
             </div>
             <div className="col-auto">
@@ -283,7 +283,7 @@ export default function Logger() {
 
         <ul className="nav nav-tabs d-flex flex-nowrap m-2 mb-0">
             <li className="nav-item float-start">
-                <button className={"text-nowrap nav-link " + (tabIndex===0?"active":"")} onClick={handleTabOnChange(0)}>LogFile</button>
+                <button className={"text-nowrap nav-link " + (tabIndex===0?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(0)}>LogFile</button>
             </li>
             <li className="nav-item float-start">
                 <button className={"text-nowrap nav-link " + (tabIndex===4?"active":"")} onClick={handleTabOnChange(4)}>OPC Logs</button>
@@ -300,7 +300,7 @@ export default function Logger() {
         </ul>
         
             
-        <div className="p-2 bg-white position-relative div-code h-100 m-2 mt-0">
+        <div className="p-2  position-relative div-code h-100 m-2 mt-0 bg-secundary">
             <div className="position-absolute top-0 end-0 me-4 mt-2" style={{cursor:"pointer"}} onClick={donloadLog} >
                 <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#eeeeee">
                         <path d="M0 0h24v24H0z" fill="none"/><path d="M17 3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V7l-4-4zm-5 16c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm3-10H5V5h10v4z"/>
