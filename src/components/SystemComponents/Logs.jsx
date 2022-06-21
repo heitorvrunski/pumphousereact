@@ -286,16 +286,16 @@ export default function Logger() {
                 <button className={"text-nowrap nav-link " + (tabIndex===0?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(0)}>LogFile</button>
             </li>
             <li className="nav-item float-start">
-                <button className={"text-nowrap nav-link " + (tabIndex===4?"active":"")} onClick={handleTabOnChange(4)}>OPC Logs</button>
+                <button className={"text-nowrap nav-link " + (tabIndex===4?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(4)}>OPC Logs</button>
             </li>
             <li className="nav-item float-start">
-                <button className={"text-nowrap nav-link " + (tabIndex===1?"active":"")} onClick={handleTabOnChange(1)}>Front End</button>
+                <button className={"text-nowrap nav-link " + (tabIndex===1?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(1)}>Front End</button>
             </li>
             <li className="nav-item float-start">
-                <button className={"text-nowrap nav-link " + (tabIndex===2?"active":"")} onClick={handleTabOnChange(2)}>Back End</button>
+                <button className={"text-nowrap nav-link " + (tabIndex===2?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(2)}>Back End</button>
             </li>
             <li className="nav-item float-start">
-                <button className={"text-nowrap nav-link " + (tabIndex===3?"active":"")} onClick={handleTabOnChange(3)}>Services</button>
+                <button className={"text-nowrap nav-link " + (tabIndex===3?"active bg-secundary border-0 text-Mid":"")} onClick={handleTabOnChange(3)}>Services</button>
             </li>
         </ul>
         

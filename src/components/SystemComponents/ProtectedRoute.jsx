@@ -72,7 +72,7 @@ const ProtectedRoute = ({ component: Comp, path, redirectto, ...rest }) => {
   }, [state, loadingRender, socket, isJoined, dispatch]);
 
   if (canOpen === "loading") {
-    return <Loading label={labelLoading} />;
+    return <Loading className="text-Light" label={labelLoading} />;
   }
 
   return (

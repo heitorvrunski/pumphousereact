@@ -7,7 +7,7 @@ import { ApiNode } from "../../middleware/thunk";
 const UsersConfig = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
-  const Name = useSelector((state) => state.Auth.name);
+  const Name = (useSelector((state) => state.Auth.name)).split("@")[0];
   const auth = useSelector((state) => state.Auth.isAuth);
   const handleOnClick = () => {
     if (auth === true) {

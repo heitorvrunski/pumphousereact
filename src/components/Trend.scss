@@ -1,10 +1,17 @@
 @import "../Input.scss";
 
-@media (max-width: 955px) {
+@media (max-width: 1150px) {
   .col-between-md-xl-12 {
     flex: 0 0 auto !important;
     width: 100% !important;
     margin-left: 0 !important;
+  }
+}
+@media (max-width: 1150px) {
+  .col-betweed-sm-md-12 {
+    flex: 0 0 auto !important;
+    width: 100% !important;
+
   }
 }
 

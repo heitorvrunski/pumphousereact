@@ -47,14 +47,14 @@ export default function NavMenu() {
             className="navbar-brand text-primary pt-0 f-400"
             to="/"
           >
-            Pump House Application
+            Pump House System
           </NavbarBrand>
 
           <button
             onClick={toggleNavbar}
             aria-label="Toggle navigation"
             type="button"
-            className=" btn navbar-toggler"
+            className=" btn navbar-toggler navbar-larger"
           >
             {collapsed ? (
               <ThemeProvider theme={theme}>

@@ -52,6 +52,12 @@ input:-webkit-autofill{
   fill: #d11818;
 }
 
+@media (min-width: 768px){
+  .ms-md-2 {
+    margin-left: 0.5rem !important;
+  }
+}
+
 .icon-Login {
   fill: $colorDark_Font;
 }

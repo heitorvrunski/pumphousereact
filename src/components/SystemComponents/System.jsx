@@ -10,6 +10,7 @@ import { useHistory } from "react-router";
 import Modal from "./Modal";
 import Button from "./Button";
 import customStyles from '../../utils/SelectCustomStyle'
+import Ismobile from "is-mobile";
 
 const UsersConfig = () => {
   const history = useHistory();
@@ -24,7 +25,7 @@ const UsersConfig = () => {
   const [users, setUsers] = useState({});
   const [modalUser,setModalUser] = useState(false)
   const [modalNode,setModalNode] = useState(false)
-
+  const ismobile = Ismobile()
   const [deleteUser,setDeleteUser] = useState({})
 
   const [newUser, setNewUser] = useState({
@@ -165,7 +166,18 @@ const UsersConfig = () => {
 
 
         <div className="row m-0 text-Dark" >
-            <h5>Logs</h5>
+            <div className="d-flex col-12 justify-content-between align-items-center">
+              <div className="d-flex flex-row mx-2">
+              <h5>Logs</h5>
+
+              </div>
+                <div></div>
+                
+                <h5 className="f-400 text-Light m-0 p-0 text-center btn-Icon me-4" style={!ismobile?{"display":"none"}:{"fontSize":"20px"}}  onClick={()=>history.push("/")}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="me-1" fill="#b4b4b4" height="25px"  viewBox="0 0 48 48"><path d="M24 40 8 24 24 8 26.1 10.1 13.7 22.5H40V25.5H13.7L26.1 37.9Z"/></svg>
+                    Home
+                </h5>
+          </div>
             <Button className="btn btn-principal m-2 mt-0" style={{width:"auto"}} onClick={seeLogs}>See Logs</Button>
 
         </div>
@@ -173,7 +185,7 @@ const UsersConfig = () => {
         
 
         <div className="row m-0 text-Dark" >
-          <h5>Restart Back-End in Docker</h5>
+          <h5 className="ms-2">Restart Back-End in Docker</h5>
           <Button className="btn btn-danger m-2 mt-0" style={{width:"auto"}} onClick={()=>{setModalNode(true)}}>Restart</Button>
         </div>
     {Object.keys(users).length === 0 ? (
@@ -181,7 +193,7 @@ const UsersConfig = () => {
   ) : (
     <>
       <div className="row m-0 text-Dark" >
-        <h5>Users</h5>
+        <h5 className="ms-2">Users</h5>
       </div>
 
       <div className="row card m-2" >

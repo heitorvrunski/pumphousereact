@@ -1,6 +1,6 @@
 import ReactLoading from "react-loading";
 
-export default function Loading({ label }) {
+export default function Loading({ label,className }) {
   return (
     <div className="center-screen">
       <div className="d-flex flex-column align-items-center">
@@ -11,7 +11,7 @@ export default function Loading({ label }) {
           width={"40px"}
         ></ReactLoading>
         <h6
-          className="my-2 flex-wrap text-center"
+          className={"my-2 flex-wrap text-center " + (className??"")}
           style={{ maxWidth: "220px" }}
         >
           {label ?? "Loading..."}

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import NavMenu from "./NavMenu";
+import Ismobile from "is-mobile";
 import LayoutMobile from "../Mobile/LayoutMobile";
+import LayoutDesktop from "../Desktop/LayoutDesktop";
 
 import { useDispatch, useSelector } from "react-redux";
 import { UpdateData, FirstReadDone,SendLogs } from "../../middleware/socketio";
@@ -10,6 +11,7 @@ import { ApiNode } from "../../middleware/thunk";
 
 
 export default function Layout(props) {
+  const ismobile = Ismobile()
   //const idleTimerRef = useRef(null)
   const socket = useSelector((state) => state.SocketIO.socket);
   const dispatch = useDispatch();
@@ -80,9 +82,16 @@ export default function Layout(props) {
   return (
     // <IdleTimer ref={idleTimerRef} timeout={300000} onIdle={onIdleHandle}>
       <div>
+        {ismobile===true?
         <LayoutMobile>
+        {props.children}
+      </LayoutMobile>
+        :
+        <LayoutDesktop>
           {props.children}
-        </LayoutMobile>
+        </LayoutDesktop>
+        }
+        
         
         <Toast
           messageError={errorMessage}

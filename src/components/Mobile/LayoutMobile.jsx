@@ -1,7 +1,6 @@
 import React from "react";
 import NavMenu from "./NavMenu";
 
-import { useSelector } from "react-redux";
 export default function LayoutMobile(props) {
 
 return (

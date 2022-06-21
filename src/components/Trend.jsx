@@ -14,14 +14,19 @@ import InputDate from "./SystemComponents/InputDate.jsx";
 import { FindConfig } from "../utils/SettingsUtils.js";
 import HighchartsExporting from "highcharts/modules/exporting";
 import Loading from "./SystemComponents/Loading.jsx";
+import { useHistory } from "react-router";
+import Ismobile from "is-mobile";
+
 import "./Trend.scss";
 import "../services/highCharts/CustomStyle.scss";
 
 import Button from "./SystemComponents/Button.jsx";
 
 export default function Trend() {
-  HighchartsExporting(Highcharts);
+  const history = useHistory();
 
+  HighchartsExporting(Highcharts);
+  const ismobile = Ismobile()
   const chart = createRef();
   const dispatch = useDispatch();
   const configs = useSelector((state) => state.SysConfig);
@@ -127,35 +132,38 @@ export default function Trend() {
             <div className="d-flex flex-column h-100">
               <div className=" d-flex m-2 flex-row row">
                 <div
-                  className="p-2 col-12 col-sm-12 col-md-2 "
-                  style={{ minWidth: "220px" }}
-                >
+                  className={"p-2 col-12 col-sm-12  col-betweed-sm-md-12 col-md-" + (ismobile?"4":"2")}
+                  style={{ minWidth: "220px" }}>
+                  
                   <div className=" d-flex flex-row">
                     <h5 className="f-500">Menu</h5>
                     <Button
                     className="btn btn-principal mx-2"
                     type="button"
-                    onClick={changeReloadAction}
-                    >
+                    onClick={changeReloadAction}>
                       Reload
 
                     </Button>
                     <Button
                       className="btn btn-principal"
                       type="button"
-                      onClick={clearAction}
-                    >
+                      onClick={clearAction}>
                       Clear
-
                     </Button>
-
+                    <h5 className="f-400 text-Light m-0 p-0 text-center btn-Icon ms-3"  style={!ismobile?{"display":"none"}:{"fontSize":"20px"}}  onClick={()=>history.push("/")}>
+                        <svg xmlns="http://www.w3.org/2000/svg" className="me-1" fill="#b4b4b4" height="25px"  viewBox="0 0 48 48"><path d="M24 40 8 24 24 8 26.1 10.1 13.7 22.5H40V25.5H13.7L26.1 37.9Z"/></svg>
+                        Home
+                    </h5>
 
                   </div>
                 </div>
+                
+                
                 <div
                   className="card d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12 p-1"
                   style={{ maxWidth: "720px" }}
                 >
+                  
                   <div className="row my-1 d-flex flex-row">
                     <div
                       className="d-flex mx-0 col-2 col-md-2 justify-content-start px-2"

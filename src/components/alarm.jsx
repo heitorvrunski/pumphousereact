@@ -13,6 +13,9 @@ import CheckGroup from "../utils/CheckGroup.js";
 import PropTypes from 'prop-types';
 import IconButton from '@mui/material/IconButton';
 import TextField from '@mui/material/TextField';
+import { useHistory } from "react-router";
+import Ismobile from "is-mobile";
+
 
 import ClearIcon from '@mui/icons-material/Clear';
 import SearchIcon from '@mui/icons-material/Search';
@@ -121,6 +124,8 @@ export default function Alarm() {
       );
 
     const groupUser = useSelector((state) => state.Auth.group);
+    const history = useHistory();
+    const ismobile = Ismobile()
 
     const [alarmData, setAlarmData] = useState([]) 
     const [tabIndex, setTabIndex] = useState(0)
@@ -246,10 +251,19 @@ export default function Alarm() {
     return (
         <>
         <div className="h-100 d-flex flex-column mt-1 ">
+            <div className="d-flex col-12 justify-content-between align-items-center">
             <div className="d-flex flex-row mx-2">
                 <Button className="btn  btn-principal me-2 " style={styleButton(0)} onClick={()=>{setTabIndex(0)}}> Online</Button>
                 <Button className="btn  btn-principal " style={styleButton(1)} onClick={()=>{setTabIndex(1)}}> History</Button>
             </div>
+              <div></div>
+              
+              <h5 className="f-400 text-Light m-0 p-0 text-center btn-Icon" style={!ismobile?{"display":"none"}:{"fontSize":"20px"}}  onClick={()=>history.push("/")}>
+                  <svg xmlns="http://www.w3.org/2000/svg" className="me-1" fill="#b4b4b4" height="25px"  viewBox="0 0 48 48"><path d="M24 40 8 24 24 8 26.1 10.1 13.7 22.5H40V25.5H13.7L26.1 37.9Z"/></svg>
+                  Home
+              </h5>
+            </div>
+            
             <div className={"row mx-2 d-flex justify-content-start text-Light " + (tabIndex!==1?"collapsed":"")}>
                 <div className="col-12 col-sm-3 d-flex align-items-center" style={{minWidth:"230px"}}>
                     <label htmlFor="inputTail" className="col-form-label me-2">From </label>

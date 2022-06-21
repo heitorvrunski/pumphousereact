@@ -7,8 +7,30 @@
   text-decoration: none;
 }
 .actived {
-  color: $colorMid !important;
+  color: $colorDark_Font !important;
   border-bottom: 1px solid $colorMid;
+}
+.active {
+  color:$colorDark_Font !important;
+}
+
+.active .active-SVG{
+  fill:$colorDark
+}
+.nav-border{
+  background-color: $colorBody;
+
+}
+.is-not-active:not(.active){
+  color: $colorLight_Font !important;
+}
+.badge-alarm{
+  background-color: #8a0000;
+  font-size: small;
+  font-weight:400;
+  height: 25px;
+  width: 40px;
+  color:$colorDark_Font !important;
 }
 
 .navbar-toggler {
@@ -31,8 +53,8 @@
   font-weight: 500;
 }
 .text-Link:hover {
-  color: $colorDark;
-  transition: color 0.5s;
+  color: $colorDark_Font !important;
+  transition: color 0.2s;
 }
 //transform:rotate(90deg) scale(0.7);opacity: 0; transition: all 0.1s ease-in-out;
 .toogle-open {

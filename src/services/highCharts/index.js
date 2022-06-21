@@ -1,14 +1,8 @@
 import axios from "axios";
+
 var firstDate = 9999999999999,
   lastDate = 0;
-var colorList = [];
 
-colorList[0] = "#8B3A3A";
-colorList[1] = "#5959AB";
-colorList[2] = "#CDAB2D";
-colorList[3] = "#A2BC13";
-colorList[4] = "#008B8B";
-colorList[5] = "#1D7CF2";
 
 export const CreateOptionsHighCharts = async (tags, optionsChart) => {
   const serverURL = `http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}`;
@@ -93,7 +87,7 @@ function success(data, name, index) {
     showInNavigator: true,
     //type: 'line',
 
-    color: colorList[index],
+   // color: colorList[index],
   };
 }
 
@@ -120,9 +114,38 @@ function createOptions(seriesOptions) {
   }
 
   return {
+    colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
+        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+    chart: {
+      backgroundColor:"#3e3e40",
+      plotBorderColor: '#606063'
+    },
     rangeSelector: {
       inputEnabled: false,
       
+      buttonTheme: {
+        fill: '#505053',
+        stroke: '#000000',
+        style: {
+            color: '#CCC'
+        },
+        states: {
+            hover: {
+                fill: '#707073',
+                stroke: '#000000',
+                style: {
+                    color: 'white'
+                }
+            },
+            select: {
+                fill: '#000003',
+                stroke: '#000000',
+                style: {
+                    color: 'white'
+                }
+            }
+        }
+      },
       buttons: [
         {
           type: "minute",
@@ -167,17 +190,23 @@ function createOptions(seriesOptions) {
       ],
       
     },
+    drilldown: {
+      activeAxisLabelStyle: {
+          color: '#F0F0F3'
+      },
+      activeDataLabelStyle: {
+          color: '#F0F0F3'
+      }
+  },
     scrollbar: {
-      barBackgroundColor: '#171717',
-      barBorderRadius: 2,
-      barBorderWidth: 0,
-      buttonBackgroundColor: '#171717',
-      buttonBorderWidth: 0,
-      buttonBorderRadius: 2,
-      trackBackgroundColor: '#171717',
-      trackBorderWidth: 1,
-      trackBorderRadius: 8,
-      trackBorderColor: '#171717'
+      barBackgroundColor: '#808083',
+      barBorderColor: '#808083',
+      buttonArrowColor: '#CCC',
+      buttonBackgroundColor: '#606063',
+      buttonBorderColor: '#606063',
+      rifleColor: '#FFF',
+      trackBackgroundColor: '#404043',
+      trackBorderColor: '#404043'
   },
     legend: {
       itemStyle:{color:'#b4b4b4'},
@@ -187,30 +216,49 @@ function createOptions(seriesOptions) {
 
     title: {
       text: "Historical Data",
+      style: {
+        color: '#E0E0E3',
+        fontSize: '20px'
+    }
     },
     subtitle: {
       text: subtitle,
     },
     xAxis: {
       gridLineWidth: 1,
-      gridLineColor: "#888888",
       type: "datetime",
+      gridLineColor: '#707073',
+        labels: {
+            style: {
+                color: '#E0E0E3'
+            }
+        },
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        title: {
+            style: {
+                color: '#A0A0A3'
+            }
+        }
     },
     yAxis: {
       gridLineWidth: 1,
-      gridLineColor: "#888888",
-      labels: {
-        formatter: function () {
-          return (this.value > 0 ? " + " : "") + this.value;
+      gridLineColor: '#707073',
+        labels: {
+            style: {
+                color: '#E0E0E3'
+            }
         },
-      },
-      plotLines: [
-        {
-          value: 0,
-          width: 2,
-          color: "silver",
+        lineColor: '#707073',
+        minorGridLineColor: '#505053',
+        tickColor: '#707073',
+        tickWidth: 1,
+        title: {
+            style: {
+                color: '#A0A0A3'
+            }
         },
-      ],
     },
 
     plotOptions: {
@@ -256,6 +304,21 @@ function createOptions(seriesOptions) {
         },
       },
     },
+    navigator: {
+      handles: {
+          backgroundColor: '#666',
+          borderColor: '#AAA'
+      },
+      outlineColor: '#CCC',
+      maskFill: 'rgba(255,255,255,0.1)',
+      series: {
+          color: '#7798BF',
+          lineColor: '#A6C7ED'
+      },
+      xAxis: {
+          gridLineColor: '#505053'
+      }
+  },
     series: seriesOptions,
   };
 }

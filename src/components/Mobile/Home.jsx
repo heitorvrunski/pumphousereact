@@ -1,4 +1,4 @@
-import React, { useState }  from "react";
+import React  from "react";
 import { useSelector } from "react-redux";
 import CheckGroup from "../../utils/CheckGroup";
 import { useHistory } from "react-router";
@@ -9,12 +9,12 @@ import Button from "../SystemComponents/Button";
 
 export default function Home() {
   const history = useHistory();
-  const [collapsed, SetCollapsed] = useState(true);
+  //const [collapsed, SetCollapsed] = useState(true);
     const groupUser = useSelector((state) => state.Auth.group);
-    const totalAlarms = useSelector(
+    /*const totalAlarms = useSelector(
       (state) =>
         (state.Tags.loading === true ? 0 : state.Tags.get("TotalAlarmsActive")) ?? 0
-    );
+    );*/
 
 
   //CheckGroup.checkGroup("admin",groupUser)===true
