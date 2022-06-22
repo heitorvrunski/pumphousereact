@@ -119,7 +119,7 @@ export default function Control() {
 
         <div className="col-12 col-md-5 ms-md-2" style={{ "maxWidth": "400px" }}>
           {cPump.map((pump, index) => (
-            <PumpCard key={index} index={index === 1 ? 2 : index === 2 ? 1 : index} cPump={pump.toJS()} />
+            <PumpCard key={index} index={index} cPump={pump.toJS()} />
           ))}
         </div>
       </div>

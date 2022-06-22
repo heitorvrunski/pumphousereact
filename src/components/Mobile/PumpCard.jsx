@@ -32,7 +32,7 @@ export default function PumpCard(props) {
     } else {
       setIsOpenModal(false);
 
-      Commands.SetManualFreqPump(props.index, newFrequency, socket);
+      Commands.SetManualFreqPump(props.cPump.order, newFrequency, socket);
     }
 
   }
@@ -40,9 +40,9 @@ export default function PumpCard(props) {
 
   function actionManualPump(status) {
     if (status === 1)
-      Commands.StopManualPump(props.index, socket);
+      Commands.StopManualPump(props.cPump.order, socket);
     else
-      Commands.StartManualPump(props.cPump, props.index, socket);
+      Commands.StartManualPump(props.cPump, props.cPump.order, socket);
 
   }
 
