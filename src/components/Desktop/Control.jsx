@@ -65,7 +65,7 @@ export default function Control() {
                     {Tags.cLevel.Percentage + "%"}
                   </h3>
                 </div>
-                <div className="LSLLabel f-400">LSL {Tags.cLevel.LSL === 1 ? "is" : "is not"} actived</div>
+                <div className="LSLLabel f-400">LSL {Tags.cLevel.LSL === 1 ? "is" : "is not"} activated</div>
 
               </div>
             </div>
