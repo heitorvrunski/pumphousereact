@@ -238,35 +238,18 @@ $heightPipe: 210px;
 //   color: $colorFont2 !important;
 // }
 
-.pump-Yellow {
-  filter: hue-rotate(56deg);
+
+.pump-green {
+  fill:#007400;
 }
-.pump-Green {
-  filter: hue-rotate(440deg);
+.pump-red {
+  fill:#8a0000;
+}
+.pump-gray {
+  fill:$colorLight;
 }
 
-.pump-Blue{
-  filter: hue-rotate(-140deg);
-}
 
-.pump-Grey {
-  filter: grayscale(100%);
-}
-
-.alarm-Yellow {
-  filter: hue-rotate(56deg);
-}
-.alarm-Green {
-  filter: hue-rotate(109deg);
-}
-
-.alarm-Blue{
-  filter: hue-rotate(-165deg);
-}
-
-.alarm-Grey {
-  filter: grayscale(100%);
-}
 
 .ld-Circle-Active {
   background-color: $colorActive;
@@ -276,13 +259,13 @@ $heightPipe: 210px;
 }
 
 
-.blink-Yellow {
+.blink-yellow {
   animation: blinkerYellow 1s linear infinite;
 }
 
 @keyframes blinkerYellow {
   50% {
-    filter: hue-rotate(56deg);
+    fill:#8a7400
   }
 }
 
