@@ -9,10 +9,11 @@ import CheckBox from "./SystemComponents/CheckBox.jsx";
 import CheckboxList from "./SystemComponents/CheckBoxList.jsx";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts/highstock";
+import HighchartsExporting from "highcharts/modules/exporting";
+
 import DurationButton from "./SystemComponents/DurationButton.jsx";
 import InputDate from "./SystemComponents/InputDate.jsx";
 import { FindConfig } from "../utils/SettingsUtils.js";
-import HighchartsExporting from "highcharts/modules/exporting";
 import Loading from "./SystemComponents/Loading.jsx";
 import { useHistory } from "react-router";
 import Ismobile from "is-mobile";
@@ -46,13 +47,13 @@ export default function Trend() {
     endPeriod !== 0 ? new Date(endPeriod).toISOString().substr(0, 10) : "";
   const [reload, setReload] = useState(false);
   const [options, SetOptions] = useState({});
-
-  const timezone = new Date().getTimezoneOffset();
+  /*const timezone = new Date().getTimezoneOffset();
+  
   Highcharts.setOptions({
     global: {
       timezoneOffset: timezone,
     },
-  });
+  });*/
 
   useEffect(
     () => {
@@ -83,6 +84,8 @@ export default function Trend() {
                 setReload(!reload);
               }, 1000);
             }
+            SetOptions(ClearOptions());
+
             SetOptions(res);
           });
         } else {
@@ -99,6 +102,8 @@ export default function Trend() {
     }, // eslint-disable-next-line
     [trends, reload, dispatch, configs]
   );
+
+
 
   const changeMode = (modeComponent) => {
     dispatch(Actions.ChangeMode(modeComponent));
@@ -161,7 +166,7 @@ export default function Trend() {
                 
                 <div
                   className="card d-flex col-12 col-sm-12 col-md-10 ms-auto col-between-md-xl-12 p-1"
-                  style={{ maxWidth: "720px" }}
+                  style={{ maxWidth: "596px" }}
                 >
                   
                   <div className="row my-1 d-flex flex-row">

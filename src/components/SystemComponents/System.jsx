@@ -327,7 +327,7 @@ const UsersConfig = () => {
         onChangeErrorMessage={onChangeErrorMessage}
       />
       <Modal isOpen={modalUser} handleOnClose={handleOnCloseModal(0)}>
-        <h5>Are you sure? This action cannot be undone</h5>
+        <h5 className="text-Light">Are you sure? This action cannot be undone</h5>
           <div className="d-flex flex-row justify-content-end">
             <button className="btn btn-principal mx-2" onClick={handleOnDelete}>
               {" "}
@@ -341,7 +341,7 @@ const UsersConfig = () => {
       </Modal>
 
       <Modal isOpen={modalNode} handleOnClose={handleOnCloseModal(1)}>
-        <h5>Are you sure? The system will not be available for a few seconds</h5>
+        <h5 className="text-Light">Are you sure? The system will not be available for a few seconds</h5>
           <div className="d-flex flex-row justify-content-end">
             <button className="btn btn-principal mx-2" onClick={handleOnRestartNode}>
               {" "}

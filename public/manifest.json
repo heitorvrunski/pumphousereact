@@ -3,19 +3,26 @@
   "name": "PumpHouse System",
   "icons": [
     {
-      "src": "logo.ico",
+      "src": "./Logo.ico",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "logo.png",
+      "src": "./Logo192x.png",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "logo.png",
+      "src": "./Logo512x.png",
       "type": "image/png",
       "sizes": "512x512"
+    }
+    ,
+    {
+      "src": "./maskable_icon.png",
+      "type": "image/png",
+      "sizes": "395x395",
+      "purpose": "maskable"
     }
   ],
   "start_url": ".",

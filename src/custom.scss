@@ -279,36 +279,110 @@ $heightPipe: 210px;
     opacity: 0;
   }
 }
+$dim450:180px;
+$dim400:160px;
+$dim250:100px;
+$dim200:80px;
+$dim125:50px;
+$dim75:30px;
 
-// .form-signin {
-//   width: 100%;
-//   max-width: 330px;
-//   padding: 15px;
-//   margin: 0 auto;
+
+.container {
+  width: $dim450;
+  height: $dim200;
+  position: absolute;
+  top: -30%;
+  overflow: hidden;
+  text-align: center;
+}
+
+.container-relative {
+  width: $dim450;
+
+}
+.gauge-a {
+  z-index: 1;
+  position: absolute;
+  background-color: rgba(255,255,255,.08);
+  width: $dim400;
+  height: $dim200;
+  top: 0%;
+  border-radius: $dim250 $dim250 0px 0px;
+}
+.gauge-b {
+  z-index: 3;
+  position: absolute;
+  background-color: $colorCOMPLEMENTARY;
+  width: $dim250;
+  height: $dim125;
+  top: $dim75;
+  margin-left: $dim75;
+  margin-right: auto;
+  border-radius: $dim250 $dim250 0px 0px;
+}
+.gauge-c {
+  z-index: 2;
+  position: absolute;
+  background-color: $colorDark;
+  width: $dim400;
+  height: $dim200;
+  top: $dim200;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 0px 0px $dim200 $dim200;
+  transform-origin: center top;
+  transition: all 0.5s ease-in-out;
+  --rotation:"100deg"
+}
+
+// .container:hover .gauge-c {  transform:rotate(.5turn);
 // }
 
-// .btn-principal {
-//   background-color: $colorBackButton1 !important;
-//   color: $colorFontButton1 !important;
-//   border: $colorborderButton1 !important;
-// }
-// .btn-principal:active {
-//   background: $colorBackSelectedButton1 !important;
-//   outline: none !important;
-//   box-shadow: none;
-// }
-
-// .btn-principal:hover {
-//   //background:$colorBackSelectedButton1 !important;
-//   outline: none !important;
-//   box-shadow: none;
+// .container:hover .gauge-data { color: rgba(255,255,255,1); }
+// .gauge-data {
+//   z-index: 4;
+//   color: rgba(255,255,255,.2);
+//   font-size: 1.5em;
+//   line-height: 25px;
+//   position: absolute;
+//   width: 400px;
+//   height: 200px;
+//   top: 90px;
+//   margin-left: auto;
+//   margin-right: auto;
+//   transition: all 1s ease-out;
 // }
 
-// .btn:focus,
-// .btn:active {
-//   outline: none !important;
-//   box-shadow: none;
-// }
+.container:hover .gauge-data { color: rgba(255,255,255,0.7); }
+
+.gauge-data {
+  z-index: 4;
+  color: rgba(255,255,255,.2);
+  line-height: 25px;
+  position: absolute;
+  width: $dim400;
+  height: $dim400;
+  top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.2s ease-out;
+}
+.gauge-label{
+  z-index: 4;
+  color: rgba(255,255,255,.2);
+  line-height: 25px;
+  position: absolute;
+  width: $dim450;
+  height: $dim450;
+  top: 81px;
+  left:10px;
+  margin-left: auto;
+  margin-right: auto;
+  transition: all 0.2s ease-out;
+}
+
+
+
 
 .card-Pump {
   /*    height: 600px;

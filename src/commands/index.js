@@ -1,4 +1,6 @@
 import { SendMessage } from "../middleware/socketio";
+//import store from "../store";
+
 
 const Commands = {
   SendGenericMessage: (browseName, value, socket)=>{
@@ -21,19 +23,24 @@ const Commands = {
   },
   DisablePressurePID : (socket) => {
     var sendMessages = [];
-    sendMessages.push([["cPump",0, "Command"], 0]);
+    //sendMessages.push([["cPump",0, "Command"], 0]);
+    sendMessages.push([["cPump",0, "ForceValue"], 0]);
+    sendMessages.push([["cPump",0, "ForceCommand"], 1]);
     sendMessages.push([["cPump",0, "Frequency"], 0]);
     sendMessages.push([["cPump",0, "MaxRamp"], 0]);
   
-    sendMessages.push([["cPump",1, "Command"], 0]);
+    //sendMessages.push([["cPump",1, "Command"], 0]);
+    sendMessages.push([["cPump",1, "ForceValue"], 0]);
+    sendMessages.push([["cPump",1, "ForceCommand"], 1]);
     sendMessages.push([["cPump",1, "Frequency"], 0]);
     sendMessages.push([["cPump",1, "MaxRamp"], 0]);
   
-    sendMessages.push([["cPump",2, "Command"], 0]);
+    //sendMessages.push([["cPump",2, "Command"], 0]);
+    sendMessages.push([["cPump",2, "ForceValue"], 0]);
+    sendMessages.push([["cPump",2, "ForceCommand"], 1]);
     sendMessages.push([["cPump",2, "Frequency"], 0]);
     sendMessages.push([["cPump",2, "MaxRamp"], 0]);
     
-  
   
   
     sendMessages.push([["PressurePID", "enable"], 0]);
@@ -47,12 +54,18 @@ const Commands = {
   DisableAllPump : (socket) => {
     var sendMessages = [];
     sendMessages.push([["PressurePID", "enable"], 0]);
+    sendMessages.push([["cPump",0, "ForceValue"], 0]);
+    sendMessages.push([["cPump",0, "ForceCommand"], 1]);
+    sendMessages.push([["cPump",1, "ForceValue"], 0]);
+    sendMessages.push([["cPump",1, "ForceCommand"], 1]);
+    sendMessages.push([["cPump",2, "ForceValue"], 0]);
+    sendMessages.push([["cPump",2, "ForceCommand"], 1]);
     sendMessages.push([["PressurePID", "Step"], 0]);
-    sendMessages.push([["cPump", 0, "Command"], 0]);
+    //sendMessages.push([["cPump", 0, "Command"], 0]);
     sendMessages.push([["cPump", 0, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", 1, "Command"], 0]);
+    //sendMessages.push([["cPump", 1, "Command"], 0]);
     sendMessages.push([["cPump", 1, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", 2, "Command"], 0]);
+    //sendMessages.push([["cPump", 2, "Command"], 0]);
     sendMessages.push([["cPump", 2, "MaxRamp"], 0]);
     SendMessages(sendMessages, socket);
   },
@@ -60,7 +73,9 @@ const Commands = {
     var maxRamp = cPump.StartRamp;
     var sendMessages = [];
     sendMessages.push([["cPump", index, "MaxRamp"], maxRamp]);
-    sendMessages.push([["cPump", index, "Command"], 1]);
+    sendMessages.push([["cPump",index, "ForceValue"], 1]);
+    sendMessages.push([["cPump",index, "ForceCommand"], 1]);
+    //sendMessages.push([["cPump", index, "Command"], 1]);
     //sendMessages.push([['cPump',index,'status'],1])
     SendMessages(sendMessages, socket);
   },
@@ -68,7 +83,10 @@ const Commands = {
     var sendMessages = [];
   
     sendMessages.push([["cPump", index, "MaxRamp"], 0]);
-    sendMessages.push([["cPump", index, "Command"], 0]);
+    //forceTag(`cPump[${index}].Command`,0,socket)
+    sendMessages.push([["cPump",index, "ForceValue"], 0]);
+    sendMessages.push([["cPump",index, "ForceCommand"], 1]);
+    //sendMessages.push([["cPump", index, "Command"], 0]);
     //sendMessages.push([["cPump", index, "status"], 0]);
     SendMessages(sendMessages, socket);
   },
@@ -91,6 +109,8 @@ const Commands = {
   
   }
 }
+
+
 
 function FormatDate(date){
   return `${date.getFullYear()}-${date.getMonth()}-${date.getDate()} ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`

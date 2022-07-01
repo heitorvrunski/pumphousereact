@@ -1,139 +1,16 @@
-export default Theme = {
-    colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
-        '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
-    chart: {
-        backgroundColor: {
-            linearGradient: { x1: 0, y1: 0, x2: 1, y2: 1 },
-            stops: [
-                [0, '#2a2a2b'],
-                [1, '#3e3e40']
-            ]
+
+
+export const ThemeRangeSelector = {
+        colors: ['#2b908f', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
+            '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+        chart: {
+          backgroundColor:"#3e3e40",
+          plotBorderColor: '#606063'
         },
-        style: {
-            fontFamily: '\'Unica One\', sans-serif'
-        },
-        plotBorderColor: '#606063'
-    },
-    title: {
-        style: {
-            color: '#E0E0E3',
-            textTransform: 'uppercase',
-            fontSize: '20px'
-        }
-    },
-    subtitle: {
-        style: {
-            color: '#E0E0E3',
-            textTransform: 'uppercase'
-        }
-    },
-    xAxis: {
-        gridLineColor: '#707073',
-        labels: {
-            style: {
-                color: '#E0E0E3'
-            }
-        },
-        lineColor: '#707073',
-        minorGridLineColor: '#505053',
-        tickColor: '#707073',
-        title: {
-            style: {
-                color: '#A0A0A3'
-            }
-        }
-    },
-    yAxis: {
-        gridLineColor: '#707073',
-        labels: {
-            style: {
-                color: '#E0E0E3'
-            }
-        },
-        lineColor: '#707073',
-        minorGridLineColor: '#505053',
-        tickColor: '#707073',
-        tickWidth: 1,
-        title: {
-            style: {
-                color: '#A0A0A3'
-            }
-        }
-    },
-    tooltip: {
-        backgroundColor: 'rgba(0, 0, 0, 0.85)',
-        style: {
-            color: '#F0F0F0'
-        }
-    },
-    plotOptions: {
-        series: {
-            dataLabels: {
-                color: '#F0F0F3',
-                style: {
-                    fontSize: '13px'
-                }
-            },
-            marker: {
-                lineColor: '#333'
-            }
-        },
-        boxplot: {
-            fillColor: '#505053'
-        },
-        candlestick: {
-            lineColor: 'white'
-        },
-        errorbar: {
-            color: 'white'
-        }
-    },
-    legend: {
-        backgroundColor: 'rgba(0, 0, 0, 0.5)',
-        itemStyle: {
-            color: '#E0E0E3'
-        },
-        itemHoverStyle: {
-            color: '#FFF'
-        },
-        itemHiddenStyle: {
-            color: '#606063'
-        },
-        title: {
-            style: {
-                color: '#C0C0C0'
-            }
-        }
-    },
-    credits: {
-        style: {
-            color: '#666'
-        }
-    },
-    labels: {
-        style: {
-            color: '#707073'
-        }
-    },
-    drilldown: {
-        activeAxisLabelStyle: {
-            color: '#F0F0F3'
-        },
-        activeDataLabelStyle: {
-            color: '#F0F0F3'
-        }
-    },
-    navigation: {
-        buttonOptions: {
-            symbolStroke: '#DDDDDD',
-            theme: {
-                fill: '#505053'
-            }
-        }
-    },
-    // scroll charts
-    rangeSelector: {
-        buttonTheme: {
+        rangeSelector: {
+          inputEnabled: false,
+          
+          buttonTheme: {
             fill: '#505053',
             stroke: '#000000',
             style: {
@@ -155,39 +32,211 @@ export default Theme = {
                     }
                 }
             }
+          },
+          buttons: [
+            {
+              type: "minute",
+              count: 10,
+              text: "10m",
+              
+            },
+            {
+              type: "minute",
+              count: 60,
+              text: "1h",
+            },
+            {
+              type: "day",
+              count: 1,
+              text: "1d",
+            },
+            {
+              type: "week",
+              count: 1,
+              text: "1w",
+            },
+            {
+              type: "month",
+              count: 1,
+              text: "1m",
+            },
+            {
+              type: "month",
+              count: 3,
+              text: "3m",
+            },
+            {
+              type: "month",
+              count: 6,
+              text: "6m",
+            },
+            {
+              type: "all",
+              text: "All",
+            },
+          ],
+          
         },
-        inputBoxBorderColor: '#505053',
-        inputStyle: {
-            backgroundColor: '#333',
-            color: 'silver'
+        drilldown: {
+          activeAxisLabelStyle: {
+              color: '#F0F0F3'
+          },
+          activeDataLabelStyle: {
+              color: '#F0F0F3'
+          }
+      },
+        scrollbar: {
+          barBackgroundColor: '#808083',
+          barBorderColor: '#808083',
+          buttonArrowColor: '#CCC',
+          buttonBackgroundColor: '#606063',
+          buttonBorderColor: '#606063',
+          rifleColor: '#FFF',
+          trackBackgroundColor: '#404043',
+          trackBorderColor: '#404043'
+      },
+        legend: {
+          itemStyle:{color:'#b4b4b4'},
+    
+          enabled: true,
         },
-        labelStyle: {
-            color: 'silver'
+    
+        title: {
+          text: "Historical Data",
+          style: {
+            color: '#E0E0E3',
+            fontSize: '20px'
         }
-    },
-    navigator: {
-        handles: {
-            backgroundColor: '#666',
-            borderColor: '#AAA'
         },
-        outlineColor: '#CCC',
-        maskFill: 'rgba(255,255,255,0.1)',
-        series: {
-            color: '#7798BF',
-            lineColor: '#A6C7ED'
-        },
+        // subtitle: {
+        //   text: subtitle,
+        // },
         xAxis: {
-            gridLineColor: '#505053'
-        }
-    },
-    scrollbar: {
-        barBackgroundColor: '#808083',
-        barBorderColor: '#808083',
-        buttonArrowColor: '#CCC',
-        buttonBackgroundColor: '#606063',
-        buttonBorderColor: '#606063',
-        rifleColor: '#FFF',
-        trackBackgroundColor: '#404043',
-        trackBorderColor: '#404043'
-    }
+          gridLineWidth: 1,
+          type: "datetime",
+          gridLineColor: '#707073',
+            labels: {
+                style: {
+                    color: '#E0E0E3'
+                }
+            },
+            lineColor: '#707073',
+            minorGridLineColor: '#505053',
+            tickColor: '#707073',
+            title: {
+                style: {
+                    color: '#A0A0A3'
+                }
+            }
+        },
+        yAxis: {
+          gridLineWidth: 1,
+          gridLineColor: '#707073',
+            labels: {
+                style: {
+                    color: '#E0E0E3'
+                }
+            },
+            lineColor: '#707073',
+            minorGridLineColor: '#505053',
+            tickColor: '#707073',
+            tickWidth: 1,
+            title: {
+                style: {
+                    color: '#A0A0A3'
+                }
+            },
+        },
+    
+        plotOptions: {
+          series: {
+            showInNavigator: true,
+          },
+        },
+    
+        // tooltip: {
+        //   formatter: function () {
+        //     var points = this.points,
+        //       tooltipArray = [
+        //         "<b>" + new Date(this.x).toString().substr(0, 24) + "</b>",
+        //       ];
+    
+        //     points.forEach(function (point, index) {
+        //       tooltipArray.push(
+        //         '<span style="color:{series.color};width: 200px">' +
+        //           point.series.name +
+        //           "</span>: <b>" +
+        //           point.y.toFixed(2) +
+        //           "</b><br/>"
+        //       );
+        //     });
+    
+        //     return tooltipArray;
+        //   },
+        //   valueDecimals: 2,
+        //   style: {
+        //     fontSize: "16px",
+        //   },
+        //   split: true,
+        // },
+    
+        exporting: {
+          chartOptions: {
+            plotOptions: {
+              series: {
+                dataLabels: {
+                  enabled: true,
+                },
+              },
+            },
+          },
+        },
+        navigator: {
+          handles: {
+              backgroundColor: '#666',
+              borderColor: '#AAA'
+          },
+          outlineColor: '#CCC',
+          maskFill: 'rgba(255,255,255,0.1)',
+          series: {
+              color: '#7798BF',
+              lineColor: '#A6C7ED'
+          },
+          xAxis: {
+              gridLineColor: '#505053'
+          }
+      }
 };
+
+export const ThemeLineSimple = {
+  colors: ['#5836e5', '#90ee7e', '#f45b5b', '#7798BF', '#aaeeee', '#ff0066',
+            '#eeaaee', '#55BF3B', '#DF5353', '#7798BF', '#aaeeee'],
+  navigator: {
+      enabled:false,
+      buttonOptions: {
+        enabled: false
+        }
+  },
+  rangeSelector: {
+    enabled:false
+
+  },
+
+
+	xAxis: {
+  	visible: true
+  },
+  scrollbar: {
+    enabled: false,
+    visible: false
+  },
+  exporting:{
+    enabled: false
+  },
+  title: {
+    text: "",
+    
+    }
+    
+};
+
