@@ -75,6 +75,8 @@ const Commands = {
     sendMessages.push([["cPump", index, "MaxRamp"], maxRamp]);
     sendMessages.push([["cPump",index, "ForceValue"], 1]);
     sendMessages.push([["cPump",index, "ForceCommand"], 1]);
+    sendMessages.push([["cPump", index, "Frequency"], 5]);
+
     //sendMessages.push([["cPump", index, "Command"], 1]);
     //sendMessages.push([['cPump',index,'status'],1])
     SendMessages(sendMessages, socket);
@@ -91,7 +93,18 @@ const Commands = {
     SendMessages(sendMessages, socket);
   },
   SetManualFreqPump : (index, value, socket) => {
-    SendMessage(["cPump", index, "setFrequency"], value, socket);
+    if(value<5){
+      var sendMessages = [];
+      sendMessages.push([["cPump", index, "MaxRamp"], 0]);
+      sendMessages.push([["cPump",index, "ForceValue"], 0]);
+      sendMessages.push([["cPump",index, "ForceCommand"], 1]);
+      sendMessages.push([["cPump",index, "Frequency"], 0]);
+      SendMessages(sendMessages, socket);
+
+    }else{
+      SendMessage(["cPump", index, "Frequency"], value, socket);
+
+    }
   },
   UpdateSettings : (browseName, value, socket) => {
     SendMessage(browseName, value, socket);
