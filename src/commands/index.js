@@ -88,6 +88,8 @@ const Commands = {
     //forceTag(`cPump[${index}].Command`,0,socket)
     sendMessages.push([["cPump",index, "ForceValue"], 0]);
     sendMessages.push([["cPump",index, "ForceCommand"], 1]);
+    sendMessages.push([["cPump",index, "Frequency"], 0]);
+
     //sendMessages.push([["cPump", index, "Command"], 0]);
     //sendMessages.push([["cPump", index, "status"], 0]);
     SendMessages(sendMessages, socket);
