@@ -39,7 +39,7 @@ export default function PumpCard(props) {
 
 
   function actionManualPump(status) {
-    if (status === 1)
+    if (status !== 0)
       Commands.StopManualPump(props.cPump.order, socket);
     else
       Commands.StartManualPump(props.cPump, props.cPump.order, socket);
@@ -94,7 +94,7 @@ export default function PumpCard(props) {
           pondEnable !== 1 ?
             <div className="position-absolute end-0 me-2">
               <div className="d-flex flex-column" style={{ "width": "70px" }}>
-                <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status === 1 ? "Stop" : "Start"}</Button>
+                <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status !== 0 ? "Stop" : "Start"}</Button>
                 <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1 " onClick={() => openNewFrequency()}>Set</Button>
 
               </div>
@@ -109,7 +109,7 @@ export default function PumpCard(props) {
           pidEnable !== 1 ?
             <div className="position-absolute end-0 me-2">
               <div className="d-flex flex-column" style={{ "width": "70px" }}>
-                <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status === 1 ? "Stop" : "Start"}</Button>
+                <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status !== 1 ? "Stop" : "Start"}</Button>
                 <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1 " onClick={() => openNewFrequency()}>Set</Button>
 
               </div>

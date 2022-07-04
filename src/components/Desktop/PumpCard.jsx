@@ -46,7 +46,7 @@ export default function PumpCard(props) {
 
 
   function actionManualPump(status) {
-    if (status === 1)
+    if (status !== 0)
       Commands.StopManualPump(props.index, socket);
     else
       Commands.StartManualPump(props.cPump, props.index, socket);
@@ -77,7 +77,7 @@ export default function PumpCard(props) {
             Status
             </h5>
             <h6 className="text-Light p-0 m-0 f-400">
-              {props.cPump.StatusOPC === 1 ? "Running" : "Stopped"}
+              {props.cPump.StatusOPC !== 0 ? "Running" : "Stopped"}
             </h6>
             
             
@@ -131,7 +131,7 @@ export default function PumpCard(props) {
               Commands
               </h5>
               <div className="d-flex flex-column" >
-                <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status === 1 ? "Stop" : "Start"}</Button>
+                <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status !== 0 ? "Stop" : "Start"}</Button>
                 <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1 " onClick={() => openNewFrequency()}>Set Freq</Button>
               </div>
               {props.cPump.B7OPC ===0?
