@@ -40,9 +40,9 @@ export default function PumpCard(props) {
 
   function actionManualPump(status) {
     if (status !== 0)
-      Commands.StopManualPump(props.cPump.order, socket);
+      Commands.StopManualPump(props.index, socket);
     else
-      Commands.StartManualPump(props.cPump, props.cPump.order, socket);
+      Commands.StartManualPump(props.cPump, props.index, socket);
 
   }
 
