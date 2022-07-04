@@ -18,8 +18,11 @@ export default function Control() {
   const socket = useSelector((state) => state.SocketIO.socket);
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
+
   const [options, SetOptions] = useState({});
   const [reload, SetReload] = useState(false);
+  const [openModal, SetOpenModal] = useState(false);
+
 
   const chart = createRef();
 
@@ -74,6 +77,9 @@ export default function Control() {
   }
   function toggleFountainCommand() {
     Commands.ToggleFountainCommand();
+  }
+  function toggleBackFlushCommand() {
+    Commands.ToggleBackFlushCommand();
   }
 
   return (
@@ -139,7 +145,7 @@ export default function Control() {
           </div>
           <div className="d-flex flex-row my-2" >
             <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={() => toggleFountainCommand()}>{Tags.Fountain.Command === 1 ? "Fountain OFF" : "Fountain ON"}</Button>
-            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => disableAllPumpsAction()}>Disable All Pumps</Button>
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => {SetOpenModal(true)}}>Back Flush</Button>
           </div>
 
           {Tags.PressurePID.Safety === 1 ?
@@ -155,6 +161,24 @@ export default function Control() {
           ))}
         </div>
       </div>
+      <Modal header={"Act All Alarm "} isOpen={openModal} handleOnClose={() => { SetOpenModal(false) }}>
+        <div className="d-flex flex-row my-2 justify-content-start ">
+          <h5 className="text-Mid">Back Flush Status</h5>
+          <h6 className="text-Light">
+            {Tags.BackFlush.Step===0?
+            "Waiting one of main pumps start":
+            (Tags.BackFlush.Step===1?
+              "Waiting to start":
+              "Is Running")
+            }
+          </h6>
+        </div>
+        <div className="d-flex flex-row justify-content-end">
+          <Button className="btn  btn-principal me-2" onClick={() => { toggleBackFlushCommand() }}> {Tags.BackFlush.Command===1?"Manual OFF":"Manual ON"}</Button>
+
+          <Button className="btn  btn-principal me-2" onClick={() => { SetOpenModal(false) }}> Cancel</Button>
+        </div>
+      </Modal>
     </div>
   );
 }

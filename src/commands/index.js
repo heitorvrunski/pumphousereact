@@ -113,11 +113,14 @@ const Commands = {
     const socket = state.SocketIO.socket;
     const FountainCommand = state.Tags.getIn(["Fountain","Command"]);
     const value = FountainCommand===1?0:1;
-    console.log(state)
-    console.log(FountainCommand)
-    console.log(value)
-
-    SendMessage([["Fountain","Command"]], value, socket);
+    SendMessage(["Fountain","Command"], value, socket);
+  },
+  ToggleBackFlushCommand : () => {
+    const state = store.getState();
+    const socket = state.SocketIO.socket;
+    const backFlushCommand = state.Tags.getIn(["BackFlush","Command"]);
+    const value = backFlushCommand===1?0:1;
+    SendMessage(["BackFlush","Command"], value, socket);
   },
 }
 
