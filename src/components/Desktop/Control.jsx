@@ -163,7 +163,7 @@ export default function Control() {
         </div>
       </div>
       <Modal header={"Act All Alarm "} isOpen={openModal} handleOnClose={() => { SetOpenModal(false) }}>
-        <div className="d-flex flex-row my-2 justify-content-start ">
+        <div className="d-flex flex-column my-2 justify-content-start ">
           <h5 className="text-Mid">Back Flush Status</h5>
           <h6 className="text-Light">
             {Tags.BackFlush.Step===0?
