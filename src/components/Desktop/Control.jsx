@@ -177,7 +177,7 @@ export default function Control() {
         <div className="d-flex flex-row justify-content-end">
           <Button className="btn  btn-principal me-2" onClick={() => { toggleBackFlushCommand() }}> {Tags.BackFlush.Command===1?"Manual OFF":"Manual ON"}</Button>
 
-          <Button className="btn  btn-principal me-2" onClick={() => { SetOpenModal(false) }}> Cancel</Button>
+          <Button className="btn  btn-principal me-2" onClick={() => { SetOpenModal(false) }}> Close</Button>
         </div>
       </Modal>
     </div>
