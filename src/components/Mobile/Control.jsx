@@ -1,9 +1,10 @@
-import React from "react";
+import React,{useState} from "react";
 import { useSelector } from "react-redux";
 import PumpCard from "./PumpCard"
 import Button from "../SystemComponents/Button";
 import Commands from "../../commands/index.js";
 import { useHistory } from "react-router";
+import Modal from "../SystemComponents/Modal";
 
 
 // import TestCard from "./TestCard.jsx";
@@ -14,6 +15,7 @@ export default function Control() {
   const socket = useSelector((state) => state.SocketIO.socket);
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
+  const [openModal, SetOpenModal] = useState(false);
 
   const cPump = useSelector((state) => state.Tags.get("cPump")).sort(order);
   function order(a, b) {
@@ -31,6 +33,12 @@ function autoPressurePIDAction() {
 }
 function disableAllPumpsAction() {
   Commands.DisableAllPump(socket);
+}
+function toggleFountainCommand() {
+  Commands.ToggleFountainCommand();
+}
+function toggleBackFlushCommand() {
+  Commands.ToggleBackFlushCommand();
 }
 /*
 function autoPondFillPIDAction() {
@@ -56,11 +64,16 @@ function disableAllPumpAction() {
       </div>
       <div className="d-flex row">
       <div className="col-12 col-md-6">
-      <div className="d-flex flex-row mb-2" style={Tags.PressurePID.enable === 1?{}:{"maxWidth":"400px"}}>
+      <div className="d-flex flex-row">
         <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={()=>autoPressurePIDAction()}>{Tags.PressurePID.enable===1?"Disable PID":"Enable PID"}</Button>
         <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => disableAllPumpsAction()}>Disable All Pumps</Button>
         {/* <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col ms-1" type="button" onClick={()=>autoPondFillPIDAction()}>{Tags.EnablePondFill===1?"Disable Pond Fill":"Enable Pond Fill"}</Button> */}
       </div>
+      <div className="d-flex flex-row my-2" >
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={() => toggleFountainCommand()}>{Tags.Fountain.Command === 1 ? "Fountain OFF" : "Fountain ON"}</Button>
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => {SetOpenModal(true)}}>Back Flush</Button>
+          </div>
+
         <div className={"d-flex  flex-row"}
         // style={{"maxWidth":"350px"}}
         >
@@ -104,7 +117,25 @@ function disableAllPumpAction() {
           <PumpCard key={index} index={index} cPump={pump.toJS()} />
         ))}
         </div>
+      </div>
+      <Modal header={"Act All Alarm "} isOpen={openModal} handleOnClose={() => { SetOpenModal(false) }}>
+        <div className="d-flex flex-column my-2 justify-content-start ">
+          <h5 className="text-Mid">Back Flush Status</h5>
+          <h6 className="text-Light">
+            {Tags.BackFlush.Step===0?
+            "Waiting one of main pumps start":
+            (Tags.BackFlush.Step===1?
+              "Waiting to start":
+              "Is Running")
+            }
+          </h6>
         </div>
+        <div className="d-flex flex-row justify-content-end">
+          <Button className="btn  btn-principal me-2" onClick={() => { toggleBackFlushCommand() }}> {Tags.BackFlush.Command===1?"Manual OFF":"Manual ON"}</Button>
+
+          <Button className="btn  btn-principal me-2" onClick={() => { SetOpenModal(false) }}> Cancel</Button>
+        </div>
+      </Modal>
     </div>
   );
 }
