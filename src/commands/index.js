@@ -1,5 +1,5 @@
 import { SendMessage } from "../middleware/socketio";
-//import store from "../store";
+import store from "../store";
 
 
 const Commands = {
@@ -107,7 +107,18 @@ const Commands = {
     SendMessage(["AckAllAlarms"], actAllAlarms, socket);
     SendMessage(["AckAllTrigger"], 1, socket);
   
-  }
+  },
+  ToggleFountainCommand : () => {
+    const state = store.getState();
+    const socket = state.SocketIO.socket;
+    const FountainCommand = state.Tags.getIn(["Fountain","Command"]);
+    const value = FountainCommand===1?0:1;
+    console.log(state)
+    console.log(FountainCommand)
+    console.log(value)
+
+    SendMessage([["Fountain","Command"]], value, socket);
+  },
 }
 
 

@@ -72,6 +72,9 @@ export default function Control() {
   function disableAllPumpsAction() {
     Commands.DisableAllPump(socket);
   }
+  function toggleFountainCommand() {
+    Commands.ToggleFountainCommand();
+  }
 
   return (
     <div className="d-flex row justify-content-center">
@@ -132,6 +135,10 @@ export default function Control() {
           </div>
           <div className="d-flex flex-row my-2" >
             <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={() => autoPressurePIDAction()}>{Tags.PressurePID.enable === 1 ? "Disable PID" : "Enable PID"}</Button>
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => disableAllPumpsAction()}>Disable All Pumps</Button>
+          </div>
+          <div className="d-flex flex-row my-2" >
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={() => toggleFountainCommand()}>{Tags.Fountain.Command === 1 ? "Fountain OFF" : "Fountain ON"}</Button>
             <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => disableAllPumpsAction()}>Disable All Pumps</Button>
           </div>
 
