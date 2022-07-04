@@ -1,6 +1,7 @@
 import React,{useState,createRef,useEffect} from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
+import Modal from "../SystemComponents/Modal";
 
 import PumpCard from "./PumpCard"
 import Button from "../SystemComponents/Button";
