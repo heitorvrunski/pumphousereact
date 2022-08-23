@@ -82,7 +82,7 @@ const Commands = {
     SendMessages(sendMessages, socket);
   },
   StopManualPump : (index, socket) => {
-    var sendMessages = [];
+    var sendMessages = []; 
   
     sendMessages.push([["cPump", index, "MaxRamp"], 0]);
     //forceTag(`cPump[${index}].Command`,0,socket)
