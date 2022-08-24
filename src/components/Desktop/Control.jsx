@@ -1,7 +1,6 @@
 import React,{useState,createRef,useEffect} from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
-import Modal from "../SystemComponents/Modal";
 
 import PumpCard from "./PumpCard"
 import Button from "../SystemComponents/Button";
@@ -19,10 +18,10 @@ export default function Control() {
   const socket = useSelector((state) => state.SocketIO.socket);
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
+  const siteType = process.env.REACT_APP_SITE_TYPE??0;
 
   const [options, SetOptions] = useState({});
   const [reload, SetReload] = useState(false);
-  const [openModal, SetOpenModal] = useState(false);
 
 
   const chart = createRef();
@@ -68,20 +67,15 @@ export default function Control() {
       Commands.DisablePressurePID(socket);
     }
   }
-/*
-  function autoPondFillPIDAction() {
-    Commands.EnableDesablePondPID(Tags.EnablePondFill, socket);
-  }*/
+
 
   function disableAllPumpsAction() {
     Commands.DisableAllPump(socket);
   }
-  function toggleFountainCommand() {
-    Commands.ToggleFountainCommand();
+  function changeSite() {
+    //Nothing to see here yet
   }
-  function toggleBackFlushCommand() {
-    Commands.ToggleBackFlushCommand();
-  }
+
 
   return (
     <div className="d-flex row justify-content-center">
@@ -145,8 +139,7 @@ export default function Control() {
             <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => disableAllPumpsAction()}>Disable All Pumps</Button>
           </div>
           <div className="d-flex flex-row my-2" >
-            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col me-2" type="button" onClick={() => toggleFountainCommand()}>{Tags.Fountain.Command === 1 ? "Fountain OFF" : "Fountain ON"}</Button>
-            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col " type="button" onClick={() => {SetOpenModal(true)}}>Back Flush</Button>
+            <Button className="btn btn-lg btn-principal btn-block m-0 p-0 pb-1 col" type="button" onClick={() => changeSite()}>{siteType === 0 ? "Change to Site B" : "Change to Site A"}</Button>
           </div>
 
           {Tags.PressurePID.Safety === 1 ?
@@ -162,24 +155,6 @@ export default function Control() {
           ))}
         </div>
       </div>
-      <Modal header={"Act All Alarm "} isOpen={openModal} handleOnClose={() => { SetOpenModal(false) }}>
-        <div className="d-flex flex-column my-2 justify-content-start ">
-          <h5 className="text-Mid">Back Flush Status</h5>
-          <h6 className="text-Light">
-            {Tags.BackFlush.Step===0?
-            "Waiting one of main pumps start":
-            (Tags.BackFlush.Step===1?
-              "Waiting to start":
-              "Is Running")
-            }
-          </h6>
-        </div>
-        <div className="d-flex flex-row justify-content-end">
-          <Button className="btn  btn-principal me-2" onClick={() => { toggleBackFlushCommand() }}> {Tags.BackFlush.Command===1?"Manual OFF":"Manual ON"}</Button>
-
-          <Button className="btn  btn-principal me-2" onClick={() => { SetOpenModal(false) }}> Close</Button>
-        </div>
-      </Modal>
     </div>
   );
 }

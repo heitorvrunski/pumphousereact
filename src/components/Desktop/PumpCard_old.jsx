@@ -23,13 +23,7 @@ export default function PumpCard(props) {
 
   //const [NewFreq, SetNewFreq] = useState(props.cPump.setFrequency);
   const socket = useSelector((state) => state.SocketIO.socket);
-  /*
-  const handleChange = (event) => {
-    const newFrenqHandle = event.target.validity.valid
-      ? event.target.value
-      : NewFreq;
-    SetNewFreq(newFrenqHandle);
-  };*/
+
   function setManualFreqPump() {
     if (newFrequency > 60 || newFrequency < 5) {
       setNewFrequency(0);
