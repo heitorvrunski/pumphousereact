@@ -19,13 +19,16 @@ export default function Control() {
   const socket = useSelector((state) => state.SocketIO.socket);
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
-  const siteType = process.env.REACT_APP_SITE_TYPE??1;
+  const siteType = process.env.REACT_APP_SITE_TYPE??0;
   const redirectLink = process.env.REACT_APP_REDIRECT_LINK??"";
 
   const [options, SetOptions] = useState({});
   const [reload, SetReload] = useState(false);
   console.log(siteType)
   console.log(redirectLink)
+  console.log(`${process.env.REACT_APP_SITE_TYPE}`)
+  console.log(`${process.env.REACT_APP_REDIRECT_LINK}`)
+
 
   const chart = createRef();
 
