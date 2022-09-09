@@ -22,10 +22,6 @@ export default function Control() {
 
   const [options, SetOptions] = useState({});
   const [reload, SetReload] = useState(false);
-  console.log(siteType)
-  console.log(redirectLink)
-  console.log(process.env)
-  console.log(`${process.env.REACT_APP_REDIRECT_LINK}`)
 
 
   const chart = createRef();
