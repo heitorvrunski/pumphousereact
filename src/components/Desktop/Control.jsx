@@ -1,9 +1,7 @@
 import React,{useState,createRef,useEffect} from "react";
 import { useSelector } from "react-redux";
 import moment from "moment";
-import {ApiNode} from "../../middleware/thunk"
 import PumpCard from "./PumpCard"
-import cookie from 'react-cookie'
 import Button from "../SystemComponents/Button";
 import Commands from "../../commands/index.js";
 import HighchartsReact from "highcharts-react-official";
