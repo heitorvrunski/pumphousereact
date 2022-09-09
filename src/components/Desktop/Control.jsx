@@ -20,6 +20,7 @@ export default function Control() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
   const siteType = process.env.REACT_APP_SITE_TYPE??1;
+  const redirectLink = process.env.REACT_APP_REDIRECT_LINK??"";
 
   const [options, SetOptions] = useState({});
   const [reload, SetReload] = useState(false);
@@ -74,16 +75,8 @@ export default function Control() {
     Commands.DisableAllPump(socket);
   }
   function changeSite() {
-    //Nothing to see here yet
-    //cookies.get("token");
-    //Cookies.get('foo', { domain: 'sub.example.com' }) 
-    console.log( cookie.load('token'))
-    
-    ApiNode.TestRefreshToken()
-
-
-
-  }
+    window.location.href = redirectLink;
+ }
 
 
   return (
