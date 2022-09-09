@@ -17,8 +17,8 @@ const Commands = {
     }
     //push
     sendMessages.push([["PressurePID", "enable"], 1]);
-    setOrderPump = setOrderPump===1?0:1;
-    sendMessages.push([["SetOrderPump"], setOrderPump]);
+    //setOrderPump = setOrderPump===1?0:1;
+    //sendMessages.push([["SetOrderPump"], setOrderPump]);
     SendMessages(sendMessages, socket);
   },
   DisablePressurePID : (socket) => {
@@ -75,20 +75,21 @@ const Commands = {
     sendMessages.push([["cPump", index, "MaxRamp"], maxRamp]);
     sendMessages.push([["cPump",index, "ForceValue"], 1]);
     sendMessages.push([["cPump",index, "ForceCommand"], 1]);
-    sendMessages.push([["cPump", index, "Frequency"], 5]);
+    //sendMessages.push([["cPump", index, "Frequency"], 5]);
 
     //sendMessages.push([["cPump", index, "Command"], 1]);
     //sendMessages.push([['cPump',index,'status'],1])
     SendMessages(sendMessages, socket);
   },
-  StopManualPump : (index, socket) => {
-    var sendMessages = []; 
+  StopManualPump : (index) => {
+    const state = store.getState();
+    const socket = state.SocketIO.socket;
   
-    sendMessages.push([["cPump", index, "MaxRamp"], 0]);
-    //forceTag(`cPump[${index}].Command`,0,socket)
+    var maxRamp = state.Tags.getIn(["cPump",index,"StartRamp"]);
+    var sendMessages = [];
+    sendMessages.push([["cPump", index, "MaxRamp"], maxRamp]);
     sendMessages.push([["cPump",index, "ForceValue"], 0]);
     sendMessages.push([["cPump",index, "ForceCommand"], 1]);
-    sendMessages.push([["cPump",index, "Frequency"], 0]);
 
     //sendMessages.push([["cPump", index, "Command"], 0]);
     //sendMessages.push([["cPump", index, "status"], 0]);

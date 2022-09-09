@@ -15,6 +15,7 @@ export default function Control() {
   const Tags = useSelector((state) => state.Tags.toJS());
   const setOrderPump = useSelector((state) => state.Tags.getIn(["SetOrderPump"]));
   const siteType = process.env.REACT_APP_SITE_TYPE??0;
+  const redirectLink = process.env.REACT_APP_REDIRECT_LINK??"";
 
   const cPump = useSelector((state) => state.Tags.get("cPump")).sort(order);
   function order(a, b) {
@@ -35,7 +36,7 @@ export default function Control() {
   }
 
   function changeSite() {
-    //Nothing to see here yet
+     window.location.href = redirectLink;
   }
   /*
   function autoPondFillPIDAction() {
@@ -81,6 +82,7 @@ export default function Control() {
               <h4 className="text-Light  w-100 text-center f-400 p-0 ">
                 {Tags.cFlux.Value.toFixed(2)}
               </h4>
+              <svg xmlns="http://www.w3.org/2000/svg"  width="40" viewBox="0 0 48 48" className={"position-absolute top-0 start-0 pump-red m-1 blink-yellow "+ (Tags.cFlux.PLCValueOPC<192?"":"d-none")}><path d="M2 42 24 4l22 38Zm5.2-3h33.6L24 10Zm17-2.85q.65 0 1.075-.425.425-.425.425-1.075 0-.65-.425-1.075-.425-.425-1.075-.425-.65 0-1.075.425Q22.7 34 22.7 34.65q0 .65.425 1.075.425.425 1.075.425Zm-1.5-5.55h3V19.4h-3Zm1.3-6.1Z"/></svg>
             </div>
             <div className="card p-1 d-flex mb-2 flex-column position-relative col px-2">
               <h4 className="text-Mid mt-1 w-100 text-center f-400 p-0 mb-1">
@@ -89,6 +91,8 @@ export default function Control() {
               <h4 className="text-Light w-100 text-center f-400 p-0">
                 {Tags.PressurePID.Current.toFixed(2)}
               </h4>
+              <svg xmlns="http://www.w3.org/2000/svg"  width="40" viewBox="0 0 48 48" className={"position-absolute top-0 start-0 pump-red m-1 blink-yellow "+ (Tags.PressurePID.PLCValueOPC<192?"":"d-none")}><path d="M2 42 24 4l22 38Zm5.2-3h33.6L24 10Zm17-2.85q.65 0 1.075-.425.425-.425.425-1.075 0-.65-.425-1.075-.425-.425-1.075-.425-.65 0-1.075.425Q22.7 34 22.7 34.65q0 .65.425 1.075.425.425 1.075.425Zm-1.5-5.55h3V19.4h-3Zm1.3-6.1Z"/></svg>
+
             </div>
             {
               Tags.PressurePID.enable === 1 ?

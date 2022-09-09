@@ -64,7 +64,7 @@ export default function PumpCard(props) {
       </h5>
       <div className="d-flex flex-row">
         <div className="d-flex flex-column me-2">
-          <div className="card p-2 d-flex  position-relative justify-content-start flex-row " style={{ "Height":"-webkit-fill-available","minHeight":"80px" }}>
+          <div className="card p-2 d-flex  position-relative justify-content-start flex-row " style={{ "Height":"-webkit-fill-available","minHeight":"85px" }}>
             {props.cPump.BooleanPump === 1 ?
               <svg height="25px" className={"mx-2 " + (props.cPump.StatusOPC === 2 ? "pump-gray blink-yellow" : (props.cPump.StatusOPC === 1 ? "pump-green" : "pump-red"))} data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80.97 106.54"><defs></defs><path className="cls-1" d="M30.17,34.64V7.58H6.93V63.85h.2A35.78,35.78,0,0,1,30.17,34.64Z" /><rect className="cls-1" x="0.04" y="0.07" width="38.42" height="5.91" /><path className="cls-1" d="M44.73,34.11a36.19,36.19,0,1,0,36.2,36.18A36.19,36.19,0,0,0,44.73,34.11Zm8.72,14.31a23.83,23.83,0,0,1,8.35,5.51c.27.27.53.54.78.82a24,24,0,0,1-2.76,8.31l-.24.24a16.76,16.76,0,0,0-3-4.14A16,16,0,0,0,53.89,57c-.13-2.9.12-5.71-.45-8.52Zm4.21,21.89a13,13,0,1,1-13-13A13,13,0,0,1,57.66,70.31ZM35.25,48.68A24.05,24.05,0,0,1,45,46.61q.57,0,1.14,0a24.08,24.08,0,0,1,4,7.8v.34a16.77,16.77,0,0,0-8.51-.42c-2.16-1.94-4-4.09-6.39-5.66Zm-7.06,4.59.82-.78a24.14,24.14,0,0,1,8.33,2.72l.24.24a16.55,16.55,0,0,0-4.13,3,17.06,17.06,0,0,0-2.2,2.71c-2.89.15-5.7-.09-8.51.5h0A23.92,23.92,0,0,1,28.19,53.27ZM23,79.69A23.88,23.88,0,0,1,21,69.9q0-.57,0-1.14a24.21,24.21,0,0,1,7.81-4h.34a16.68,16.68,0,0,0-.43,8.52c-1.95,2.15-4.1,4-5.67,6.37ZM36,92.24a24,24,0,0,1-8.38-5.48l-.78-.82a24.25,24.25,0,0,1,2.73-8.32l.24-.24a16.8,16.8,0,0,0,3,4.13,16.46,16.46,0,0,0,2.7,2.2c.15,2.89-.1,5.71.49,8.52ZM54,92a23.76,23.76,0,0,1-9.8,2c-.38,0-.76,0-1.13,0a24,24,0,0,1-3.95-7.82v-.34a16.23,16.23,0,0,0,5,.8,15.9,15.9,0,0,0,3.47-.35c2.14,2,4,4.11,6.36,5.69Zm7.08-4.56c-.27.27-.55.53-.83.78A24.09,24.09,0,0,1,52,85.44l-.24-.24a16.76,16.76,0,0,0,4.14-3,17.52,17.52,0,0,0,2.21-2.7c2.89-.14,5.7.11,8.51-.48v0A23.81,23.81,0,0,1,61.09,87.41ZM68.34,72a24.34,24.34,0,0,1-7.83,3.93h-.34a16.77,16.77,0,0,0,.47-8.51c2-2.15,4.11-4,5.69-6.36h0a24,24,0,0,1,2,9.81C68.37,71.2,68.36,71.58,68.34,72Z" /></svg>
 
@@ -142,14 +142,17 @@ export default function PumpCard(props) {
             <h5 className="text-Mid f-400 ">
               Commands
             </h5>
-            <div className="d-flex flex-column" >
-              <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Status !== 0 ? "Stop" : "Start"}</Button>
               {props.cPump.BooleanPump !== 1 ?
-                <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1 " onClick={() => openNewFrequency()}>Set</Button>
+                <div className="d-flex flex-column" >
+                  <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.StatusOPC !== 0 ? "Stop" : "Start"}</Button>                
+                  <Button className="btn btn-lg btn-principal btn-block m-0 p-0 px-1 " onClick={() => openNewFrequency()}>Set</Button>
+                </div>
+
                 :
-                null
+                <div className="d-flex flex-column" >
+                  <Button disable={pidEnable === 1} className="btn btn-lg btn-principal btn-block m-0 p-0 px-1  mb-2" onClick={() => actionManualPump(props.cPump.Status)}>{props.cPump.Command !== 0 ? "Stop" : "Start"}</Button>                
+                </div>
               }
-            </div>
 
           </div>
         </div>

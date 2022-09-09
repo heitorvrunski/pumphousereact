@@ -287,6 +287,8 @@ export default function SettingsConfig(props) {
         }
     }
     const handleDelete = event =>{
+        
+
         if(typeDelete===0){
             const param = settingsNode[selectedSettings].name;
             dispatch(ApiNode.DeleteSysConfig({param:param}));
@@ -310,16 +312,24 @@ export default function SettingsConfig(props) {
         }else if(typeDelete===2){
             const param = settingsNode[selectedSettings].name;
             const config = FindConfig(settingsNode, param);
+            
             var arrayRow = [];
             config.value.forEach(element => {
                 arrayRow.push(element)
             });
+            console.log(arrayRow)
+            console.log(deleteConfigIndex)
+
             arrayRow.splice(deleteConfigIndex,1);
+            console.log(arrayRow)
+
             const value = JSON.stringify(arrayRow);
             dispatch(ApiNode.PutSysConfig({param:param,value}))
             setIsOpenDelete(false)
 
         }
+        setReloadConfigs(!reloadConfigs)
+
     }
 
     const handleChangeSettings = index => event =>{
@@ -478,7 +488,7 @@ export default function SettingsConfig(props) {
                         </thead>
                         <tbody>
                         {settings.map((element,index)=>(
-                            <tr key={index+"row"}>
+                            <tr key={index+"row"+(typeof element.browseName!=="undefined" ? (typeof element.browseName === "string"? element.browseName : '["'+element.browseName.join('","')+'"]'):"")}>
                                 {columns.map((cell,i)=>{
                                     if(!cell.endsWith("New"))
                                     return(
@@ -564,7 +574,7 @@ export default function SettingsConfig(props) {
             </div>
         </Modal>
         <Modal isOpen={isOpenDelete} handleOnClose={()=>{setIsOpenDelete(false)}}>
-            <div className="d-flex flex-row my-2">
+            <div className="d-flex flex-row my-2 text-Dark">
                 <h5>Are you sure? This action cannot be undone</h5>
             </div>
             <div className="d-flex flex-row justify-content-end">
@@ -577,7 +587,7 @@ export default function SettingsConfig(props) {
         <Modal isOpen={isOpenNewColumn} handleOnClose={()=>{setIsOpenNewColumn(false)}}>
             <div className="d-flex flex-column my-2">
                 <div className="d-flex flex-row my-2">
-                    <h5>Name:</h5>
+                    <h5 className="text-Dark">Name:</h5>
                     <input ref={inputColumn}  type="text" className="mx-2" placeholder="column" onChange={(e)=>setNewColumn(e.target.value)}></input>
                 </div>    
                 <div className={"d-flex flex-row my-2 "+(newColumn==="browseName"?"":"collapsed")}>
@@ -595,7 +605,7 @@ export default function SettingsConfig(props) {
                       />
                 </div>         
             </div>
-            <div className="d-flex flex-row justify-content-end">
+            <div className="d-flex flex-row justify-content-end text-Dark">
                 <Button className="btn  btn-principal me-2" onClick={()=>{setIsOpenNewColumn(false)}}> Cancel</Button>
                 <Button className="btn  btn-principal" onClick={handleCreateNewColumn}> Create</Button>
 

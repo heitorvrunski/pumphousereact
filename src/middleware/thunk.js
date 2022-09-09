@@ -102,6 +102,22 @@ const ApiNode = {
       .then((resp) => resp.data)
       .then((tasks) => dispatch(Actions.ActionLogin(tasks)));
   },
+  TestRefreshToken: () => {
+    console.log("HERE")
+    axios
+      .get(`http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}/node/api/auth/ChangeDomainToken`, {
+        withCredentials: true,
+      })
+      .then((resp) => console.log(resp.headers));
+      /*
+    axios
+      .get(`http://192.168.1.2:3001/node/api/auth/refresh`, {
+        withCredentials: true,
+      })
+      .then((resp) => resp.data)
+      .then((tasks) => console.log(tasks))
+      ;*/
+  },
  Logoff: () => (dispatch) => {
     axios
       .get(`http://${window.location.hostname}:${process.env.REACT_APP_NODE_PORT??3000}/node/api/auth/logoff`, {
@@ -298,6 +314,7 @@ const ApiNode = {
       .then((resp) => {result = resp.data});
     return result
   },
+
   RestartNode: () => {
     axios
       .get(
