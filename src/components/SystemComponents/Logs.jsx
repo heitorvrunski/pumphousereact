@@ -224,7 +224,7 @@ export default function Logger() {
                 <label htmlFor="inputTail" className="col-form-label me-1">Set the num. of last lines: </label>
             </div>
             <div className="col-auto me-1">
-                <input type="number" style={{width:"80px"}} id="inputTail" className="form-control" defaultValue={tail} onChange={handleTailChanges}></input>
+                <input type="number" style={{width:"80px"}} id="inputTail" className="form-control text-dark" defaultValue={tail} onChange={handleTailChanges}></input>
 
             </div>
             <div className="col-auto">

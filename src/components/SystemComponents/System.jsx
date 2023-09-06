@@ -249,7 +249,7 @@ const UsersConfig = () => {
 
           <div className="table-responsive">
           <table
-            className="table overflow-auto text-Mid"
+            className="table-dark overflow-auto text-Mid"
             style={{ minWidth: "350px" }}
           >
             <thead>
